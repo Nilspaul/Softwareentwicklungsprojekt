@@ -1,0 +1,89 @@
+.required label::after {
+  content: " *";
+  color: #ff1744 !important;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.full-width{
+  width:100%;
+}
+
+
+// Reversed input variant
+.v-input--reverse .v-input__slot {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  .v-application--is-ltr & {
+    .v-input--selection-controls__input {
+      margin-right: 0;
+      margin-left: 8px;
+    }
+  }
+  .v-application--is-rtl & {
+    .v-input--selection-controls__input {
+      margin-left: 0;
+      margin-right: 8px;
+    }
+  }
+}
+
+// Bonus "expand" variant
+.v-input--expand .v-input__slot {
+  // justify-content: space-between;
+  .v-label {
+    display: block;
+    flex: 1;
+  }
+}
+
+.rtw-default-background-color {
+  background-color: var(--v-blue_background-base) !important;
+}
+
+.v-application {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+
+.big-btn {
+  background-color: #D9E0ED99 !important;
+  border: dashed 2px #738AAE99 !important;
+  font-style: italic !important;
+  text-transform: none!important;
+  height: 52px!important;
+  font-size: 18px !important;
+
+  .v-icon {
+    position: absolute;
+    left: 0;
+  }
+}
+
+.green_2 {
+  color: var(--v-green_2-base);
+}
+
+.info-p p {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.87);
+  line-height: 30px;
+}
+
+.info-height {
+  height: calc(100vh - 104px);
+}
+
+.hover-pointer:hover {
+  cursor: pointer;
+}
+
+.without-hover.v-btn:focus::before {
+  opacity: 0 !important;
+}
+
+.hover-underline:hover {
+  text-decoration: underline;
+}
