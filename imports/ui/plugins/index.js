@@ -1,3 +1,3 @@
 import vuetify from './vuetify'
-
-export  {vuetify}
+import {router} from "./router"
+export  {vuetify, router}
