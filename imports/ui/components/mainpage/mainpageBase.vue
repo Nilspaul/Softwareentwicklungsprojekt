@@ -1,7 +1,5 @@
 <template>
 <div>
-    <v-system-bar color="secondary">
-    </v-system-bar>
     <topBar/>
 </div>
 </template>

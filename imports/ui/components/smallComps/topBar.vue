@@ -2,9 +2,7 @@
 <div>
     <v-system-bar color="secondary" dark>
         <v-spacer></v-spacer>
-
         <v-icon>mdi-window-minimize</v-icon>
-
         <v-icon>mdi-window-maximize</v-icon>
         <v-btn icon>
             <v-icon hover>mdi-close</v-icon>
@@ -16,37 +14,31 @@
         <v-spacer></v-spacer>
          <v-text-field
           append-icon="mdi-microphone"
-          class="mx-4"
+          class="mr-16"
           flat
           hide-details
           label="Search"
           prepend-inner-icon="mdi-magnify"
           solo-inverted
         ></v-text-field>
-        <v-btn icon>
-            <v-icon>mdi-magnify</v-icon>
-        </v-btn>
+        <AccountViewDrawer/>
     </v-toolbar>
 </div>
 </template>
 
 <script>
+
+import AccountViewDrawer from './subComps/accountViewDrawer.vue';
+
 export default {
     name: "topBar",
+    components : {
+    AccountViewDrawer
+},
     data: () => ({
-        drawer: false,
         group: null,
     }),
-
-    watch: {
-        group() {
-            this.drawer = false
-        }
-    },
-    methods: {
-
-    },
-
+    methods: {},
 }
 </script>
 
