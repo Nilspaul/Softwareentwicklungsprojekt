@@ -15,16 +15,18 @@
                 Submit
             </v-btn>
         </v-card-actions>
-        <v-btn color="primary" class="text-decoration-underline" plain> Don't have an account yet? Register now!</v-btn>
+      <registerBase/>
     </v-card>
+    
 </v-container>
 </template>
 
 <script>
+import registerBase from '../register/registerBase.vue'
 export default {
     name: "loginBase",
     components: {
-
+        registerBase,
     },
     data: () => ({
         errorMessages: '',
