@@ -11,8 +11,8 @@
         <v-divider class="mt-12"></v-divider>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn class="big-btn full-width" @click="submit">
-                Submit
+            <v-btn class="big-btnSolidBorder full-width" @click="submit">
+               Log in
             </v-btn>
         </v-card-actions>
       <registerBase/>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { router } from '../../plugins';
 import registerBase from '../register/registerBase.vue'
 export default {
     name: "loginBase",
@@ -37,7 +38,7 @@ export default {
 
     methods: {
         submit() {
-            
+            router.push({path: '/mainpage'});
         },
     },
 
