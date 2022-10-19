@@ -1,4 +1,4 @@
-import Users from "../collections/Links";
+import Users from "../collections/users";
 import { Meteor } from "meteor/meteor";
 
 let userManagement;
