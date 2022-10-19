@@ -8,6 +8,7 @@
         </v-row>
     </v-container>
         <v-navigation-drawer
+        color="secondary"
         height="500px"
         v-model="drawer"
         absolute
@@ -16,11 +17,11 @@
       >
         <v-list-item>
           <v-list-item-avatar>
-            <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
+            <v-icon>mdi-account-badge</v-icon>
           </v-list-item-avatar>
   
           <v-list-item-content>
-            <v-list-item-title>John Leider</v-list-item-title>
+            <v-list-item-title>Static test</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
   
@@ -41,13 +42,13 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
-
+        <settings/>
       </v-navigation-drawer> 
 </div>
 </template>
 
 <script>
-import settings from '../settings.vue'
+import settings from './settings.vue'
     export default {
     name: "accountViewDrawer",
     components: {settings},

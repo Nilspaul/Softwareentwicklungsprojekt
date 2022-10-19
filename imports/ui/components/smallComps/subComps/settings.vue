@@ -7,14 +7,22 @@
            transition="dialog-bottom-transition"
          >
            <template v-slot:activator="{ on, attrs }">
-             <v-btn
-               plain
-               color="primary"
-               v-bind="attrs"
-               v-on="on"
-             >
-               Open Dialog
-             </v-btn>
+           <v-list-item
+            plain
+            class="ml-3"
+            color="white"
+            v-bind="attrs"
+            v-on="on" 
+          >
+            <v-list-item-icon>
+              <v-icon>mdi-account-cog</v-icon>
+            </v-list-item-icon>
+  
+            <v-list-item-content>
+              <v-list-item-title>Settings</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+            
            </template>
            <v-card>
              <v-toolbar
