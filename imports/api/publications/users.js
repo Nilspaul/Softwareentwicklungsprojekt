@@ -1,6 +1,11 @@
-import { Meteor } from 'meteor/meteor';
-import Users from '../collections/Users.js';
+import {Meteor} from "meteor/meteor";
+import Users from "../collections/Users";
 
-Meteor.publish('users', function () {
-  return Users.find();
-});
+
+if (Meteor.isServer) {
+    Meteor.publish(null, () => {
+       
+            return Users.find()
+        
+    });
+}

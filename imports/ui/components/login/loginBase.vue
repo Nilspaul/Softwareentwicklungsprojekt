@@ -4,7 +4,7 @@
         <v-card-title>
             Login
         </v-card-title>
-        <v-card-text>
+        <v-card-text ref="loginForm">
             <v-text-field ref="email" v-model="email" :rules="[() => !!email || 'This field is required']" :error-messages="errorMessages" label="Email-address" placeholder="Type in your mail address" required></v-text-field>
             <v-text-field ref="password" v-model="password" :rules="[() => !!password || 'This field is required']" :error-messages="errorMessages" label="Password" placeholder="Type in your password" required></v-text-field>
         </v-card-text>
@@ -12,18 +12,21 @@
         <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn class="big-btnSolidBorder full-width" @click="submit">
-               Log in
+                Log in
             </v-btn>
         </v-card-actions>
-      <registerBase/>
+        <registerBase />
     </v-card>
-    
+
 </v-container>
 </template>
 
 <script>
-import { router } from '../../plugins';
+import {
+    router
+} from '../../plugins';
 import registerBase from '../register/registerBase.vue'
+import Users from '../../../api/collections/Users';
 export default {
     name: "loginBase",
     components: {
@@ -32,15 +35,29 @@ export default {
     data: () => ({
         errorMessages: '',
         name: null,
-        password: null,
         email: null,
+        password: null,
+        user: {
+            email: null,
+            password: null,
+        }
     }),
+
 
     methods: {
         submit() {
-            router.push({path: '/mainpage'});
+            let dbUsers = Users.find().fetch();
+            this.user.email = this.email;
+            this.user.password = this.password;
+            dbUsers.forEach((dbUser) => {
+                if (dbUser.email == this.user.email && dbUser.password == this.user.password) {
+                    router.push({
+                        path: '/mainpage'
+                    });
+                }
+            })
         },
-    },
+    }
 
 }
 </script>
