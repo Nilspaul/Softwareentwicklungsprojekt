@@ -5,16 +5,16 @@ let userManagement;
 
 if (Meteor.isServer) {
     class UserManagement {
-        register(newUser) {
-            return Users.insert({ ...contact });
+        register(user) {
+            return Users.insert({...user });
         }
 
-        update(contact) {
-            return Contacts.update({ _id: contact._id, patientId: Meteor.userId() }, { $set: { ...contact } });
+        update(user) {
+            return Users.update({ _id: user._id });
         }
 
         createOrUpdate(contact) {
-            return contact._id ? this.update(contact) : this.create(contact);
+            return user._id ? this.update(user) : this.create(user);
         }
     }
     userManagement = new UserManagement();

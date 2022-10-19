@@ -41,14 +41,16 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
+
       </v-navigation-drawer> 
 </div>
 </template>
 
 <script>
+import settings from '../settings.vue'
     export default {
     name: "accountViewDrawer",
-
+    components: {settings},
     data: () => ({
         drawer: null,
       items: [
