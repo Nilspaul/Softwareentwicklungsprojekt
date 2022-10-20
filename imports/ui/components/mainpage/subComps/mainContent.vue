@@ -1,9 +1,8 @@
 <template>
 <div>
       <v-sheet>
-          <topBar></topBar>
+          <topBar v-on:drawNav = "drawNav()"></topBar>
     <tabs></tabs>
-          <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-container class="fill-height">
         <v-row
@@ -87,6 +86,11 @@ export default {
       ],
     
     }),
+    methods : {
+      drawNav(){
+        this.drawer = !this.drawer;
+      }
+    }
 }
 </script>
 

@@ -3,6 +3,7 @@
     <v-system-bar color="secondary">
           </v-system-bar>
     <v-app-bar color="primary" dark>
+    <v-app-bar-nav-icon @click="drawNav()"></v-app-bar-nav-icon>
         <v-toolbar-title>Discover</v-toolbar-title>
         <v-spacer></v-spacer>
          <v-text-field
@@ -30,7 +31,11 @@ export default {
     data: () => ({
         group: null,
     }),
-    methods: {},
+    methods: {
+        drawNav(){
+            this.$emit('drawNav');
+        }
+    },
 }
 </script>
 
