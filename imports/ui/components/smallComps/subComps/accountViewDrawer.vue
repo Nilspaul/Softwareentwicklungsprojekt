@@ -10,7 +10,7 @@
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               icon
-              outline
+              outlined
               v-bind="attrs"
               v-on="on"
             >

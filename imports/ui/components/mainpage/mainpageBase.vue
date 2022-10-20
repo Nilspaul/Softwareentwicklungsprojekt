@@ -1,8 +1,8 @@
 <template>
-<div>
+<v-card class="full-width full-height">
     <topBar/>
     <mainContent/>
-</div>
+</v-card>
 </template>
 
 <script>

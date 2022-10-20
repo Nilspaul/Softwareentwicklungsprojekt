@@ -1,14 +1,8 @@
 <template>
 <div>
-    <v-system-bar color="secondary" dark>
-        <v-spacer></v-spacer>
-        <v-icon>mdi-window-minimize</v-icon>
-        <v-icon>mdi-window-maximize</v-icon>
-        <v-btn icon>
-            <v-icon hover>mdi-close</v-icon>
-        </v-btn>
-    </v-system-bar>
-    <v-toolbar color="primary" dark>
+    <v-system-bar color="secondary">
+          </v-system-bar>
+    <v-app-bar color="primary" dark>
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
         <v-toolbar-title>Discover</v-toolbar-title>
         <v-spacer></v-spacer>
@@ -22,7 +16,7 @@
           solo-inverted
         ></v-text-field>
         <AccountViewDrawer/>
-    </v-toolbar>
+    </v-app-bar>
 </div>
 </template>
 

@@ -1,28 +1,10 @@
 <template>
-    <v-carousel
-      z-index="0"
-      class ="mt-16"
-      cycle
-      height="400"
-      show-arrows-on-hover
-    >
+    <v-carousel  height="300"class="mt-10" cycle show-arrows-on-hover>
       <v-carousel-item
-        v-for="(slide, i) in slides"
+        v-for="(item,i) in items"
         :key="i"
-      >
-        <v-sheet
-          :color="colors[i]"
-          height="100%"
-        >
-          <v-row
-            class="fill-height"
-            align="center"
-            justify="center"
-          >
-            <div class="display-3">{{ slide }} Slide</div>
-          </v-row>
-        </v-sheet>
-      </v-carousel-item>
+        :src="item.src"
+      ></v-carousel-item>
     </v-carousel>
 </template>
 
@@ -31,19 +13,19 @@ export default {
     name: "imgSlider",
     data () {
     return {
-      colors: [
-        'indigo',
-        'warning',
-        'pink darken-2',
-        'red lighten-1',
-        'deep-purple accent-4',
-      ],
-      slides: [
-        'First',
-        'Second',
-        'Third',
-        'Fourth',
-        'Fifth',
+      items: [
+        {
+          src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+        },
+        {
+          src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+        },
+        {
+          src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+        },
+        {
+          src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+        },
       ],
     }
   },
