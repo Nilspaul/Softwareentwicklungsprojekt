@@ -9,10 +9,9 @@
     </v-container>
         <v-navigation-drawer
         color="secondary"
+        absolute
         height="500px"
         v-model="drawer"
-        absolute
-        temporary
         right
       >
         <v-list-item>
@@ -26,7 +25,6 @@
         </v-list-item>
   
         <v-divider></v-divider>
-  
         <v-list dense>
           <v-list-item
             v-for="item in items"
