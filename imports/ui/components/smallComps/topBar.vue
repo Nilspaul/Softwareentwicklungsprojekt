@@ -3,7 +3,6 @@
     <v-system-bar color="secondary">
           </v-system-bar>
     <v-app-bar color="primary" dark>
-        <v-app-bar-nav-icon></v-app-bar-nav-icon>
         <v-toolbar-title>Discover</v-toolbar-title>
         <v-spacer></v-spacer>
          <v-text-field
@@ -23,11 +22,10 @@
 <script>
 
 import AccountViewDrawer from './subComps/accountViewDrawer.vue';
-
 export default {
     name: "topBar",
     components : {
-    AccountViewDrawer
+    AccountViewDrawer,
 },
     data: () => ({
         group: null,
