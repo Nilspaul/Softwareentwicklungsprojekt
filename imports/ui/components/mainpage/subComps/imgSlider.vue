@@ -1,7 +1,7 @@
 <template>
     <v-carousel
-        z-index="0"
-        class ="mt-16"
+      z-index="0"
+      class ="mt-16"
       cycle
       height="400"
       show-arrows-on-hover

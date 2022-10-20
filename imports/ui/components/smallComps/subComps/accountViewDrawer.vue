@@ -1,24 +1,27 @@
 <template>
 <div>
-    <v-container class="fill-height">
-        <v-row align="center" justify="center">
-            <v-btn outlined color="white" @click.stop="drawer = !drawer">
-                <VIcon> mdi-account-badge</VIcon>
-            </v-btn>
-        </v-row>
-    </v-container>
-        <v-navigation-drawer
-        color="secondary"
-        absolute
-        height="500px"
-        v-model="drawer"
-        right
+      <v-row
+        justify="center"
       >
+        <v-menu
+          bottom
+          offset-y
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              icon
+              outline
+              v-bind="attrs"
+              v-on="on"
+            >
+            <v-icon>mdi-account</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
         <v-list-item>
           <v-list-item-avatar>
             <v-icon>mdi-account-badge</v-icon>
           </v-list-item-avatar>
-  
           <v-list-item-content>
             <v-list-item-title>Static test</v-list-item-title>
           </v-list-item-content>
@@ -39,10 +42,14 @@
               <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <settings></settings>
         </v-list>
-        <settings/>
-      </v-navigation-drawer> 
-</div>
+
+          </v-list>
+        </v-menu>
+        </v-dialog>
+      </v-row>
+    </div>
 </template>
 
 <script>
