@@ -11,7 +11,7 @@ Meteor.methods({
       console.log("login")
       usersManagement.login(user)
    },
-   'user.createOrUpdate'(user) {
-      usersManagement.createOrUpdate(user)
+   'user.logout'() {
+      usersManagement.logout();
    },
 });

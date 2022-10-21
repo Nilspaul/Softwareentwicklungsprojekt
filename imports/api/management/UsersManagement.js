@@ -16,6 +16,10 @@ if (Meteor.isServer) {
         login(user){
             Accounts.loginWithPassword(user.email, user.password)
         }
+
+        logout(){
+            Meteor.logout();
+        }
         update(contact) {
             return Users.update({ _id: contact._id }, { $set: {...contact } });
         }
