@@ -6,12 +6,12 @@
         </v-card-title>
         <v-card-text ref="loginForm">
             <v-text-field ref="email" v-model="email" :rules="[() => !!email || 'This field is required']" :error-messages="errorMessages" label="Email-address" placeholder="Type in your mail address" required></v-text-field>
-            <v-text-field ref="password" v-model="password" :rules="[() => !!password || 'This field is required']" :error-messages="errorMessages" label="Password" placeholder="Type in your password" required></v-text-field>
+            <v-text-field ref="password" type="password" v-model="password" :rules="[() => !!password || 'This field is required']" :error-messages="errorMessages" label="Password" placeholder="Type in your password" required></v-text-field>
         </v-card-text>
         <v-divider class="mt-12"></v-divider>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn class="big-btnSolidBorder full-width" @click="submit">
+            <v-btn class="full-width" color="secondary" @click="submit">
                 Log in
             </v-btn>
         </v-card-actions>
@@ -27,6 +27,7 @@ import {
 } from '../../plugins';
 import registerBase from '../register/registerBase.vue'
 import Users from '../../../api/collections/Users';
+import { VueMeteor } from 'vue-meteor-tracker';
 export default {
     name: "loginBase",
     components: {
@@ -51,6 +52,7 @@ export default {
             this.user.password = this.password;
             dbUsers.forEach((dbUser) => {
                 if (dbUser.email == this.user.email && dbUser.password == this.user.password) {
+                    this.user = dbUser;
                     router.push({
                         path: '/mainpage'
                     });

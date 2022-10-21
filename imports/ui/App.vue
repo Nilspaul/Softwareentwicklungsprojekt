@@ -7,15 +7,13 @@
 </template>
 
 <script>
-import loginBase from './components/login/loginBase.vue'
 export default {
-    components: {
-        loginBase,
-     
-    },
+    mounted(){
+        console.log(Meteor.user())
+    }
+
 }
 </script>
-
 <style>
 body {
     font-family: sans-serif;

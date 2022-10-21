@@ -7,11 +7,10 @@
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               icon
-              outlined
               v-bind="attrs"
               v-on="on"
             >
-            <v-icon>mdi-account</v-icon>
+            <v-icon  :class="[{ 'display-3': $vuetify.breakpoint.mobile}]">mdi-account</v-icon>
             </v-btn>
           </template>
           <v-list>

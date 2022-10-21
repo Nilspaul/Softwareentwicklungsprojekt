@@ -2,16 +2,16 @@
 <div>
     <v-system-bar color="secondary">
           </v-system-bar>
-    <v-app-bar color="primary" dark>
-    <v-app-bar-nav-icon @click="drawNav()"></v-app-bar-nav-icon>
-        <v-toolbar-title>Discover</v-toolbar-title>
+    <v-app-bar :class="[{'mobileTopbar pt-5' : $vuetify.breakpoint.mobile}]" color="primary" dark>
+        <VIcon :class="[{ 'display-2': $vuetify.breakpoint.mobile}]" @click="drawNav()">mdi-menu</VIcon>
+        <v-toolbar-title :class="[{'display-1 ml-7' : $vuetify.breakpoint.mobile}]">Discover</v-toolbar-title>
         <v-spacer></v-spacer>
          <v-text-field
           append-icon="mdi-microphone"
-          class="mr-16"
           flat
           hide-details
           label="Search"
+          class="mr-16"
           prepend-inner-icon="mdi-magnify"
           solo-inverted
         ></v-text-field>
