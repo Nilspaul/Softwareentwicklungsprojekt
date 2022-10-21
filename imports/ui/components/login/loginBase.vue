@@ -7,6 +7,7 @@
         <v-card-text ref="loginForm">
             <v-text-field ref="email" v-model="email" :rules="[() => !!email || 'This field is required']" :error-messages="errorMessages" label="Email-address" placeholder="Type in your mail address" required></v-text-field>
             <v-text-field ref="password" type="password" v-model="password" :rules="[() => !!password || 'This field is required']" :error-messages="errorMessages" label="Password" placeholder="Type in your password" required></v-text-field>
+            <v-text-field ref="username"  v-model="username" :rules="[() => !!username || 'This field is required']" :error-messages="errorMessages" label="Username" placeholder="Type in your username" required></v-text-field>
         </v-card-text>
         <v-divider class="mt-12"></v-divider>
         <v-card-actions>
@@ -22,6 +23,9 @@
 </template>
 
 <script>
+import { VueMeteor } from 'vue-meteor-tracker';
+import {Meteor} from 'meteor/meteor'
+import {Tracker} from 'meteor/tracker'
 import {
     router
 } from '../../plugins';
@@ -34,20 +38,32 @@ export default {
     },
     data: () => ({
         errorMessages: '',
-        name: null,
+        username: null,
         email: null,
         password: null,
         user: {
             email: null,
             password: null,
+            username: null,
         }
     }),
 
     methods: {
         submit() {
-            router.push({
-                path: '/mainpage'
+            this.user.email = this.email;
+            this.user.password = this.password;
+            Tracker.autorun(()=>{
+            this.user = Meteor.user();
+            console.log(this.user)
             })
+            Meteor.loginWithPassword(this.username, this.password);
+            
+            
+               router.push({
+                path: '/mainpage'
+            })  
+            
+           
         },
     }
 

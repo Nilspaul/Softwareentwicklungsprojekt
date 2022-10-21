@@ -1,14 +1,14 @@
 <template>
 <div>
     <v-app>
-        <LoginBase></LoginBase>
-        <router-view v-if="user"/>
+        <router-view/>
     </v-app>
 </div>
 </template>
 
 <script>
 import {Meteor} from 'meteor/meteor'
+import {Tracker} from 'meteor/tracker'
 import LoginBase from './components/login/loginBase.vue';
 export default {
     components: {
@@ -20,8 +20,11 @@ export default {
         };
     },
     created() {
+        Tracker.autorun(()=>{
         this.user = Meteor.user();
         console.log(this.user)
+        })
+        
     },
     components: { LoginBase }
 }

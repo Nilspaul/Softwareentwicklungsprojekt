@@ -7,9 +7,9 @@ Meteor.methods({
       console.log("test")
       usersManagement.create(user)
    },
-   'user.delete'(_id) {
-      check(_id, String)
-      usersManagement.delete(_id)
+   'user.login'(user) {
+      console.log("login")
+      usersManagement.login(user)
    },
    'user.createOrUpdate'(user) {
       usersManagement.createOrUpdate(user)

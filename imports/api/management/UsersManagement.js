@@ -13,6 +13,9 @@ if (Meteor.isServer) {
                 email: user.email,
               });
         }
+        login(user){
+            Accounts.loginWithPassword(user.email, user.password)
+        }
         update(contact) {
             return Users.update({ _id: contact._id }, { $set: {...contact } });
         }
