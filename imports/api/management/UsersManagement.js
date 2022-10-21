@@ -1,4 +1,5 @@
-import Users from "../collections/Users";
+
+import {Accounts} from 'meteor/accounts-base';
 import { Meteor } from "meteor/meteor";
 
 let usersManagement;
@@ -6,7 +7,11 @@ let usersManagement;
 if (Meteor.isServer) {
     class UsersManagement {
         create(user) {
-            return Users.insert({...user });
+            Accounts.createUser({
+                username: user.name,
+                password: user.password,
+                email: user.email,
+              });
         }
         update(contact) {
             return Users.update({ _id: contact._id }, { $set: {...contact } });

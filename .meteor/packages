@@ -25,3 +25,5 @@ johanbrook:publication-collector  # Test a Meteor publication by collecting its 
 fourseven:scss@4.15.0
 akryum:vue-sass
 akryum:vue-router2
+
+accounts-password

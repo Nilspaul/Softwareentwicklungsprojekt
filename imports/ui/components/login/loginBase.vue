@@ -26,8 +26,7 @@ import {
     router
 } from '../../plugins';
 import registerBase from '../register/registerBase.vue'
-import Users from '../../../api/collections/Users';
-import { VueMeteor } from 'vue-meteor-tracker';
+
 export default {
     name: "loginBase",
     components: {
@@ -44,19 +43,10 @@ export default {
         }
     }),
 
-
     methods: {
         submit() {
-            let dbUsers = Users.find().fetch();
-            this.user.email = this.email;
-            this.user.password = this.password;
-            dbUsers.forEach((dbUser) => {
-                if (dbUser.email == this.user.email && dbUser.password == this.user.password) {
-                    this.user = dbUser;
-                    router.push({
-                        path: '/mainpage'
-                    });
-                }
+            router.push({
+                path: '/mainpage'
             })
         },
     }
