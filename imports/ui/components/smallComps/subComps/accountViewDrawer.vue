@@ -34,7 +34,7 @@
         <v-list>
           <v-list-item link>
             <v-list-item-avatar>
-              <v-icon>mdi-logout</v-icon>
+              <v-icon class="mr-4">mdi-logout</v-icon>
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title @click="logout()">Log out</v-list-item-title>

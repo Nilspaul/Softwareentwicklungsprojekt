@@ -21,15 +21,10 @@
 
       <v-navigation-drawer v-model="drawer" absolute temporary>
         <v-list-item>
-          <v-list-item-avatar>
-            <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
-          </v-list-item-avatar>
-
           <v-list-item-content>
-            <v-list-item-title>John Leider</v-list-item-title>
+            <v-img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Technische_Hochschule_Mittelhessen_Logo.svg"></v-img>
           </v-list-item-content>
         </v-list-item>
-
         <v-divider></v-divider>
 
         <v-list dense>
@@ -63,11 +58,11 @@ export default {
     drawer: null,
     items2: [
       {
-        title: "Home",
+        title: "Semester oder Modul 1",
         icon: "mdi-view-dashboard",
       },
       {
-        title: "About",
+        title: "Semester oder Modul 2",
         icon: "mdi-forum",
       },
     ],
