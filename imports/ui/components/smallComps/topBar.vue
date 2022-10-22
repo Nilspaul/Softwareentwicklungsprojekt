@@ -15,7 +15,7 @@
           prepend-inner-icon="mdi-magnify"
           solo-inverted
         ></v-text-field>
-        <AccountViewDrawer/>
+        <AccountViewDrawer :user="user"/>
     </v-app-bar>
 </div>
 </template>
@@ -27,6 +27,9 @@ export default {
     name: "topBar",
     components : {
     AccountViewDrawer,
+},
+props: {
+    user: Object,
 },
     data: () => ({
         group: null,

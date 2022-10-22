@@ -19,14 +19,6 @@ export default {
             user: null,
         };
     },
-    created() {
-        Tracker.autorun(()=>{
-        this.user = Meteor.user();
-        console.log(this.user)
-        })
-        
-    },
-    components: { LoginBase }
 }
 </script>
 <style>
