@@ -9,7 +9,9 @@
       <v-tab v-for="n in 4" :key="n" ripple> Modul oder Inhalte {{ n }} </v-tab>
       <v-tab-item v-for="n in 4" :key="n">
         <v-card flat>
-          <v-card-text>{{ text }}</v-card-text>
+          <transition appear @before-enter="beforeEnter" @enter="enter">
+            <v-card-text>{{ text }}</v-card-text>
+          </transition>
         </v-card>
       </v-tab-item>
     </v-tabs>
@@ -17,6 +19,8 @@
 </template>
 
 <script>
+import gsap from "gsap";
+
 export default {
   name: "tabs",
   data() {
@@ -26,9 +30,17 @@ export default {
     };
   },
   methods: {
-    next() {
-      const active = parseInt(this.active);
-      this.active = active < 2 ? active + 1 : 0;
+    beforeEnter(el) {
+      el.style.opacity = "0";
+      el.style.transform = "translateX(-100px)";
+    },
+    // where the animation will end up
+    enter(el) {
+      gsap.to(el, {
+        duration: 1.5,
+        x: 0,
+        opacity: 1,
+      });
     },
   },
 };

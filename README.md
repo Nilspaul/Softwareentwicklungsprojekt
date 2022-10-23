@@ -9,7 +9,7 @@ plugin folder in imports/ui with all plugins (tracker,vuetify,router...)
 import in client/main.js
 
 (meteor add akryum:vue-sass
-npm install -g sass)
+meteor add akryum:vue-component)
 
 
 
