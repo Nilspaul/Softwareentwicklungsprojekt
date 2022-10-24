@@ -8,7 +8,7 @@
 
 <script>
 export default {
-    name: "toDo",
+    name: "createToDo",
     methods: {
 
     }

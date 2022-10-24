@@ -14,6 +14,7 @@
     "gsap": "^3.11.3",
     "lodash": "^4.17.21",
     "meteor-node-stubs": "^1.2.1",
+    "ngrok": "^4.3.3",
     "vue": "^2.7.13",
     "vue-meteor-tracker": "^3.0.0-beta.7",
     "vue-responsive-text": "^0.1.4",

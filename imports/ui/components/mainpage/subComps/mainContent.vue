@@ -27,6 +27,10 @@
         </v-list-item>
         <v-divider></v-divider>
 
+        <toDoBase></toDoBase>
+
+        <v-divider></v-divider>
+
         <v-list dense>
           <v-list-item v-for="item in items2" :key="item.title" link>
             <v-list-item-icon>
@@ -45,11 +49,13 @@
 <script>
 import topBar from "../../smallComps/topBar";
 import tabs from "../subComps/tabs";
+import toDoBase from "../ToDos/toDoBase.vue"
 export default {
   name: "mainContent",
   components: {
     topBar,
     tabs,
+    toDoBase
   },
   props: {
     user: Object,
