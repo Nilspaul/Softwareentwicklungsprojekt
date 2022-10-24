@@ -8,7 +8,7 @@
     >
       <v-tab v-for="n in 4" :key="n" ripple> Modul oder Inhalte {{ n }} </v-tab>
       <v-tab-item v-for="n in 4" :key="n">
-        <v-card flat>
+        <v-card flat class="mt-5">
           <transition appear @before-enter="beforeEnter" @enter="enter">
             <v-card-text>{{ text }}</v-card-text>
           </transition>
@@ -34,7 +34,6 @@ export default {
       el.style.opacity = "0";
       el.style.transform = "translateX(-100px)";
     },
-    // where the animation will end up
     enter(el) {
       gsap.to(el, {
         duration: 1.5,
