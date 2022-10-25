@@ -28,7 +28,21 @@
         <v-divider></v-divider>
 
         <toDoBase></toDoBase>
-
+        <v-row align="center">
+        <v-col cols="12" sm="6">
+          <v-subheader>Filter options:</v-subheader>
+        </v-col>
+        <v-col cols="12" sm="6">
+          <v-select
+            v-model="e6"
+            :items="filterOptions"
+            :menu-props="{ maxHeight: '400' }"
+            label="Select"
+            multiple
+            persistent-hint
+          ></v-select>
+        </v-col>
+      </v-row>
         <v-divider></v-divider>
 
         <v-list dense>
@@ -62,6 +76,11 @@ export default {
   },
   data: () => ({
     drawer: null,
+     e6: [],
+    filterOptions: [
+      "Show all",
+      "Show only subscribed"
+    ],
     items2: [
       {
         title: "Semester oder Modul 1",

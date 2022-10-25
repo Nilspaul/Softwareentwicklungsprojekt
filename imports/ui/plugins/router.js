@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 
 import loginBase from '../components/login/loginBase';
 import mainpageBase from '../components/mainpage/mainpageBase';
-import toDoBase from '../components/mainpage/ToDos/toDoBase.vue'
+import toDoMain from '../components/mainpage/ToDos/toDoMain.vue'
 Vue.use(VueRouter);
 
 const routes = [
@@ -14,7 +14,7 @@ const routes = [
     { path: '/mainpage', component: mainpageBase, name: 'mainpage' },
 
     //ToDos
-    { path: '/toDos', component: toDoBase, name: 'toDo' }
+    { path: '/toDo', component: toDoMain, name: 'toDo' }
 ];
 
 export const router = new VueRouter({ routes });
