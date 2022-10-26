@@ -2,7 +2,7 @@
         <v-card>
           <VDataTable
               :headers="headers"
-              :items="contactFileImports"
+              :items="myToDos"
               :single-expand="singleExpand"
               :expanded.sync="expanded"
               item-key="_id"
@@ -22,10 +22,9 @@
               <td :colspan="headers.length">
                 <VDataTable
                     :headers="subHeaders"
-                    :items="toDos"
+                    :items="myToDos"
                     show-select
                     item-key="name"
-                    class="font-weight-light"
                     :footer-props="{
                       itemsPerPageText: $vuetify.breakpoint.smAndUp ? 'Zeilen pro Seite' : 'Zeilen',
                       itemsPerPageAllText: 'Alle'
@@ -51,21 +50,17 @@ export default {
     components: {
     createToDo
     },
-   meteor: {
-    toDos() {
-      return ToDos.find({}).fetch();
-    }
-  }
+
     data() {
     return {
       expanded: [],
       singleExpand: false,
-      contactFileImports: [{}],
+      myToDos: [],
       headers: [{
         text: 'Modul',
         align: 'left',
         sortable: false,
-        value: 'Modulname',
+        value: 'moduleName',
       },
         {
           text: 'text1',
@@ -89,8 +84,8 @@ export default {
     methods: {
         
     },
-    mounted(){
-      
+    created(){
+      this.myToDos = ToDos.find().fetch()
     }
 
 }

@@ -7,7 +7,8 @@ const SEED_EMAIL = "nils.paul@iem.thm.de"
 
 const staticToDo = {
     name: "myFirstToDo",
-    note: "Do something"
+    note: "Do something",
+    moduleName: "MyModuleName"
 }
 Meteor.startup(() => {
     if (!Accounts.findUserByUsername(SEED_USERNAME)) {
