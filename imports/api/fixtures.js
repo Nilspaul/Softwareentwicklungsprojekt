@@ -17,7 +17,10 @@ Meteor.startup(() => {
             password: SEED_PASSWORD,
             email: SEED_EMAIL,
         });
-
-        ToDos.insert({...staticToDo })
     }
+    if(ToDos.find({name: staticToDo.moduleName}).fetch().length == 0){
+        ToDos.insert({...staticToDo})
+    }
+    
+    
 })

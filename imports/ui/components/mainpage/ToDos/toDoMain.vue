@@ -84,9 +84,11 @@ export default {
     methods: {
         
     },
-    created(){
-      this.myToDos = ToDos.find().fetch()
-    }
+     created() {
+        Tracker.autorun(() => {
+           this.myToDos = ToDos.find().fetch()
+        })
+    },
 
 }
 </script>
