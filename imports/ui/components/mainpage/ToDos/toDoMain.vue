@@ -22,7 +22,7 @@
               <td :colspan="headers.length">
                 <VDataTable
                     :headers="subHeaders"
-                    :items="item.contacts"
+                    :items="toDos"
                     show-select
                     item-key="name"
                     class="font-weight-light"
@@ -43,13 +43,19 @@
 </template>
 
 <script>
+import {Meteor} from 'meteor/meteor'
 import createToDo from './createToDo.vue'
+import ToDos from '../../../../api/collections/ToDos.js'
 export default {
     name: "toDoMain",
     components: {
     createToDo
     },
-   
+   meteor: {
+    toDos() {
+      return ToDos.find({}).fetch();
+    }
+  }
     data() {
     return {
       expanded: [],
@@ -80,12 +86,12 @@ export default {
         }]
     }
   },
-
-    
-
     methods: {
         
     },
+    mounted(){
+      
+    }
 
 }
 </script>
