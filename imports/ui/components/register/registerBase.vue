@@ -10,17 +10,17 @@
             Register
         </v-card-title>
         <v-card-text>
-            <v-text-field ref="name" v-model="name" :rules="[() => !!name || 'This field is required']" :error-messages="errorMessages" label="Full Name" placeholder="John Doe" required></v-text-field>
+            <v-text-field ref="name" v-model="name" :rules="[() => !!name || 'This field is required']" :error-messages="errorMessages" label="Vollständiger Name" placeholder="John Doe" required></v-text-field>
             <v-text-field ref="address" v-model="address" :rules="[() => !!address || 'This field is required',() => !!address && address.length <= 25 || 'Address must be less than 25 characters',
                 addressCheck]" label="Address Line" placeholder="Snowy Rock Pl" counter="25" required>
             </v-text-field>
-            <v-text-field ref="email" v-model="email" :rules="[() => !!email || 'This field is required']" :error-messages="errorMessages" label="Email address" placeholder="max-muster@mail.de" required></v-text-field>
-            <v-text-field ref="city" v-model="city" :rules="[() => !!city || 'This field is required', addressCheck]" label="City" placeholder="El Paso" required></v-text-field>
-            <v-text-field ref="state" v-model="state" :rules="[() => !!state || 'This field is required']" label="State/Province/Region" required placeholder="TX"></v-text-field>
-            <v-text-field ref="zip" v-model="zip" :rules="[() => !!zip || 'This field is required']" label="ZIP / Postal Code" required placeholder="79938"></v-text-field>
-            <v-autocomplete ref="country" v-model="country" :rules="[() => !!country || 'This field is required']" :items="countries" label="Country" placeholder="Select..." required></v-autocomplete>
+            <v-text-field ref="email" v-model="email" :rules="[() => !!email || 'This field is required']" :error-messages="errorMessages" label="Emailadresse" placeholder="max-muster@mail.de" required></v-text-field>
+            <v-text-field ref="city" v-model="city" :rules="[() => !!city || 'This field is required', addressCheck]" label="Stadt" placeholder="Friedberg" required></v-text-field>
+            <v-text-field ref="state" v-model="state" :rules="[() => !!state || 'This field is required']" label="Bundesland" required placeholder="Hessen"></v-text-field>
+            <v-text-field ref="zip" v-model="zip" :rules="[() => !!zip || 'This field is required']" label="Postleitzahl" required placeholder="79938"></v-text-field>
+            <v-autocomplete ref="country" v-model="country" :rules="[() => !!country || 'This field is required']" :items="countries" label="Land (eng)" placeholder="Select..." required></v-autocomplete>
             <v-divider class="mt-12"></v-divider>
-            <v-text-field ref="password" v-model="password" :rules="[() => !!password || 'This field is required']" label="Password" required placeholder="Type in your password"></v-text-field>   
+            <v-text-field ref="password" v-model="password" :rules="[() => !!password || 'This field is required']" label="Password" required placeholder="Gib dein Passwort ein"></v-text-field>   
             
             <v-text-field :rules="[() =>passwordConfirmer !== password || 'The passwords do not match']" label="Confirm password" required placeholder="Confirm your password"></v-text-field>   
           

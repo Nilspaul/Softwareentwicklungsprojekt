@@ -38,15 +38,16 @@
               </td>
             </template>
           </VDataTable>
+          <createToDo></createToDo>
         </v-card>
 </template>
 
 <script>
-
+import createToDo from './createToDo.vue'
 export default {
     name: "toDoMain",
     components: {
-
+    createToDo
     },
    
     data() {
