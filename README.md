@@ -11,6 +11,7 @@ import in client/main.js
 (meteor add akryum:vue-sass
 meteor add akryum:vue-component)
 
+Wenn man alle deps installiert hat: meteor run
 
 
 
