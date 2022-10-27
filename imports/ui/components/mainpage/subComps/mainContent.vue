@@ -48,12 +48,12 @@
         <v-divider></v-divider>
 
         <v-list dense>
-          <v-list-item v-for="item in items2" :key="item.title" link>
+          <v-list-item v-for="item in modules" :key="item.name" link>
             <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
+              <v-icon color="primary">mdi-plus</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
+              <v-list-item-title>{{ item.name }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -66,7 +66,7 @@
 import topBar from "../../smallComps/topBar";
 import tabs from "../subComps/tabs";
 import toDoBase from "../ToDos/toDoBase.vue";
-import modules from "../../../../api/collections/Modules";
+import Modules from "../../../../api/collections/Modules";
 export default {
   name: "mainContent",
   components: {
@@ -110,18 +110,13 @@ export default {
   methods: {
     drawNav() {
       this.drawer = !this.drawer;
-    },
-    isMobile() {
-      if (this.$vuetify.breakpoint.md === true) {
-        return true;
-      }
-    },
+    }
   },
   created() {
     Tracker.autorun(() => {
-      this.modules = modules.find().fetch();
+      this.modules = Modules.find().fetch();
+      console.log(this.modules)
     });
-    console.log(this.modules);
   },
 };
 </script>
