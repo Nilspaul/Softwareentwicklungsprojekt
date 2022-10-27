@@ -14,6 +14,7 @@ const staticToDo = {
     moduleName: "MyModuleName"
 }
 const staticModule = {"name": "Mathematik 1", "inhalt": "In diesem Modul lernst du verschiedene elementare Funktionen unterscheiden und im Sachzusammenhang anzuwenden, Gleichungen zu lösen, Ableitungsregeln zu unterscheiden und Integrationsregeln zu unterscheiden.", "semester": 1, "schwerpunkt": "Grundlagenmodul"};
+
 Meteor.startup(() => {
     if (!Accounts.findUserByUsername(SEED_USERNAME)) {
         Accounts.createUser({
@@ -22,12 +23,11 @@ Meteor.startup(() => {
             email: SEED_EMAIL,
         });
     }
-    if(ToDos.find({name: staticToDo.moduleName}).fetch().length == 0){
-        ToDos.insert({...staticToDo})
+    if (!ToDos.findOne({ name: staticToDo.name })) {
+        ToDos.insert({...staticToDo })
     }
     if(ToDos.find({name: staticToDo.moduleName}).fetch().length == 0){
         Modules.insert({...staticModule})
     }
-    
     
 })

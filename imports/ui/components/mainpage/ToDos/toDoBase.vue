@@ -1,6 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" width="500">
-    <template v-slot:activator="{ on }">
+  <div>
       <v-divider></v-divider>
       <v-list dense>
         <v-list-item link>
@@ -12,8 +11,8 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-    </template>
-  </v-dialog>
+      <v-divider></v-divider>
+</div>
 </template>
 
 <script>
