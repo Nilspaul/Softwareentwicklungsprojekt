@@ -1,8 +1,12 @@
 <template>
 <div>
-<v-toolbar color="primary" >
+    <VToolbar dark color="primary">
+      <v-btn icon @click="setMainpage()">
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
+      <v-toolbar-title>Back to the mainpage</v-toolbar-title>
+    </VToolbar>
 
-</v-toolbar>
   <v-card class="mt-13">
 
     <VDataTable
@@ -55,6 +59,8 @@
 import { Meteor } from "meteor/meteor";
 import createToDo from "./createToDo.vue";
 import ToDos from "../../../../api/collections/ToDos.js";
+import {router} from '../../../plugins/router'
+
 export default {
   name: "toDoMain",
   components: {
@@ -98,6 +104,11 @@ export default {
   methods: {
     showSelected(){
       console.log(this.selected);
+    },
+    setMainpage(){
+     router.push({
+        path: "/mainpage",
+      });
     }
   },
   created() {

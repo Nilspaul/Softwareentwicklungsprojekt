@@ -22,27 +22,29 @@
       <v-navigation-drawer v-model="drawer" absolute temporary>
         <v-list-item>
           <v-list-item-content>
-            <v-img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Technische_Hochschule_Mittelhessen_Logo.svg"></v-img>
+            <v-img
+              src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Technische_Hochschule_Mittelhessen_Logo.svg"
+            ></v-img>
           </v-list-item-content>
         </v-list-item>
         <v-divider></v-divider>
 
         <toDoBase></toDoBase>
         <v-row align="center">
-        <v-col cols="12" sm="6">
-          <v-subheader>Filter options:</v-subheader>
-        </v-col>
-        <v-col cols="12" sm="6">
-          <v-select
-            v-model="e6"
-            :items="filterOptions"
-            :menu-props="{ maxHeight: '400' }"
-            label="Select"
-            multiple
-            persistent-hint
-          ></v-select>
-        </v-col>
-      </v-row>
+          <v-col cols="12" sm="6">
+            <v-subheader>Filter options:</v-subheader>
+          </v-col>
+          <v-col cols="12" sm="6">
+            <v-select
+              v-model="e6"
+              :items="filterOptions"
+              :menu-props="{ maxHeight: '400' }"
+              label="Select"
+              multiple
+              persistent-hint
+            ></v-select>
+          </v-col>
+        </v-row>
         <v-divider></v-divider>
 
         <v-list dense>
@@ -63,24 +65,23 @@
 <script>
 import topBar from "../../smallComps/topBar";
 import tabs from "../subComps/tabs";
-import toDoBase from "../ToDos/toDoBase.vue"
+import toDoBase from "../ToDos/toDoBase.vue";
+import modules from "../../../../api/collections/Modules";
 export default {
   name: "mainContent",
   components: {
     topBar,
     tabs,
-    toDoBase
+    toDoBase,
   },
   props: {
     user: Object,
   },
   data: () => ({
     drawer: null,
-     e6: [],
-    filterOptions: [
-      "Show all",
-      "Show only subscribed"
-    ],
+    modules: [],
+    e6: [],
+    filterOptions: ["Show all", "Show only subscribed"],
     items2: [
       {
         title: "Semester oder Modul 1",
@@ -115,6 +116,12 @@ export default {
         return true;
       }
     },
+  },
+  created() {
+    Tracker.autorun(() => {
+      this.modules = modules.find().fetch();
+    });
+    console.log(this.modules);
   },
 };
 </script>

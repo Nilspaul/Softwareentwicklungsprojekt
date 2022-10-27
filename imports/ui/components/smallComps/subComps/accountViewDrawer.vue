@@ -3,7 +3,7 @@
     <v-menu bottom offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-btn icon v-bind="attrs" v-on="on">
-          <v-icon :class="[{ 'display-3': $vuetify.breakpoint.mobile }]"
+          <v-icon :class="[{ 'display-3': $vuetify.breakpoint.mobile }, {'display-2' : ! $vuetify.breakpoint.mobile }]"
             >mdi-account</v-icon
           >
         </v-btn>

@@ -7,7 +7,7 @@
             <v-icon color="primary">mdi-book-arrow-right</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title v-on="on" @click="toToDo()"> Manage my Todos</v-list-item-title>
+            <v-list-item-title @click="toToDo()"> Manage my Todos</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>

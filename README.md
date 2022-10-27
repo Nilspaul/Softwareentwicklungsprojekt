@@ -3,13 +3,12 @@ relevant for ppl who cloned:
 meteor npm install --save @babel/runtime vue vue-router vuetify vue-meteor-tracker@next 
 meteor add fourseven:scss
 npm install @mdi/font -D
+meteor add akryum:vue-sass
+meteor add akryum:vue-component
 
 meteor create myApp --vue // create project
 plugin folder in imports/ui with all plugins (tracker,vuetify,router...)
 import in client/main.js
-
-(meteor add akryum:vue-sass
-meteor add akryum:vue-component)
 
 Wenn man alle deps installiert hat: meteor run
 
