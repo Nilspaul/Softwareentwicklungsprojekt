@@ -15,7 +15,7 @@ const staticToDo = {
 }
 const staticModule = {
     name: "Mathematik 1",
-    inhalt: "In diesem Modul lernst du verschiedene elementare Funktionen unterscheiden und im Sachzusammenhang anzuwenden, Gleichungen zu lösen, Ableitungsregeln zu unterscheiden und Integrationsregeln zu unterscheiden.",
+    inhalte: ["In diesem Modul lernst du verschiedene elementare Funktionen unterscheiden und im Sachzusammenhang anzuwenden, Gleichungen zu lösen, Ableitungsregeln zu unterscheiden und Integrationsregeln zu unterscheiden.", "Hier steht ein weiter Modulinhalt und Informationen, die für dich wichtig sind. Zum Beispiel das Semester oder Ähnliches"],
     semester: 1, 
     schwerpunkt: "Grundlagenmodul"}
 

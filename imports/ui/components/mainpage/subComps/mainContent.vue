@@ -2,7 +2,7 @@
   <div>
     <v-sheet>
       <topBar :user="user" v-on:drawNav="drawNav()"></topBar>
-      <tabs></tabs>
+      <tabs :modules="modules"></tabs>
       <v-container class="fill-height">
         <v-row align="center" justify="center">
           <v-carousel
@@ -18,7 +18,6 @@
           </v-carousel>
         </v-row>
       </v-container>
-
       <v-navigation-drawer v-model="drawer" absolute temporary>
         <v-list-item>
           <v-list-item-content>
@@ -28,7 +27,6 @@
           </v-list-item-content>
         </v-list-item>
         <v-divider></v-divider>
-
         <toDoBase></toDoBase>
         <v-row align="center">
           <v-col cols="12" sm="6">
@@ -46,12 +44,11 @@
           </v-col>
         </v-row>
         <v-divider></v-divider>
-
         <v-list dense>
           <v-list-item v-for="item in modules" :key="item.name" link>
-            <v-list-item-icon>
+            <v-btn icon class="mr-2">
               <v-icon color="primary">mdi-plus</v-icon>
-            </v-list-item-icon>
+            </v-btn>
             <v-list-item-content>
               <v-list-item-title>{{ item.name }}</v-list-item-title>
             </v-list-item-content>
