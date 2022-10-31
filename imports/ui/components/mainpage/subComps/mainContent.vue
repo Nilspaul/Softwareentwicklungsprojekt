@@ -47,7 +47,7 @@
         <v-list dense>
           <v-list-item v-for="item in modules" :key="item.name" link>
             <v-btn icon class="mr-2">
-              <v-icon color="primary">mdi-plus</v-icon>
+              <v-icon color="primary" @click="subscribeModule(item)">mdi-plus</v-icon>
             </v-btn>
             <v-list-item-content>
               <v-list-item-title>{{ item.name }}</v-list-item-title>
@@ -107,6 +107,9 @@ export default {
   methods: {
     drawNav() {
       this.drawer = !this.drawer;
+    },
+    subscribeModule(module){
+      console.log(module)
     }
   },
   created() {
