@@ -2,7 +2,7 @@
   <div>
     <v-sheet>
       <topBar :user="user" v-on:drawNav="drawNav()"></topBar>
-      <tabs :modules="modules"></tabs>
+      <tabs :currentModule="currentModule"></tabs>
       <v-container class="fill-height">
         <v-row align="center" justify="center">
           <v-carousel
@@ -50,7 +50,7 @@
               <v-icon color="primary" @click="subscribeModule(item)">mdi-plus</v-icon>
             </v-btn>
             <v-list-item-content>
-              <v-list-item-title>{{ item.name }}</v-list-item-title>
+              <v-list-item-title @click="openModule(item)">{{ item.name }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -76,6 +76,7 @@ export default {
   },
   data: () => ({
     drawer: null,
+    currentModule: null,
     modules: [],
     e6: [],
     filterOptions: ["Show all", "Show only subscribed"],
@@ -110,12 +111,18 @@ export default {
     },
     subscribeModule(module){
       console.log(module)
+    },
+    openModule(module){
+      this.currentModule = module;
+      this.drawer = false;
     }
   },
   created() {
     Tracker.autorun(() => {
       this.modules = Modules.find().fetch();
-      console.log(this.modules)
+      if(this.currentModule === null){
+        this.currentModule = this.modules[0]
+    }
     });
   },
 };

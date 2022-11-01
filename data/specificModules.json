@@ -1,102 +1,24 @@
 [
   {
-    "name": "PPS",
-    "art": "Wirtschaftliches Vertiefungsmodul",
-    "crp": 5,
-    "imgLink": "../../../res/images/Modulansicht/Spezifische Module/Wirtschaftl. Vertiefung/PPS.jpg",
-    "inhalte": ["In diesem Modul lernst du die methodische Bearbeitung einer neuen fachlichen Aufgabe des Berufsfeldes PPS und lernst ausgewählte Techniken des PPS darzustellen und in eigenen Aufgabenbereichen einzusetzen.", "Hier steht ein weiter Modulinhalt und Informationen, die für dich wichtig sind. Zum Beispiel das Semester oder Ähnliches"],
-    "laufzeit": "5. & 6. Semester"
+    "name": "Softwareentwicklungsprojekt",
+    "art": "Grundlagenmodul WMA",
+    "crp": 9,
+    "inhalte": { 
+      "generel" : "In diesem Modul lernst du die methodische Bearbeitung einer neuen fachlichen Aufgabe des Berufsfeldes PPS und lernst ausgewählte Techniken des PPS darzustellen und in eigenen Aufgabenbereichen einzusetzen.", 
+      "firstSpecificContent": "Hier steht ein weiter Modulinhalt und Informationen, die für dich wichtig sind. Zum Beispiel das Semester oder Ähnliches",
+      "nextContent": "More content"
+},
+    "laufzeit": "3. Semester"
   },
   {
-    "name": "Arbeitswissenschaften/Fabrikplanung",
-    "art": "Wirtschaftliches Vertiefungsmodul",
-    "crp": 5,
-    "imgLink": "../../../res/images/Modulansicht/Spezifische Module/Wirtschaftl. Vertiefung/Fabrikplanung.jpg",
-    "inhalte": ["In diesem Modul lernst du die methodische Bearbeitung einer neuen fachlichen Aufgabe des Berufsfeldes PPS und lernst ausgewählte Techniken des PPS darzustellen und in eigenen Aufgabenbereichen einzusetzen.", "Hier steht ein weiter Modulinhalt und Informationen, die für dich wichtig sind. Zum Beispiel das Semester oder Ähnliches"],
-    "inhalt": "In diesem Modul lernst du den Fabrikplanungsprozess aufteilen und anwenden, du lernst Arbeitsplätze hinsichtlich ihrer Ergonomie zu untersuchen und die Verfahren der Zeiterfassung anzuwenden.",
-    "laufzeit": "5. & 6. Semester"
+    "name": "Theoretische Informatik und Algorithmik",
+    "art": "Grundlagenmodul WMA",
+    "crp": 6,
+    "inhalte": { 
+      "Generelles" : "In diesem Modul werden die theoretischen Grundlagen von Algorithmen und Datenstrukturen behandelt", 
+      "Listen": "Liste mit Testdaten füllen, Liste leeren, Liste ausgeben, Liste sortieren (aufsteigend nach Nachname),Neues Element in sortierte Liste an der richtigen Stelle einfügen,Element in der Liste suchen",
+      "Bubblesort": "Beschreibung und Bilder von Bubblesorterklärungen"
   },
-  {
-    "name": "Technischer Einkauf",
-    "art": "Wirtschaftliches Vertiefungsmodul",
-    "crp": 5,
-    "imgLink": "../../../res/images/Modulansicht/Spezifische Module/Wirtschaftl. Vertiefung/Technischer Einkauf.jpg",
-    "inhalte": ["In diesem Modul lernst du die methodische Bearbeitung einer neuen fachlichen Aufgabe des Berufsfeldes PPS und lernst ausgewählte Techniken des PPS darzustellen und in eigenen Aufgabenbereichen einzusetzen.", "Hier steht ein weiter Modulinhalt und Informationen, die für dich wichtig sind. Zum Beispiel das Semester oder Ähnliches"],
-
-    "inhalt": "In diesem Modul lernst du die Methoden des Llieferantenmanagements anzuwenden und lernst, welche rechtlicen Aspekte für den technischen Einkauf von Bedeutung sind, lernst für unterschiedliche Fragen des technischen Einkaufs Lösungen aufzuzeigen und diese Entscheidungen fundiert zu begründen.",
-    "laufzeit": "5. & 6. Semester"
-  },
-  {
-    "name": "Technischer Vertrieb",
-    "art": "Wirtschaftliches Vertiefungsmodul",
-    "crp": 5,
-    "inhalte": ["In diesem Modul lernst du die methodische Bearbeitung einer neuen fachlichen Aufgabe des Berufsfeldes PPS und lernst ausgewählte Techniken des PPS darzustellen und in eigenen Aufgabenbereichen einzusetzen.", "Hier steht ein weiter Modulinhalt und Informationen, die für dich wichtig sind. Zum Beispiel das Semester oder Ähnliches"],
-
-    "imgLink": "../../../res/images/Modulansicht/Spezifische Module/Wirtschaftl. Vertiefung/Technischer Vertrieb.jpg",
-    "inhalt": "In diesem Modul lernst du die Benennung von Methoden, die im Aufbau eines technischen Vertriebs relevant sind, lernst für verschiedenste Fragen des technischen Vertriebs Lösungsansätze aufzuzeigen und anhand von Beispielen Entscheidungen zu treffen und diese zu begründen.",
-    "laufzeit": "5. & 6. Semester"
-  },
-  {
-    "name": "Unternehmensfinanzierung und Unternehmenssteuern",
-    "art": "Wirtschaftliches Vertiefungsmodul",
-    "crp": 5,
-    "inhalte": ["In diesem Modul lernst du die methodische Bearbeitung einer neuen fachlichen Aufgabe des Berufsfeldes PPS und lernst ausgewählte Techniken des PPS darzustellen und in eigenen Aufgabenbereichen einzusetzen.", "Hier steht ein weiter Modulinhalt und Informationen, die für dich wichtig sind. Zum Beispiel das Semester oder Ähnliches"],
-
-    "imgLink": "../../../res/images/Modulansicht/Spezifische Module/Wirtschaftl. Vertiefung/Unternehmensfinanzierung.jpg",
-    "inhalt": "In diesem Modul lernst du die Anwendung von Finanzderivaten bei der Unternehmensfinanzierung kennen, lernst Finanzierungskosten zu ermitteln und ausgewählte Steuern zu berechnen.",
-    "laufzeit": "5. & 6. Semester"
-  },
-  {
-    "name": "Jahresabschluss",
-    "art": "Wirtschaftliches Vertiefungsmodul",
-    "crp": 5,
-    "inhalte": ["In diesem Modul lernst du die methodische Bearbeitung einer neuen fachlichen Aufgabe des Berufsfeldes PPS und lernst ausgewählte Techniken des PPS darzustellen und in eigenen Aufgabenbereichen einzusetzen.", "Hier steht ein weiter Modulinhalt und Informationen, die für dich wichtig sind. Zum Beispiel das Semester oder Ähnliches"],
-
-    "imgLink": "../../../res/images/Modulansicht/Spezifische Module/Wirtschaftl. Vertiefung/Jahresabschluss.jpg",
-    "inhalt": "In diesem Modul lernst du aus dem Jahresabschluss eine Strukturbilanz, Bewegungsbilanz und Kapitalflussrechnung aufzustellen und darauf basierend eine Erfolgsspaltung durchzuführen, wendest Konsolidierungsmethoden an und lernst internationale Bilanzierung und Gesamtergebnisrechnung in Grundzügen darzustellen.",
-    "laufzeit": "5. & 6. Semester"
-  },
-  {
-    "name": "Lean Management",
-    "art": "Wirtschaftliches Vertiefungsmodul",
-    "crp": 5,
-    "inhalte": ["In diesem Modul lernst du die methodische Bearbeitung einer neuen fachlichen Aufgabe des Berufsfeldes PPS und lernst ausgewählte Techniken des PPS darzustellen und in eigenen Aufgabenbereichen einzusetzen.", "Hier steht ein weiter Modulinhalt und Informationen, die für dich wichtig sind. Zum Beispiel das Semester oder Ähnliches"],
-
-    "imgLink": "../../../res/images/Modulansicht/Spezifische Module/Wirtschaftl. Vertiefung/Lean Management.jpg",
-    "inhalt": "In diesem Modul lernst du ausgewählte Instrumente des Lean Managements anzuwenden.",
-    "laufzeit": "5. & 6. Semester"
-  },
-  {
-    "name": "Digitale Transformation",
-    "art": "Wirtschaftliches Vertiefungsmodul",
-    "crp": 5,
-    "inhalte": ["In diesem Modul lernst du die methodische Bearbeitung einer neuen fachlichen Aufgabe des Berufsfeldes PPS und lernst ausgewählte Techniken des PPS darzustellen und in eigenen Aufgabenbereichen einzusetzen.", "Hier steht ein weiter Modulinhalt und Informationen, die für dich wichtig sind. Zum Beispiel das Semester oder Ähnliches"],
-
-    "imgLink": "../../../res/images/Modulansicht/Spezifische Module/Wirtschaftl. Vertiefung/Digitale Transformation.jpg",
-    "inhalt": "In diesem Modul lernst du die Methofdik der Geschäftsmodellentwicklung darzustellen und in eigenen Projekten anzuwenden.",
-    "laufzeit": "5. & 6. Semester"
-  },
-
-  {
-    "name": "Handhabungs- und Montagetechnik inkl. Labor",
-    "art": "Technisches Vertiefungsmodul",
-    "schwerpunkt": "Maschinenbau",
-    "crp": 5,
-    "inhalte": ["In diesem Modul lernst du die methodische Bearbeitung einer neuen fachlichen Aufgabe des Berufsfeldes PPS und lernst ausgewählte Techniken des PPS darzustellen und in eigenen Aufgabenbereichen einzusetzen.", "Hier steht ein weiter Modulinhalt und Informationen, die für dich wichtig sind. Zum Beispiel das Semester oder Ähnliches"],
-
-    "imgLink": "../../../res/images/Modulansicht/Spezifische Module/Techn. Vertiefung/Montagetechnik.jpg",
-    "inhalt": "In diesem Modul lernst du die wesentlichen Kennzahlen von Montageanlagen zu berechenn und deren Ergebnisse methodisch zu bewerten sowie Montageanlagen zu planen.",
-    "laufzeit": "5. & 6. Semester"
-  },
-  {
-    "name": "Werkzeugmaschinen inkl. Labor",
-    "art": "Technisches Vertiefungsmodul",
-    "schwerpunkt": "Maschinenbau",
-    "crp": 5,
-    "inhalte": ["In diesem Modul lernst du die methodische Bearbeitung einer neuen fachlichen Aufgabe des Berufsfeldes PPS und lernst ausgewählte Techniken des PPS darzustellen und in eigenen Aufgabenbereichen einzusetzen.", "Hier steht ein weiter Modulinhalt und Informationen, die für dich wichtig sind. Zum Beispiel das Semester oder Ähnliches"],
-
-    "imgLink": "../../../res/images/Modulansicht/Spezifische Module/Techn. Vertiefung/Werkzeugmaschinen.jpg",
-    "inhalt": "In diesem Modul lernst du die wesentlichen Verfahren zur Ermittlung der Herstell- und Arbeitsgenauigkeit zu unterscheiden, lernst NC-Programme zu erstellen und planst und führst Versuche an Werkzeugmaschinen durch.",
-    "laufzeit": "5. & 6. Semester"
+    "laufzeit": "3. Semester"
   }
 ]

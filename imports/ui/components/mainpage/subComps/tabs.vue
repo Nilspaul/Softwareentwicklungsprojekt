@@ -6,11 +6,18 @@
       background-color="#dfe5e6"
       color="primary"
     >
-      <v-tab v-for="module in modules" ripple :key="module.name"> {{module.name}} </v-tab>
-      <v-tab-item v-for="test in modules" :key="test.name">
-        <v-card flat class="mt-5" v-for="inhalt in test.inhalte" :key="inhalt">
-          <transition appear @before-enter="beforeEnter" @enter="enter">
-            <v-card-text>{{ inhalt + test.name}}</v-card-text>
+      <v-tab v-for="content in Object.keys(currentModule.inhalte)" ripple>
+        {{ content }}
+      </v-tab>
+
+      <v-tab-item v-for="inhalt in currentModule.inhalte">
+        <v-card flat class="mt-5">
+          <transition
+            appear
+            @before-enter="beforeEnter"
+            @enter="enter"
+          >
+            <v-card-text>{{inhalt}}</v-card-text>
           </transition>
         </v-card>
       </v-tab-item>
@@ -23,12 +30,13 @@ import gsap from "gsap";
 
 export default {
   name: "tabs",
-  props:{
-    modules: [],
+  props: {
+    currentModule: Object,
   },
   data() {
     return {
       active: null,
+      moduleContents: [],
     };
   },
   methods: {
