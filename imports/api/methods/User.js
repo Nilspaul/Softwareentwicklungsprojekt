@@ -1,6 +1,5 @@
 
 import {Meteor} from "meteor/meteor";
-import {check, Match} from "meteor/check";
 import usersManagement from "../management/UsersManagement"
 Meteor.methods({
    'user.create'(user) {

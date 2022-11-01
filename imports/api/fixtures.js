@@ -23,7 +23,7 @@ Meteor.startup(() => {
     });
   }
   if (!ToDos.findOne({ name: staticToDo.name })) {
-    ToDos.insert({ ...staticToDo });
+    ToDos.insert({...staticToDo})
   }
 
   modules.forEach((module) => {
@@ -31,5 +31,5 @@ Meteor.startup(() => {
       Modules.insert({ ...module });
     }
   })
-  
+
 });

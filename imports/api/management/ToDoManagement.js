@@ -1,14 +1,14 @@
 
-import {toDos} from '../collections/ToDos';
+import ToDos from '../collections/ToDos';
 import { Meteor } from "meteor/meteor";
 
 let toDoManagement;
 
 if (Meteor.isServer) {
     class ToDoManagement {
-        insertToDo(toDo) {
+        createToDo(toDo) {
             toDo.creator = Meteor.userId();
-            toDos.insert({...toDo})
+            ToDos.insert({...toDo});
         }
     }
     toDoManagement = new ToDoManagement();

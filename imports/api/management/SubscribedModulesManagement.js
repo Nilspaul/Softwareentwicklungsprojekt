@@ -1,5 +1,5 @@
 
-import {subscribedModules} from '../collections/SubscribedModules';
+import subscribedModules from '../collections/SubscribedModules';
 import { Meteor } from "meteor/meteor";
 
 let subscribedModulesManagement;
