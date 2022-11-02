@@ -1,6 +1,18 @@
 <template>
   <div>
     <v-sheet>
+      <v-alert
+        v-model="alert"
+        border="left"
+        elevation="50"
+        close-text="Close Alert"
+        dismissible
+        color="primary"
+        dark
+      >
+        Sie haben das Modul {{ currentModule.name }} abonniert und werden über
+        Neuigkeiten benachrichtigt!
+      </v-alert>
       <topBar :user="user" v-on:drawNav="drawNav()"></topBar>
       <tabs :currentModule="currentModule"></tabs>
       <v-container class="fill-height">
@@ -47,10 +59,19 @@
         <v-list dense>
           <v-list-item v-for="item in modules" :key="item.name" link>
             <v-btn icon class="mr-2">
-              <v-icon color="primary" @click="subscribeModule(item)">mdi-plus</v-icon>
+              <v-icon
+                color="primary"
+                @click="
+                  subscribeModule(item);
+                  alert = true;
+                "
+                >mdi-plus</v-icon
+              >
             </v-btn>
             <v-list-item-content>
-              <v-list-item-title @click="openModule(item)">{{ item.name }}</v-list-item-title>
+              <v-list-item-title @click="openModule(item)">{{
+                item.name
+              }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -76,6 +97,7 @@ export default {
   },
   data: () => ({
     drawer: null,
+    alert: false,
     currentModule: null,
     modules: [],
     e6: [],
@@ -109,20 +131,22 @@ export default {
     drawNav() {
       this.drawer = !this.drawer;
     },
-    subscribeModule(clickedModule){
-      Meteor.call('module.subscribe', clickedModule)
+    subscribeModule(clickedModule) {
+      this.currentModule = clickedModule;
+      Meteor.call("module.subscribe", clickedModule);
+      this.drawer = false;
     },
-    openModule(module){
+    openModule(module) {
       this.currentModule = module;
       this.drawer = false;
-    }
+    },
   },
   created() {
     Tracker.autorun(() => {
       this.modules = Modules.find().fetch();
-      if(this.currentModule === null){
-        this.currentModule = this.modules[0]
-    }
+      if (this.currentModule === null) {
+        this.currentModule = this.modules[0];
+      }
     });
   },
 };
