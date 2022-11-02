@@ -109,8 +109,8 @@ export default {
     drawNav() {
       this.drawer = !this.drawer;
     },
-    subscribeModule(module){
-      console.log(module)
+    subscribeModule(clickedModule){
+      Meteor.call('module.subscribe', clickedModule)
     },
     openModule(module){
       this.currentModule = module;
