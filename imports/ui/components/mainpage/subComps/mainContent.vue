@@ -1,18 +1,18 @@
 <template>
   <div>
-    <v-sheet>
-      <v-alert
+  <v-alert
+        outlined
+        type="success"
+        text
         v-model="alert"
         border="left"
         elevation="50"
         close-text="Close Alert"
         dismissible
-        color="primary"
-        dark
       >
-        Sie haben das Modul {{ currentModule.name }} abonniert und werden über
-        Neuigkeiten benachrichtigt!
+      Sie haben das Modul {{currentModule.name}} abonniert!
       </v-alert>
+    <v-sheet>
       <topBar :user="user" v-on:drawNav="drawNav()"></topBar>
       <tabs :currentModule="currentModule"></tabs>
       <v-container class="fill-height">
@@ -63,8 +63,7 @@
                 color="primary"
                 @click="
                   subscribeModule(item);
-                  alert = true;
-                "
+                  alert = true;"
                 >mdi-plus</v-icon
               >
             </v-btn>
