@@ -111,9 +111,12 @@ export default {
       });
     }
   },
+  mounted(){
+    console.log(this.myToDos)
+  },
   created() {
     Tracker.autorun(() => {
-      this.myToDos = ToDos.find().fetch();
+      this.myToDos = ToDos.find().fetch() ;
     });
   },
 };

@@ -22,6 +22,8 @@
         <v-card-text>
             <v-text-field ref="name" v-model="name" :rules="[() => !!name || 'This field is required']" :error-messages="errorMessages" label="ToDo Name" placeholder="Gib deinem ToDo einen Namen" required></v-text-field>
             <v-text-field ref="note" v-model="note" :rules="[() => !!note || 'This field is required']" :error-messages="errorMessages" label="Beschreibung" placeholder="Beschreibe dein ToDo"></v-text-field>
+            <v-text-field ref="module" v-model="module" :rules="[() => !!module || 'This field is required']" :error-messages="errorMessages" label="Modul" placeholder="Zu welchem Modul soll das ToDo gehören?"></v-text-field>
+
         </v-card-text>
         <v-divider class="mt-12"></v-divider>
         <v-card-actions>
@@ -41,15 +43,12 @@
 
 export default {
     name: "createToDo",
-    components: {
-
-    },
-   
     data: () => ({
         toDo: {},
         errorMessages: '',
         name: null,
         note: null,
+        module: null,
         dialog: false,
     }),
 
@@ -57,7 +56,8 @@ export default {
         form() {
             return {
                 name: this.name,
-                note: this.note
+                note: this.note,
+                module: this.module,
             }
         },
     },
@@ -76,7 +76,6 @@ export default {
             this.dialog = false;
         },
     },
-
 }
 </script>
 
