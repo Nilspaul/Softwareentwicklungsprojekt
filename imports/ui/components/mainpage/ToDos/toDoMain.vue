@@ -39,6 +39,7 @@
                     @input="done=true"
                     :class="[{'text-decoration-line-through' : done}, 'font-weight-light']"
                     item-key="name"
+                    :hide-default-footer="true"
                     :footer-props="{
                       itemsPerPageText: $vuetify.breakpoint.smAndUp ? 'Zeilen pro Seite' : 'Zeilen',
                       itemsPerPageAllText: 'Alle'

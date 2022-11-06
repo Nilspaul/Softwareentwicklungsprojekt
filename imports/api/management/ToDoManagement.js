@@ -22,7 +22,6 @@ if (Meteor.isServer) {
 
         update(toDo, moduleToDo){
             moduleToDo.toDos.push(toDo)
-            console.log(moduleToDo)
             return ToDos.update({_id: moduleToDo._id}, {$set: {toDos: moduleToDo.toDos}})
         }
     }
