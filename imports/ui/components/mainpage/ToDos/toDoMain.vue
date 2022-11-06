@@ -123,7 +123,5 @@ export default {
 </script>
 
 <style scoped>
-p {
-  font-family: serif;
-}
+
 </style>
