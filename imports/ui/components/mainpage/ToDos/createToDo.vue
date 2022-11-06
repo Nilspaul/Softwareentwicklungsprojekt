@@ -51,28 +51,29 @@ export default {
         module: null,
         dialog: false,
     }),
+    props: {
+        toDos: [],
+    },
 
     computed: {
         form() {
             return {
                 name: this.name,
                 note: this.note,
-                module: this.module,
+                moduleName: this.module,
             }
         },
     },
 
-    watch: {
-        name() {
-            this.errorMessages = ''
-        },
+    mounted() {
+        console.log(this.toDos)
     },
 
     methods: {
         submit() {
-            this.formHasErrors = false
-            this.toDo = this.form;
-            Meteor.call('toDo.create', this.toDo);
+            this.toDo.name = this.form.name;
+            this.toDo.note = this.form.note;
+            Meteor.call('toDo.createOrUpdate', this.toDo, this.module);
             this.dialog = false;
         },
     },

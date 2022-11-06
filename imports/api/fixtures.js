@@ -8,12 +8,17 @@ const SEED_USERNAME = "Nils";
 const SEED_PASSWORD = "1234";
 const SEED_EMAIL = "nils.paul@iem.thm.de";
 
-const staticToDo = {
-    name: "myFirstToDo",
-    note: "Do something",
-    moduleName: "MyModuleName",
-    public: true,
-};
+ const staticToDo = {
+    "toDos": [
+      {
+        "name": "Mein ToDo",
+        "note": "Mache etwas sinnvolles",
+        "dueTo": "30.11.2022"
+      }
+    ],
+    "moduleName": "MyModuleName",
+    "public": true
+ };
 
 Meteor.startup(() => {
     if (!Accounts.findUserByUsername(SEED_USERNAME)) {
@@ -23,7 +28,7 @@ Meteor.startup(() => {
             email: SEED_EMAIL,
         });
     }
-    if (!ToDos.findOne({ name: staticToDo.name })) {
+    if (!ToDos.findOne({ moduleName: staticToDo.moduleName })) {
         ToDos.insert({...staticToDo })
     }
 

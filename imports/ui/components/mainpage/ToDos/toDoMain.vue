@@ -1,5 +1,5 @@
 <template>
-<div>
+  <div>
     <VToolbar dark color="primary">
       <v-btn icon @click="setMainpage()">
         <v-icon>mdi-arrow-left</v-icon>
@@ -7,51 +7,46 @@
       <v-toolbar-title>Back to the mainpage</v-toolbar-title>
     </VToolbar>
 
-  <v-card class="mt-13">
-
-    <VDataTable
-      :headers="headers"
-      :items="myToDos"
-      :single-expand="singleExpand"
-      :expanded.sync="expanded"
-      item-key="_id"
-      show-expand
-      class="font-weight-black"
-    >
-      <template v-slot:top>
-        <VToolbar flat color="white">
-          <VToolbarTitle>My Todos</VToolbarTitle>
-          <VSpacer />
-        </VToolbar>
-      </template>
-      <template>
-        <span>Static Time</span>
-      </template>
-      <template v-slot:expanded-item="{ headers, item }">
-        <td :colspan="headers.length">
+    <template>
+        <v-card>
           <VDataTable
-            :headers="subHeaders"
-            :items="myToDos"
-            v-model="selected"
-            show-select
-            @input="showSelected"
-            item-key="name"
-            :footer-props="{
-              itemsPerPageText: $vuetify.breakpoint.smAndUp
-                ? 'Zeilen pro Seite'
-                : 'Zeilen',
-              itemsPerPageAllText: 'Alle',
-            }"
+              :headers="headers"
+              :items="myToDos"
+              :single-expand="singleExpand"
+              :expanded.sync="expanded"
+              item-key="_id"
+              show-expand
+              class="font-weight-black"
+              :footer-props="{
+                itemsPerPageText: $vuetify.breakpoint.smAndUp ? 'Zeilen pro Seite' : 'Zeilen',
+                itemsPerPageAllText: 'Alle'
+              }"
           >
-            <template>
-              <span> Static Time</span>
+            <template v-slot:top>
+              <VToolbar flat color="white">
+                <VToolbarTitle>Meine ToDos</VToolbarTitle>
+                <VSpacer/>
+              </VToolbar>
+            </template>
+            <template v-slot:expanded-item="{ headers, item }">
+              <td :colspan="headers.length">
+                <VDataTable
+                    :headers="subHeaders"
+                    :items="item.toDos"
+                    item-key="name"
+                    class="font-weight-light"
+                    :footer-props="{
+                      itemsPerPageText: $vuetify.breakpoint.smAndUp ? 'Zeilen pro Seite' : 'Zeilen',
+                      itemsPerPageAllText: 'Alle'
+                    }"
+                >
+                </VDataTable>
+              </td>
             </template>
           </VDataTable>
-        </td>
+          <create-to-do :toDos="myToDos"></create-to-do>
+        </v-card>
       </template>
-    </VDataTable>
-    <createToDo></createToDo>
-  </v-card>
   </div>
 </template>
 
@@ -59,7 +54,7 @@
 import { Meteor } from "meteor/meteor";
 import createToDo from "./createToDo.vue";
 import ToDos from "../../../../api/collections/ToDos.js";
-import {router} from '../../../plugins/router'
+import { router } from "../../../plugins/router";
 
 export default {
   name: "toDoMain",
@@ -70,8 +65,10 @@ export default {
   data() {
     return {
       expanded: [],
+      groupedModules: null,
       singleExpand: false,
       myToDos: [],
+      goupedToDos: [],
       selected: [{}],
       headers: [
         {
@@ -80,19 +77,15 @@ export default {
           sortable: false,
           value: "moduleName",
         },
-        {
-          text: "text1",
-          value: "text1",
-        },
-        {
-          text: "",
-          value: "data-table-expand",
-        },
       ],
       subHeaders: [
         {
           text: "Name ToDo",
           value: "name",
+        },
+        {
+          text: "Beschreibung",
+          value: "note",
         },
         {
           text: "Fällig am",
@@ -102,26 +95,30 @@ export default {
     };
   },
   methods: {
-    showSelected(){
+    showSelected() {
       console.log(this.selected);
     },
-    setMainpage(){
-     router.push({
+    setMainpage() {
+      router.push({
         path: "/mainpage",
       });
-    }
+    },
   },
-  mounted(){
-    console.log(this.myToDos)
+  mounted() {
+    this.groupedModules = this.myToDos.reduce((group, toDo) => {
+      const { moduleName } = toDo;
+      group[moduleName] = group[moduleName] ?? [];
+      group[moduleName].push(toDo);
+      return group;
+    }, {});
   },
   created() {
     Tracker.autorun(() => {
-      this.myToDos = ToDos.find().fetch() ;
+      this.myToDos = ToDos.find().fetch();
     });
   },
 };
 </script>
 
 <style scoped>
-
 </style>
