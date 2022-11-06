@@ -26,6 +26,7 @@
               <VToolbar flat color="white">
                 <VToolbarTitle>Meine ToDos</VToolbarTitle>
                 <VSpacer/>
+                <create-to-do :toDos="myToDos"></create-to-do>
               </VToolbar>
             </template>
             <template v-slot:expanded-item="{ headers, item }">
@@ -33,8 +34,11 @@
                 <VDataTable
                     :headers="subHeaders"
                     :items="item.toDos"
+                    show-select
+                    single-select
+                    @input="done=true"
+                    :class="[{'text-decoration-line-through' : done}, 'font-weight-light']"
                     item-key="name"
-                    class="font-weight-light"
                     :footer-props="{
                       itemsPerPageText: $vuetify.breakpoint.smAndUp ? 'Zeilen pro Seite' : 'Zeilen',
                       itemsPerPageAllText: 'Alle'
@@ -44,7 +48,6 @@
               </td>
             </template>
           </VDataTable>
-          <create-to-do :toDos="myToDos"></create-to-do>
         </v-card>
       </template>
   </div>
@@ -68,6 +71,7 @@ export default {
       groupedModules: null,
       singleExpand: false,
       myToDos: [],
+      done: null,
       goupedToDos: [],
       selected: [{}],
       headers: [
@@ -105,12 +109,7 @@ export default {
     },
   },
   mounted() {
-    this.groupedModules = this.myToDos.reduce((group, toDo) => {
-      const { moduleName } = toDo;
-      group[moduleName] = group[moduleName] ?? [];
-      group[moduleName].push(toDo);
-      return group;
-    }, {});
+    console.log(this.myToDos)
   },
   created() {
     Tracker.autorun(() => {

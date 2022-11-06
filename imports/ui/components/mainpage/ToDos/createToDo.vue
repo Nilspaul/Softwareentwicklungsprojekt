@@ -5,6 +5,7 @@
           color="primary"
           dark
           elevation="50"
+          class="mt-10"
           absolute
           middle
           right
