@@ -1,5 +1,5 @@
 <template>
-    <v-row justify="center" class="mt-4">
+    <v-row justify="center" class="mt-1">
          <v-dialog
            v-model="dialog"
            fullscreen

@@ -6,17 +6,17 @@
         <v-text-field
           ref="email"
           v-model="email"
-          :rules="[() => !!email || 'This field is required']"
+          autofocus
           :error-messages="errorMessages"
           label="Email-address"
           placeholder="Type in your mail address"
           required
         ></v-text-field>
         <v-text-field
+          autofocus
           ref="password"
           type="password"
           v-model="password"
-          :rules="[() => !!password || 'This field is required']"
           :error-messages="errorMessages"
           label="Password"
           placeholder="Type in your password"
@@ -36,9 +36,7 @@
 </template>
 
 <script>
-import { VueMeteor } from "vue-meteor-tracker";
 import { Meteor } from "meteor/meteor";
-import { Tracker } from "meteor/tracker";
 import { router } from "../../plugins";
 import registerBase from "../register/registerBase.vue";
 
@@ -49,7 +47,7 @@ export default {
   },
   data: () => ({
     errorMessages: "",
-    username: null,
+    userLoggedIn: null,
     email: null,
     password: null,
     user: {
@@ -61,15 +59,18 @@ export default {
 
   methods: {
     submit() {
-      this.user.email = this.email;
-      this.user.password = this.password;
-      Tracker.autorun(() => {
-        this.user = Meteor.user();
+      Meteor.loginWithPassword(this.email, this.password, (error, result) => {
+        if (error) {
+          this.setErr(error);
+        } else {
+          router.push({
+            path: "/mainpage",
+          });
+        }
       });
-      Meteor.loginWithPassword(this.email, this.password);
-      router.push({
-        path: "/mainpage",
-      });
+    },
+    setErr() {
+      this.errorMessages = "Überprüfe deine Eingaben";
     },
   },
 };
