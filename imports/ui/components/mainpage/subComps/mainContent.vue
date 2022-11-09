@@ -50,9 +50,10 @@
               :items="filterOptions"
               :menu-props="{ maxHeight: '400' }"
               label="Select"
-              multiple
+              @input="filterModules()"
               persistent-hint
-            ></v-select>
+            >
+            </v-select>
           </v-col>
         </v-row>
         <v-divider></v-divider>
@@ -99,7 +100,7 @@ export default {
     alert: false,
     currentModule: null,
     modules: [],
-    e6: [],
+    e6: null,
     filterOptions: ["Show all", "Show only subscribed"],
     items2: [
       {
@@ -139,6 +140,9 @@ export default {
       this.currentModule = module;
       this.drawer = false;
     },
+    filterModules (){
+      console.log(this.e6)
+    }
   },
   created() {
     Tracker.autorun(() => {
