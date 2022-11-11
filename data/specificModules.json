@@ -1,24 +1,34 @@
-[
-  {
-    "name": "Softwareentwicklungsprojekt",
-    "art": "Grundlagenmodul WMA",
-    "crp": 9,
-    "inhalte": { 
-      "generel" : "In diesem Modul lernst du die methodische Bearbeitung einer neuen fachlichen Aufgabe des Berufsfeldes PPS und lernst ausgewählte Techniken des PPS darzustellen und in eigenen Aufgabenbereichen einzusetzen.", 
-      "firstSpecificContent": "Hier steht ein weiter Modulinhalt und Informationen, die für dich wichtig sind. Zum Beispiel das Semester oder Ähnliches",
-      "nextContent": "More content"
-},
-    "laufzeit": "3. Semester"
-  },
-  {
-    "name": "Theoretische Informatik und Algorithmik",
-    "art": "Grundlagenmodul WMA",
-    "crp": 6,
-    "inhalte": { 
-      "Generelles" : "In diesem Modul werden die theoretischen Grundlagen von Algorithmen und Datenstrukturen behandelt", 
-      "Listen": "Liste mit Testdaten füllen, Liste leeren, Liste ausgeben, Liste sortieren (aufsteigend nach Nachname),Neues Element in sortierte Liste an der richtigen Stelle einfügen,Element in der Liste suchen",
-      "Bubblesort": "Beschreibung und Bilder von Bubblesorterklärungen"
-  },
-    "laufzeit": "3. Semester"
-  }
+[{
+        "name": "Softwareentwicklungsprojekt",
+        "schwerpunkt": "Web und Mobile Anwendungen",
+        "crp": 9,
+        "inhalte": {
+            "generel": "In diesem Modul lernst du die methodische Bearbeitung einer neuen fachlichen Aufgabe des Berufsfeldes PPS und lernst ausgewählte Techniken des PPS darzustellen und in eigenen Aufgabenbereichen einzusetzen.",
+            "firstSpecificContent": "Hier steht ein weiter Modulinhalt und Informationen, die für dich wichtig sind. Zum Beispiel das Semester oder Ähnliches",
+            "nextContent": "More content"
+        },
+        "laufzeit": "3. Semester"
+    },
+    {
+        "name": "Theoretische Informatik und Algorithmik",
+        "schwerpunkt": "Web und Mobile Anwendungen",
+        "crp": 6,
+        "inhalte": {
+            "Generelles": "In diesem Modul werden die theoretischen Grundlagen von Algorithmen und Datenstrukturen behandelt",
+            "Listen": "Liste mit Testdaten füllen, Liste leeren, Liste ausgeben, Liste sortieren (aufsteigend nach Nachname),Neues Element in sortierte Liste an der richtigen Stelle einfügen,Element in der Liste suchen",
+            "Bubblesort": "Beschreibung und Bilder von Bubblesorterklärungen"
+        },
+        "laufzeit": "3. Semester"
+    },
+    {
+        "name": "Datenbankensysteme",
+        "schwerpunkt": "Web und Mobile Anwendungen",
+        "crp": 6,
+        "inhalte": {
+            "Generelles": "In diesem Modul werden die theoretischen Grundlagen von Datenmodellierung und Datenbankabfragen behandelt",
+            "ERM": "Beschreibung und Beispiele in Bezug auf das Entitiy Relationship Modells",
+            "SERM": "Beschreibung und Bilder des Structured Entitiy Relationship Modells"
+        },
+        "laufzeit": "3. Semester"
+    }
 ]
