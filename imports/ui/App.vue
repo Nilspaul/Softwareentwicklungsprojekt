@@ -1,5 +1,5 @@
 <template>
-    <v-app class="appComp">
+    <v-app :class="[{'appCompMobile' : $vuetify.breakpoint.mobile}, {'appComp' : !$vuetify.breakpoint.mobile}]" >
         <router-view/>
     </v-app>
 </template>

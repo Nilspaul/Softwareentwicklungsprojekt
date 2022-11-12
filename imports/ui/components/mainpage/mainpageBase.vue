@@ -1,5 +1,5 @@
 <template>
-    <div class="mainC" v-if="user">
+    <div v-if="user">
         <mainContent :user="user"></mainContent>
     </div>
 </template>

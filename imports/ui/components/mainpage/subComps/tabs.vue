@@ -1,12 +1,10 @@
 <template>
   <div>
-  <v-subheader class="tabSubheader display-1" >{{currentModule.name}}</v-subheader>
+  <v-subheader  :class="[{'tabSubheaderMobile display-1' : $vuetify.breakpoint.mobile}, {'tabSubheader display-1' : !$vuetify.breakpoint.mobile}]">{{currentModule.name}}</v-subheader>
     <v-tabs
       v-model="active"
       slider-color="#f9d471"
-      background-color="blue-grey lighten-5"
-      color="primary">
-    
+      background-color="blue-grey lighten-5">
       <v-tab v-for="content in Object.keys(currentModule.inhalte)" ripple>
         {{ content }}
       </v-tab>
