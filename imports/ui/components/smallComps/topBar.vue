@@ -1,7 +1,7 @@
 <template>
-    <v-app-bar :class="[{'mobileTopbar pt-5 pr-10' : $vuetify.breakpoint.mobile}]" color="primary" dark>
-        <VIcon :class="['display-1',{ 'display-2': $vuetify.breakpoint.mobile}]" @click="drawNav()">mdi-menu</VIcon>
-        <v-toolbar-title :class="['ml-5 display-1',{'display-1' : $vuetify.breakpoint.mobile}]">Discover</v-toolbar-title>
+    <v-app-bar :class="[{'mobileTopbar pt-5 pr-10' : $vuetify.breakpoint.mobile}, {'topBar pt-5 pr-10' : !$vuetify.breakpoint.mobile}]" color="primary" dark>
+        <VIcon class="display-1 pr-5" @click="drawNav()">mdi-menu</VIcon>
+        <v-toolbar-title class="display-1" v-show="$vuetify.breakpoint.mdAndUp" >Discover</v-toolbar-title>
         <v-spacer></v-spacer>
          <v-text-field
           append-icon="mdi-microphone"
@@ -18,6 +18,7 @@
 
 <script>
 
+import { vuetify } from '../../plugins';
 import AccountViewDrawer from './subComps/accountViewDrawer.vue';
 export default {
     name: "topBar",

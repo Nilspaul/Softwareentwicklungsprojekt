@@ -1,3 +1,5 @@
+    $primary: #80ba24;
+    
     .full-height {
         height: 100%;
     }
@@ -12,8 +14,12 @@
 
     .mobileTopbar{
        margin-top: 2vw;
-       min-height: 10vw;
+       min-height: 12vw !important;
     }
+    .topBar{
+        margin-top: 2vh;
+        min-height: 10vh !important;
+     }
     .mobileIcon{
         font-size: 500px;
     }
@@ -46,17 +52,20 @@
         color: "primary";
     }
     .tabSubheaderMobile{
-        padding-top: 1vh;
-        height: 7vw;
+        padding-top: 1vw;
+        height: 10vw;
         background-color: #dfe5e6 !important;
-        color: "primary";
+    }
+    .mobileTabs{
+        min-height: 70vw !important;
+        font-size: 2vw;
+        background-color: $primary;
     }
     .appComp{
         margin:-1vh;
     }
-    
-    .green_2 {
-        color: var(--v-green_2-base);
+    .appCompMobile{
+        margin:-1vw;
     }
     
    
