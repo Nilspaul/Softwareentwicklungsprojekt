@@ -1,9 +1,7 @@
 <template>
-<div>
-    <v-app>
+    <v-app class="appComp">
         <router-view/>
     </v-app>
-</div>
 </template>
 
 <script>

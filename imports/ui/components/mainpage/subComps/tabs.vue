@@ -4,7 +4,7 @@
     <v-tabs
       v-model="active"
       slider-color="#f9d471"
-      background-color="#dfe5e6"
+      background-color="blue-grey lighten-5"
       color="primary">
     
       <v-tab v-for="content in Object.keys(currentModule.inhalte)" ripple>
