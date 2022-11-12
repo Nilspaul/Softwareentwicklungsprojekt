@@ -1,7 +1,4 @@
 <template>
-<div>
-    <v-system-bar color="secondary">
-          </v-system-bar>
     <v-app-bar :class="[{'mobileTopbar pt-5 pr-10' : $vuetify.breakpoint.mobile}]" color="primary" dark>
         <VIcon :class="[{ 'display-2': $vuetify.breakpoint.mobile}]" @click="drawNav()">mdi-menu</VIcon>
         <v-toolbar-title :class="['ml-5',{'display-1' : $vuetify.breakpoint.mobile}]">Discover</v-toolbar-title>
@@ -17,7 +14,6 @@
         ></v-text-field>
         <AccountViewDrawer :user="user"/>
     </v-app-bar>
-</div>
 </template>
 
 <script>

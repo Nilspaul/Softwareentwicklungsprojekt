@@ -1,18 +1,16 @@
 <template>
-  <div>
-  <v-alert
+    <v-sheet>
+      <v-alert
         outlined
         type="success"
         text
         v-model="alert"
         border="left"
-        elevation="50"
         close-text="Close Alert"
         dismissible
       >
       Sie haben das Modul {{currentModule.name}} abonniert!
       </v-alert>
-    <v-sheet>
       <topBar :user="user" v-on:drawNav="drawNav()"></topBar>
       <tabs :currentModule="currentModule"></tabs>
       <v-container class="fill-height">
@@ -77,7 +75,6 @@
         </v-list>
       </v-navigation-drawer>
     </v-sheet>
-  </div>
 </template>
 
 <script>

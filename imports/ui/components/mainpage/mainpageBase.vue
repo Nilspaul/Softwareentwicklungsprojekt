@@ -1,19 +1,13 @@
 <template>
-<v-card class="full-width full-height">
-    <div v-if="user">
+    <div class="mainC" v-if="user">
         <mainContent :user="user"></mainContent>
     </div>
-</v-card>
 </template>
 
 <script>
 import mainContent from './subComps/mainContent'
-import {
-    Meteor
-} from 'meteor/meteor'
-import {
-    Tracker
-} from 'meteor/tracker'
+import {Meteor} from 'meteor/meteor'
+import {Tracker} from 'meteor/tracker'
 export default {
     name: "mainpageBase",
     components: {
