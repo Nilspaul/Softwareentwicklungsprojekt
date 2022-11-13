@@ -28,7 +28,7 @@
           </v-carousel>
         </v-row>
       </v-container>
-      <v-navigation-drawer v-model="drawer" absolute temporary>
+      <v-navigation-drawer :class="[{'mainNav' : !$vuetify.breakpoint.mobile}, {'mainNavMobile': $vuetify.breakpoint.mobile}]" temporary v-model="drawer">
         <v-list-item>
           <v-list-item-content>
             <v-img
@@ -40,10 +40,11 @@
         <toDoBase></toDoBase>
         <v-row align="center">
           <v-col cols="12" sm="6">
-            <v-subheader>Filter options:</v-subheader>
+            <v-subheader :class="[{'display-3' : $vuetify.breakpoint.mobile}, {'display-1': !$vuetify.breakpoint.mobile}]">Filter options:</v-subheader>
           </v-col>
           <v-col cols="12" sm="6">
             <v-select
+              :class="[{'display-5' : $vuetify.breakpoint.sm}, {'display-5': !$vuetify.breakpoint.mobile}]"
               v-model="e6"
               :items="filterOptions"
               :menu-props="{ maxHeight: '400' }"

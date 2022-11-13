@@ -28,6 +28,7 @@ Meteor.startup(() => {
             email: SEED_EMAIL,
         });
     }
+    
     if (!ToDos.findOne({ moduleName: staticToDo.moduleName })) {
         ToDos.insert({...staticToDo })
     }
@@ -37,5 +38,4 @@ Meteor.startup(() => {
             Modules.insert({...module });
         }
     })
-
 });

@@ -61,11 +61,21 @@
         font-size: 2vw;
         background-color: $primary;
     }
+    .mainNav{
+        position: absolute;
+        width: 20vh !important;
+    }
+    .mainNavMobile{
+        position: absolute;
+        width: 30vh !important;
+    }
     .appComp{
         margin:-1vh;
     }
     .appCompMobile{
         margin:-1vw;
+        width: 100vw;
+        height: 100vh;
     }
     
    

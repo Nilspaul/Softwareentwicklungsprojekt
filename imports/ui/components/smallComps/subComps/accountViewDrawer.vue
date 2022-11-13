@@ -26,7 +26,7 @@
             </v-list-item-icon>
 
             <v-list-item-content>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
+              <v-list-item-title class="display-1">{{ item.title }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <settings></settings>
@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import { VueMeteor } from "vue-meteor-tracker";
 import settings from "./settings.vue";
 import { router } from "../../../plugins/router";
 export default {

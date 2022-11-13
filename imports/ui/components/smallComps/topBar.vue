@@ -18,7 +18,6 @@
 
 <script>
 
-import { vuetify } from '../../plugins';
 import AccountViewDrawer from './subComps/accountViewDrawer.vue';
 export default {
     name: "topBar",

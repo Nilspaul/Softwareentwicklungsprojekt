@@ -12,7 +12,7 @@ if (Meteor.isServer) {
             if (moduleToDo) {
                 this.update(toDo, moduleToDo);
             } else {
-                this.createModuleToDo(moduleName, newToDos)
+                this.createModuleToDo(moduleName, newToDos);
             }
         }
 
