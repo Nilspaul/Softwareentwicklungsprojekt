@@ -77,7 +77,7 @@
               :key="module.name"
               hide-actions
             >
-              <v-expansion-panel-header class="white--text" color="secondary" icon-color="white">
+              <v-expansion-panel-header class="white--text" color="secondary" icon-color="white" @click="currentModule=module">
                 <template v-slot:actions>
                   <v-icon color="white">
                     $expand
@@ -93,6 +93,7 @@
               <v-expansion-panel-content>
                 <v-divider></v-divider>
                 <v-card-text v-text="module.inhalte.infotext"></v-card-text>
+                <p class="text-decoration-underline primary--text row-pointer" @click="drawer=false"> Mehr Inhalte entdecken!</p>
                 <v-row align="center" class="spacer" no-gutters>
                   <v-col class="text-no-wrap" cols="5" sm="3">
                     <v-btn color="primary" @click="subscribeModule(module); alert=true"> Subscribe</v-btn>
