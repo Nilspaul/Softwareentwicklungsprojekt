@@ -60,7 +60,6 @@
             ]"
             v-model="e6"
             :items="filterOptions"
-            :menu-props="{ maxHeight: '400' }"
             label="Select"
             @input="filterModules()"
             persistent-hint
@@ -78,10 +77,15 @@
               :key="module.name"
               hide-actions
             >
-              <v-expansion-panel-header>
+              <v-expansion-panel-header class="white--text" color="secondary" icon-color="white">
+                <template v-slot:actions>
+                  <v-icon color="white">
+                    $expand
+                  </v-icon>
+                </template>
                 <v-row align="center" class="spacer" no-gutters>
                   <v-col class="text-no-wrap" cols="5" sm="3">
-                    <strong v-html="module.name"></strong>
+                    <strong dark>{{module.name}}</strong>
                   </v-col>
                 </v-row>
               </v-expansion-panel-header>

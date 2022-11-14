@@ -1,5 +1,5 @@
     $primary: #80ba24;
-    
+    $secondary: #4a5c66;
     .full-height {
         height: 100% !important;
     }
@@ -86,3 +86,6 @@
         height: 10vh;
     }
  
+    .moduleCard{
+        background-color: $secondary;
+    }
