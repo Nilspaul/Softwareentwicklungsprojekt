@@ -1,81 +1,106 @@
 <template>
-    <v-sheet>
-      <v-alert
-        outlined
-        type="success"
-        text
-        v-model="alert"
-        border="left"
-        close-text="Close Alert"
-        dismissible
-      >
-      Sie haben das Modul {{currentModule.name}} abonniert!
-      </v-alert>
-      <topBar :user="user" v-on:drawNav="drawNav()"></topBar>
-      <tabs :currentModule="currentModule"></tabs>
-      <v-container class="fill-height">
-        <v-row align="center" justify="center">
-          <v-carousel
-            :class="[{ mobileSlider: $vuetify.breakpoint.mobile }]"
-            cycle
-            show-arrows-on-hover
+  <v-sheet>
+    <v-alert
+      outlined
+      type="success"
+      text
+      v-model="alert"
+      border="left"
+      close-text="Close Alert"
+      dismissible
+    >
+      Sie haben das Modul {{ currentModule.name }} abonniert!
+    </v-alert>
+    <topBar :user="user" v-on:drawNav="drawNav()"></topBar>
+    <tabs :currentModule="currentModule"></tabs>
+    <v-container class="fill-height">
+      <v-row align="center" justify="center">
+        <v-carousel
+          :class="[{ mobileSlider: $vuetify.breakpoint.mobile }]"
+          cycle
+          show-arrows-on-hover
+        >
+          <v-carousel-item
+            v-for="(item, i) in items"
+            :key="i"
+            :src="item.src"
+          ></v-carousel-item>
+        </v-carousel>
+      </v-row>
+    </v-container>
+    <v-navigation-drawer
+      :class="[
+        { mainNav: !$vuetify.breakpoint.mobile },
+        { mainNavMobile: $vuetify.breakpoint.mobile },
+      ]"
+      temporary
+      v-model="drawer"
+    >
+      <v-list-item>
+        <v-list-item-content>
+          <v-img
+            src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Technische_Hochschule_Mittelhessen_Logo.svg"
           >
-            <v-carousel-item
-              v-for="(item, i) in items"
-              :key="i"
-              :src="item.src"
-            ></v-carousel-item>
-          </v-carousel>
+          </v-img>
+        </v-list-item-content>
+      </v-list-item>
+      <v-divider></v-divider>
+      <toDoBase></toDoBase>
+      <v-row align="center">
+        <v-col cols="12" sm="6">
+          <v-subheader :class="[{ textSizeMobile: $vuetify.breakpoint.mobile }]"
+            >Filter options:</v-subheader
+          >
+        </v-col>
+        <v-col cols="12" sm="6">
+          <v-select
+            :class="[
+              { 'display-5': $vuetify.breakpoint.sm },
+              { 'display-5': !$vuetify.breakpoint.mobile },
+            ]"
+            v-model="e6"
+            :items="filterOptions"
+            :menu-props="{ maxHeight: '400' }"
+            label="Select"
+            @input="filterModules()"
+            persistent-hint
+          >
+          </v-select>
+        </v-col>
+      </v-row>
+      <v-divider></v-divider>
+      <v-container fluid>
+        <v-row justify="center">
+          <v-subheader>Die Module auf einen Blick!</v-subheader>
+          <v-expansion-panels popout>
+            <v-expansion-panel
+              v-for="module in modules"
+              :key="module.name"
+              hide-actions
+            >
+              <v-expansion-panel-header>
+                <v-row align="center" class="spacer" no-gutters>
+                  <v-col class="text-no-wrap" cols="5" sm="3">
+                    <strong v-html="module.name"></strong>
+                  </v-col>
+                </v-row>
+              </v-expansion-panel-header>
+
+              <v-expansion-panel-content>
+                <v-divider></v-divider>
+                <v-card-text v-text="module.inhalte.infotext"></v-card-text>
+                <v-row align="center" class="spacer" no-gutters>
+                  <v-col class="text-no-wrap" cols="5" sm="3">
+                    <v-btn color="primary" @click="subscribeModule(module); alert=true"> Subscribe</v-btn>
+                  </v-col>
+                </v-row>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
         </v-row>
       </v-container>
-      <v-navigation-drawer :class="[{'mainNav' : !$vuetify.breakpoint.mobile}, {'mainNavMobile': $vuetify.breakpoint.mobile}]" temporary v-model="drawer">
-        <v-list-item>
-          <v-list-item-content>
-            <v-img
-              src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Technische_Hochschule_Mittelhessen_Logo.svg"
-            ></v-img>
-          </v-list-item-content>
-        </v-list-item>
-        <v-divider></v-divider>
-        <toDoBase></toDoBase>
-        <v-row align="center">
-          <v-col cols="12" sm="6">
-            <v-subheader :class="[{'display-3' : $vuetify.breakpoint.mobile}, {'display-1': !$vuetify.breakpoint.mobile}]">Filter options:</v-subheader>
-          </v-col>
-          <v-col cols="12" sm="6">
-            <v-select
-              :class="[{'display-5' : $vuetify.breakpoint.sm}, {'display-5': !$vuetify.breakpoint.mobile}]"
-              v-model="e6"
-              :items="filterOptions"
-              :menu-props="{ maxHeight: '400' }"
-              label="Select"
-              @input="filterModules()"
-              persistent-hint
-            >
-            </v-select>
-          </v-col>
-        </v-row>
-        <v-divider></v-divider>
-        <v-list dense>
-          <v-list-item v-for="item in modules" :key="item.name" link>
-            <v-btn icon class="mr-2">
-              <v-icon
-                color="primary"
-                @click="
-                  subscribeModule(item);
-                  alert = true;"
-                >mdi-plus</v-icon
-              >
-            </v-btn>
-            <v-list-item-content>
-              <v-list-item-title @click="openModule(item)">{{
-                item.name
-              }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-navigation-drawer>
-    </v-sheet>
+    </v-navigation-drawer>
+  </v-sheet>
 </template>
 
 <script>
@@ -100,16 +125,6 @@ export default {
     modules: [],
     e6: null,
     filterOptions: ["Show all", "Show only subscribed"],
-    items2: [
-      {
-        title: "Semester oder Modul 1",
-        icon: "mdi-view-dashboard",
-      },
-      {
-        title: "Semester oder Modul 2",
-        icon: "mdi-forum",
-      },
-    ],
     items: [
       {
         src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
@@ -138,9 +153,9 @@ export default {
       this.currentModule = module;
       this.drawer = false;
     },
-    filterModules (){
-      console.log(this.e6)
-    }
+    filterModules() {
+      console.log(this.e6);
+    },
   },
   created() {
     Tracker.autorun(() => {
