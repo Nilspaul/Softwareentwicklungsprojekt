@@ -13,7 +13,8 @@ const SEED_EMAIL = "nils.paul@iem.thm.de";
       {
         "name": "Mein ToDo",
         "note": "Mache etwas sinnvolles",
-        "dueTo": "30.11.2022"
+        "dueTo": "30.11.2022",
+        "completed": false
       }
     ],
     "moduleName": "MyModuleName",

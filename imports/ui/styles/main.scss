@@ -91,4 +91,13 @@
     }
     .row-pointer:hover {
         cursor: pointer;
+    }
+    .done {
+        text-decoration: line-through;
+    }
+    .theme--light.v-icon {
+        color: $primary !important;
+      }
+      .v-input--selection-controls__ripple.green--text {
+         color: $primary !important;
       }

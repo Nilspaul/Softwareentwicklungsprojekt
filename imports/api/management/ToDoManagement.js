@@ -7,6 +7,7 @@ let toDoManagement;
 if (Meteor.isServer) {
     class ToDoManagement {
         createOrUpdate( toDo, moduleName) {
+            Object.assign(toDo, {completed: false})
             let moduleToDo = ToDos.findOne({ moduleName });
             let newToDos = [{...toDo}];
             if (moduleToDo) {

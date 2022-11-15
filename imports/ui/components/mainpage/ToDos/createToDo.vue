@@ -65,11 +65,6 @@ export default {
             }
         },
     },
-
-    mounted() {
-        console.log(this.toDos)
-    },
-
     methods: {
         submit() {
             this.toDo.name = this.form.name;

@@ -6,58 +6,60 @@
       </v-btn>
       <v-toolbar-title>Back to the mainpage</v-toolbar-title>
     </VToolbar>
-
     <template>
-        <v-card>
-          <VDataTable
-              :headers="headers"
-              :items="myToDos"
-              :single-expand="singleExpand"
-              :expanded.sync="expanded"
-              item-key="_id"
-              show-expand
-              class="font-weight-black"
-              :footer-props="{
-                itemsPerPageText: $vuetify.breakpoint.smAndUp ? 'Zeilen pro Seite' : 'Zeilen',
-                itemsPerPageAllText: 'Alle'
-              }"
-          >
-            <template v-slot:top>
-              <VToolbar flat color="white">
-                <VToolbarTitle>Meine ToDos</VToolbarTitle>
-                <VSpacer/>
-                <create-to-do :toDos="myToDos"></create-to-do>
-              </VToolbar>
-            </template>
-            <template v-slot:expanded-item="{ headers, item }">
-              <td :colspan="headers.length">
-                <VDataTable
+      <v-card>
+        <v-container fluid>
+          <v-row justify="center">
+            <h1>Meine Todos</h1>
+            <v-expansion-panels popout>
+              <v-expansion-panel v-for="toDo in myToDos" hide-actions>
+                <v-expansion-panel-header
+                  class="white--text"
+                  color="secondary"
+                  icon-color="white"
+                >
+                  <template v-slot:actions>
+                    <v-icon color="white"> $expand </v-icon>
+                  </template>
+                  <v-row align="center" class="spacer" no-gutters>
+                    <v-col class="text-no-wrap" cols="5" sm="3">
+                      <strong dark>{{ toDo.moduleName }}</strong>
+                    </v-col>
+                  </v-row>
+                </v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  <VDataTable
                     :headers="subHeaders"
-                    :items="item.toDos"
                     show-select
-                    single-select
-                    @input="done=true"
-                    :class="[{'text-decoration-line-through' : done}, 'font-weight-light']"
+                    :items="toDo.toDos"
+                    @input="completeToDo"
+                    v-model="selected"
                     item-key="name"
+                    :item-class="isCompleted"
                     :hide-default-footer="true"
                     :footer-props="{
-                      itemsPerPageText: $vuetify.breakpoint.smAndUp ? 'Zeilen pro Seite' : 'Zeilen',
-                      itemsPerPageAllText: 'Alle'
+                      itemsPerPageText: $vuetify.breakpoint.smAndUp
+                        ? 'Zeilen pro Seite'
+                        : 'Zeilen',
+                      itemsPerPageAllText: 'Alle',
                     }"
-                >
-                </VDataTable>
-              </td>
-            </template>
-          </VDataTable>
-        </v-card>
-      </template>
+                  >
+                  </VDataTable>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+            </v-expansion-panels>
+          </v-row>
+        </v-container>
+      </v-card>
+    </template>
+    <createToDo></createToDo>
   </div>
 </template>
 
 <script>
-import { Meteor } from "meteor/meteor";
 import createToDo from "./createToDo.vue";
 import ToDos from "../../../../api/collections/ToDos.js";
+import Modules from "../../../../api/collections/Modules";
 import { router } from "../../../plugins/router";
 
 export default {
@@ -72,9 +74,12 @@ export default {
       groupedModules: null,
       singleExpand: false,
       myToDos: [],
+      modules: [],
       done: null,
       goupedToDos: [],
       selected: [{}],
+      selectedRows: [],
+
       headers: [
         {
           text: "Modul",
@@ -100,9 +105,19 @@ export default {
     };
   },
   methods: {
-    showSelected() {
-      console.log(this.selected);
+    completeToDo() {
+      this.selected.forEach((toDo) => {
+       
+          toDo.completed = true;
+        
+      });
     },
+    isCompleted(item) {
+      if (item.completed == true) {
+        return "text-decoration-line-through text--disabled";
+      }
+    },
+
     setMainpage() {
       router.push({
         path: "/mainpage",
@@ -110,15 +125,15 @@ export default {
     },
   },
   mounted() {
-    console.log(this.myToDos)
+    console.log(this.myToDos);
   },
   created() {
     Tracker.autorun(() => {
       this.myToDos = ToDos.find().fetch();
+      this.modules = Modules.find().fetch();
     });
   },
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
