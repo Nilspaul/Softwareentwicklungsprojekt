@@ -65,16 +65,6 @@
                         {{ item.note }}
                       </div>
                     </template>
-                    <template v-slot:item.dueTo="{ item }">
-                      <div
-                        :class="{
-                          'text-decoration-line-through text--disabled':
-                            item.completed,
-                        }"
-                      >
-                        {{ item.dueTo }}
-                      </div>
-                    </template>
                     <template v-slot:item.icon="{ item }">
                       <v-btn icon @click="deleteToDo(item)">
                         <v-icon color="red" v-if="item.completed"
@@ -108,16 +98,13 @@
                             v-on="on"
                           ></v-text-field>
                         </template>
-                        <v-date-picker v-model="date" scrollable class="datePicker"
->
+                        <v-date-picker v-model="date" scrollable class="datePicker">
                           <v-spacer></v-spacer>
-                          <v-btn text color="primary" @click="modal = false"
-                            >Cancel</v-btn
-                          >
+                          <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
                           <v-btn
                             text
                             color="primary"
-                            @click="$refs.dialog.save(date)"
+                            @click="modal=false; setDate(item)"
                             >OK</v-btn
                           >
                         </v-date-picker>
@@ -200,6 +187,10 @@ export default {
       items.items.forEach((toDo) => {
         toDo.completed = items.value;
       });
+    },
+    setDate(toDo){
+      toDo.dueTo = this.date;
+      console.log(this.date)
     },
     deleteToDo(toDo) {
       Meteor.call("toDo.delete", toDo);
