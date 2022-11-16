@@ -46,6 +46,11 @@
                       itemsPerPageAllText: 'Alle',
                     }"
                   >
+                    <template v-slot:item.icon="{ item }">
+                      <v-btn v-if="item.completed" icon>
+                        <v-icon v-bind:class="{'red' : item.completed}">mdi-trash-can</v-icon>
+                      </v-btn>
+                    </template>
                   </VDataTable>
                 </v-expansion-panel-content>
               </v-expansion-panel>
@@ -77,12 +82,11 @@ export default {
       singleExpand: false,
       myToDos: [],
       modules: [],
-      toDoStatus: 'completed',
+      toDoStatus: "completed",
       done: null,
       goupedToDos: [],
       selected: [{}],
       selectedRows: [],
-
       headers: [
         {
           text: "Modul",
@@ -91,10 +95,12 @@ export default {
           value: "moduleName",
         },
       ],
+
       subHeaders: [
         {
           text: "Name ToDo",
           value: "name",
+          sortable: true,
         },
         {
           text: "Beschreibung",
@@ -103,33 +109,75 @@ export default {
         {
           text: "Fällig am",
           value: "dueTo",
+          sortable: true,
         },
         {
           text: "",
-          value: "icon"
-        }
+          value: "icon",
+        },
       ],
     };
   },
   methods: {
     completeToDo(item) {
-      item.item.completed = item.value
+      item.item.completed = item.value;
     },
-    completeAll(items){
-      items.items.forEach((toDo)=>{
-        toDo.completed= items.value;
-      })
+    completeAll(items) {
+      items.items.forEach((toDo) => {
+        toDo.completed = items.value;
+      });
     },
-    
+
     isCompleted(item) {
-      if(item.completed===true){
-        return "text-decoration-line-through text--disabled"
+      if (item.completed === true) {
+        return "text-decoration-line-through text--disabled";
       }
     },
     setMainpage() {
       router.push({
         path: "/mainpage",
       });
+    },
+    editItem(item) {
+      this.editedIndex = this.desserts.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      this.dialog = true;
+    },
+
+    deleteItem(item) {
+      this.editedIndex = this.desserts.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      this.dialogDelete = true;
+    },
+
+    deleteItemConfirm() {
+      this.desserts.splice(this.editedIndex, 1);
+      this.closeDelete();
+    },
+
+    close() {
+      this.dialog = false;
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      });
+    },
+
+    closeDelete() {
+      this.dialogDelete = false;
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      });
+    },
+
+    save() {
+      if (this.editedIndex > -1) {
+        Object.assign(this.desserts[this.editedIndex], this.editedItem);
+      } else {
+        this.desserts.push(this.editedItem);
+      }
+      this.close();
     },
   },
   created() {
