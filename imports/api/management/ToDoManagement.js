@@ -25,6 +25,10 @@ if (Meteor.isServer) {
             moduleToDo.toDos.push(toDo)
             return ToDos.update({_id: moduleToDo._id}, {$set: {toDos: moduleToDo.toDos}})
         }
+
+        delete(toDo){
+            console.log(toDo)
+        }
     }
     toDoManagement = new ToDoManagement();
 }

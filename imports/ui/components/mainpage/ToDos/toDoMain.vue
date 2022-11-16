@@ -37,7 +37,6 @@
                     v-model="selected"
                     :sort-by="toDoStatus"
                     item-key="name"
-                    :item-class="isCompleted"
                     :hide-default-footer="true"
                     :footer-props="{
                       itemsPerPageText: $vuetify.breakpoint.smAndUp
@@ -46,11 +45,20 @@
                       itemsPerPageAllText: 'Alle',
                     }"
                   >
-                    <template v-slot:item.icon="{ item }">
-                      <v-btn v-if="item.completed" icon>
-                        <v-icon v-bind:class="{'red' : item.completed}">mdi-trash-can</v-icon>
-                      </v-btn>
-                    </template>
+                  <template v-slot:item.name="{ item }">
+                    <td :class="{'text-decoration-line-through text--disabled' : item.completed}">{{ item.name }}</td> 
+                  </template>
+                  <template v-slot:item.note="{ item }">
+                    <div :class="{'text-decoration-line-through text--disabled' : item.completed}">{{ item.note }}</div> 
+                  </template>
+                  <template v-slot:item.dueTo="{ item }">
+                    <div :class="{'text-decoration-line-through text--disabled' : item.completed}">{{ item.dueTo }}</div> 
+                  </template>
+                  <template v-slot:item.icon="{ item }">
+                    <v-btn icon @click="deleteToDo(item)">
+                      <v-icon color="red" v-if="item.completed">mdi-trash-can</v-icon>
+                    </v-btn>
+                  </template>
                   </VDataTable>
                 </v-expansion-panel-content>
               </v-expansion-panel>
@@ -127,57 +135,13 @@ export default {
         toDo.completed = items.value;
       });
     },
-
-    isCompleted(item) {
-      if (item.completed === true) {
-        return "text-decoration-line-through text--disabled";
-      }
+    deleteToDo(toDo){
+      Meteor.call("toDo.delete", toDo);
     },
     setMainpage() {
       router.push({
         path: "/mainpage",
       });
-    },
-    editItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.dialog = true;
-    },
-
-    deleteItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.dialogDelete = true;
-    },
-
-    deleteItemConfirm() {
-      this.desserts.splice(this.editedIndex, 1);
-      this.closeDelete();
-    },
-
-    close() {
-      this.dialog = false;
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      });
-    },
-
-    closeDelete() {
-      this.dialogDelete = false;
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      });
-    },
-
-    save() {
-      if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem);
-      } else {
-        this.desserts.push(this.editedItem);
-      }
-      this.close();
     },
   },
   created() {

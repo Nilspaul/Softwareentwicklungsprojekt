@@ -4,4 +4,7 @@ Meteor.methods({
    'toDo.createOrUpdate'(toDo, moduleName) {
     toDoManagement.createOrUpdate(toDo, moduleName)
    },
+   'toDo.delete'(toDo){
+      toDoManagement.delete(toDo);
+   }
 });
