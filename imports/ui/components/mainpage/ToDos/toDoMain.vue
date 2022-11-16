@@ -32,8 +32,10 @@
                     :headers="subHeaders"
                     show-select
                     :items="toDo.toDos"
-                    @input="completeToDo"
+                    @item-selected="completeToDo"
+                    @toggle-select-all="completeAll"
                     v-model="selected"
+                    :sort-by="toDoStatus"
                     item-key="name"
                     :item-class="isCompleted"
                     :hide-default-footer="true"
@@ -75,6 +77,7 @@ export default {
       singleExpand: false,
       myToDos: [],
       modules: [],
+      toDoStatus: 'completed',
       done: null,
       goupedToDos: [],
       selected: [{}],
@@ -101,31 +104,33 @@ export default {
           text: "Fällig am",
           value: "dueTo",
         },
+        {
+          text: "",
+          value: "icon"
+        }
       ],
     };
   },
   methods: {
-    completeToDo() {
-      this.selected.forEach((toDo) => {
-       
-          toDo.completed = true;
-        
-      });
+    completeToDo(item) {
+      item.item.completed = item.value
     },
+    completeAll(items){
+      items.items.forEach((toDo)=>{
+        toDo.completed= items.value;
+      })
+    },
+    
     isCompleted(item) {
-      if (item.completed == true) {
-        return "text-decoration-line-through text--disabled";
+      if(item.completed===true){
+        return "text-decoration-line-through text--disabled"
       }
     },
-
     setMainpage() {
       router.push({
         path: "/mainpage",
       });
     },
-  },
-  mounted() {
-    console.log(this.myToDos);
   },
   created() {
     Tracker.autorun(() => {
