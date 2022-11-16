@@ -45,20 +45,84 @@
                       itemsPerPageAllText: 'Alle',
                     }"
                   >
-                  <template v-slot:item.name="{ item }">
-                    <td :class="{'text-decoration-line-through text--disabled' : item.completed}">{{ item.name }}</td> 
-                  </template>
-                  <template v-slot:item.note="{ item }">
-                    <div :class="{'text-decoration-line-through text--disabled' : item.completed}">{{ item.note }}</div> 
-                  </template>
-                  <template v-slot:item.dueTo="{ item }">
-                    <div :class="{'text-decoration-line-through text--disabled' : item.completed}">{{ item.dueTo }}</div> 
-                  </template>
-                  <template v-slot:item.icon="{ item }">
-                    <v-btn icon @click="deleteToDo(item)">
-                      <v-icon color="red" v-if="item.completed">mdi-trash-can</v-icon>
-                    </v-btn>
-                  </template>
+                    <template v-slot:item.name="{ item }">
+                      <td
+                        :class="{
+                          'text-decoration-line-through text--disabled':
+                            item.completed,
+                        }"
+                      >
+                        {{ item.name }}
+                      </td>
+                    </template>
+                    <template v-slot:item.note="{ item }">
+                      <div
+                        :class="{
+                          'text-decoration-line-through text--disabled':
+                            item.completed,
+                        }"
+                      >
+                        {{ item.note }}
+                      </div>
+                    </template>
+                    <template v-slot:item.dueTo="{ item }">
+                      <div
+                        :class="{
+                          'text-decoration-line-through text--disabled':
+                            item.completed,
+                        }"
+                      >
+                        {{ item.dueTo }}
+                      </div>
+                    </template>
+                    <template v-slot:item.icon="{ item }">
+                      <v-btn icon @click="deleteToDo(item)">
+                        <v-icon color="red" v-if="item.completed"
+                          >mdi-trash-can</v-icon
+                        >
+                      </v-btn>
+                    </template>
+                    <template v-slot:item.dueTo="{ item }">
+                      <div
+                        v-if="item.dueTo !== undefined"
+                        :class="{
+                          'text-decoration-line-through text--disabled':
+                            item.completed,
+                        }"
+                      >
+                        {{ item.dueTo }}
+                      </div>
+                      <v-dialog
+                        v-else
+                        ref="dialog"
+                        v-model="modal"
+                        :return-value.sync="date"
+                        persistent
+                      >
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-text-field
+                            v-model="date"
+                            label="Picker in dialog"
+                            readonly
+                            v-bind="attrs"
+                            v-on="on"
+                          ></v-text-field>
+                        </template>
+                        <v-date-picker v-model="date" scrollable class="datePicker"
+>
+                          <v-spacer></v-spacer>
+                          <v-btn text color="primary" @click="modal = false"
+                            >Cancel</v-btn
+                          >
+                          <v-btn
+                            text
+                            color="primary"
+                            @click="$refs.dialog.save(date)"
+                            >OK</v-btn
+                          >
+                        </v-date-picker>
+                      </v-dialog>
+                    </template>
                   </VDataTable>
                 </v-expansion-panel-content>
               </v-expansion-panel>
@@ -90,6 +154,8 @@ export default {
       singleExpand: false,
       myToDos: [],
       modules: [],
+      date: new Date().toISOString().substr(0, 10),
+      modal: false,
       toDoStatus: "completed",
       done: null,
       goupedToDos: [],
@@ -135,7 +201,7 @@ export default {
         toDo.completed = items.value;
       });
     },
-    deleteToDo(toDo){
+    deleteToDo(toDo) {
       Meteor.call("toDo.delete", toDo);
     },
     setMainpage() {

@@ -8,19 +8,21 @@
         width: 100%;
     }
     
-    .mobileSlider{
+    .mobileSlider {
         margin-top: 10vw;
     }
-
-    .mobileTopbar{
-       margin-top: 2vw;
-       min-height: 12vw !important;
+    
+    .mobileTopbar {
+        margin-top: 2vw;
+        min-height: 12vw !important;
     }
-    .topBar{
+    
+    .topBar {
         margin-top: 2vh;
         min-height: 10vh !important;
-     }
-    .mobileIcon{
+    }
+    
+    .mobileIcon {
         font-size: 500px;
     }
     
@@ -44,60 +46,74 @@
         height: 52px!important;
         font-size: 18px !important;
     }
-
+    
     .tabSubheader {
         padding-top: 1vh;
         height: 7vh;
         background-color: #dfe5e6 !important;
         color: "primary";
     }
-    .tabSubheaderMobile{
+    
+    .tabSubheaderMobile {
         padding-top: 1vw;
         height: 10vw;
         background-color: #dfe5e6 !important;
     }
-    .mobileTabs{
+    
+    .mobileTabs {
         min-height: 70vw !important;
         font-size: 2vw;
         background-color: $primary;
     }
-    .mainNav{
+    
+    .mainNav {
         position: absolute;
         width: 60vh !important;
     }
-    .mainNavMobile{
+    
+    .mainNavMobile {
         position: absolute;
         width: 60vw !important;
     }
-    .appComp{
-        margin:-1vh;
+    
+    .appComp {
+        margin: -1vh;
     }
-    .appCompMobile{
-        margin:-1vw;
+    
+    .appCompMobile {
+        margin: -1vw;
         width: 100vw;
         height: 100vh;
     }
-
-    .textSizeMobile{
+    
+    .textSizeMobile {
         font-size: 3vw !important;
     }
-
-    .navItemSize{
+    
+    .navItemSize {
         height: 10vh;
     }
- 
-    .moduleCard{
+    
+    .moduleCard {
         background-color: $secondary;
     }
+    
     .row-pointer:hover {
         cursor: pointer;
     }
+    
     .done {
         text-decoration: line-through;
     }
+    
     .theme--light.v-icon {
         color: $primary !important;
-      }
-      .v-input--selection-controls__ripple.green--text {
-         color: $primary !important;
-      }
+    }
+    
+    .v-input--selection-controls__ripple.green--text {
+        color: $primary !important;
+    }
+    
+    .datePicker {
+        width: 300px !important;
+    }

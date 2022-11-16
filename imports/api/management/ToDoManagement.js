@@ -33,15 +33,13 @@ if (Meteor.isServer) {
 
         delete(toDo) {
             let moduleToDos = ToDos.find().fetch();
-            let parentmoduleToDo
             moduleToDos.forEach((moduleToDo) => {
                 let toDoIndex = moduleToDo.toDos.findIndex(
                     (toDoToDelete) => toDo.name === toDoToDelete.name
                 );
                 if (toDoIndex !== -1) {
                     moduleToDo.toDos.splice(toDoIndex, 1);
-                    parentmoduleToDo = moduleToDo
-                    return ToDos.update({ _id: parentmoduleToDo._id }, { $set: { toDos: parentmoduleToDo.toDos } })
+                    return ToDos.update({ _id: moduleToDo._id }, { $set: { toDos: moduleToDo.toDos } })
                 }
             });
         }
