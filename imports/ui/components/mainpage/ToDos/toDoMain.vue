@@ -66,10 +66,15 @@
                       </div>
                     </template>
                     <template v-slot:item.icon="{ item }">
-                      <v-btn icon @click="deleteToDo(item)">
-                        <v-icon color="red" v-if="item.completed"
+                      <v-btn v-if="item.completed" icon @click="deleteToDo(item)">
+                        <v-icon color="red"
                           >mdi-trash-can</v-icon
                         >
+                      </v-btn>
+                      <v-btn v-else icon @click="editToDo(item)">
+                        <v-icon>
+                          mdi-pencil
+                        </v-icon>
                       </v-btn>
                     </template>
                     <template v-slot:item.dueTo="{ item }">
@@ -191,6 +196,10 @@ export default {
     setDate(toDo){
       toDo.dueTo = this.date;
       console.log(this.date)
+    },
+    editToDo(toDo){
+      toDo.dueTo = undefined;
+      
     },
     deleteToDo(toDo) {
       Meteor.call("toDo.delete", toDo);

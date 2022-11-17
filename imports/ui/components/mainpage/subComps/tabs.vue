@@ -16,7 +16,7 @@
             @before-enter="beforeEnter"
             @enter="enter"
           >
-            <v-card-text  :class="[{'display-1' : $vuetify.breakpoint.mobile}]">{{inhalt}}</v-card-text>
+            <v-card-text  :class="[{'display-1' : $vuetify.breakpoint.smAndDown}]">{{inhalt}}</v-card-text>
           </transition>
         </v-card>
       </v-tab-item>
