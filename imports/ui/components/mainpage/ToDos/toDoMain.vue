@@ -12,7 +12,7 @@
           <v-row justify="center">
             <h1>Meine Todos</h1>
             <v-expansion-panels popout>
-              <v-expansion-panel v-for="toDo in myToDos" hide-actions>
+              <v-expansion-panel v-for="(toDo, index) in myToDos" hide-actions>
                 <v-expansion-panel-header
                   class="white--text"
                   color="secondary"
@@ -26,6 +26,8 @@
                       <strong dark>{{ toDo.moduleName }}</strong>
                     </v-col>
                   </v-row>
+                  <v-progress-linear height="50"></v-progress-linear>
+                  <div>{{toDoCounts + '/' + toDo.toDos.length }}  </div>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <VDataTable
@@ -146,13 +148,12 @@ export default {
       singleExpand: false,
       myToDos: [],
       modules: [],
-      date: new Date().toISOString().substr(0, 10),
       modal: false,
+      date: new Date().toISOString().substr(0, 10),
       toDoStatus: "completed",
       done: null,
-      goupedToDos: [],
       selected: [{}],
-      selectedRows: [],
+      toDoCounts: [],
       headers: [
         {
           text: "Modul",
@@ -195,11 +196,9 @@ export default {
     },
     setDate(toDo){
       toDo.dueTo = this.date;
-      console.log(this.date)
     },
     editToDo(toDo){
       toDo.dueTo = undefined;
-      
     },
     deleteToDo(toDo) {
       Meteor.call("toDo.delete", toDo);
@@ -208,6 +207,11 @@ export default {
       router.push({
         path: "/mainpage",
       });
+    },
+  },
+  watch:{
+    selected(val){
+      console.log(val)
     },
   },
   created() {
@@ -219,4 +223,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-progress-linear{
+  width: 25em;
+}
+</style>
