@@ -32,7 +32,6 @@
                 <v-expansion-panel-content>
                   <VDataTable
                     :headers="subHeaders"
-                    show-select
                     :items="toDo.toDos"
                     @item-selected="completeToDo"
                     @toggle-select-all="completeAll"
@@ -47,15 +46,20 @@
                       itemsPerPageAllText: 'Alle',
                     }"
                   >
+                    <template v-slot:item.checkbox="{ item }">
+                      <v-checkbox v-if="item.completed === true" input-value="1" @click="completeToDo(item)"></v-checkbox>
+                      <v-checkbox v-else @click="completeToDo(item)"></v-checkbox>
+
+                    </template>
                     <template v-slot:item.name="{ item }">
-                      <td
+                      <div
                         :class="{
                           'text-decoration-line-through text--disabled':
                             item.completed,
                         }"
                       >
                         {{ item.name }}
-                      </td>
+                      </div>
                     </template>
                     <template v-slot:item.note="{ item }">
                       <div
@@ -178,6 +182,10 @@ export default {
 
       subHeaders: [
         {
+          text:'', 
+          value: "checkbox"
+        },
+        {
           text: "Name ToDo",
           value: "name",
           sortable: true,
@@ -200,9 +208,10 @@ export default {
   },
   methods: {
     completeToDo(item) {
-      item.item.completed = item.value;
-      this.setProgress(item.item, item.value);
-      Meteor.call("toDo.complete", item.item);
+      item.completed = !item.completed;
+      console.log(item)
+      this.setProgress(item, item.completed);
+      Meteor.call("toDo.complete", item);
     },
     completeAll(items) {
       items.items.forEach((toDo) => {
