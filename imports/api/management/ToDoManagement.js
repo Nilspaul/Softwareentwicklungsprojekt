@@ -31,6 +31,10 @@ if (Meteor.isServer) {
             return ToDos.update({ _id: moduleToDo._id }, { $set: { toDos: moduleToDo.toDos } });
         }
 
+        complete(toDo){
+            
+        }
+
         delete(toDo) {
             let moduleToDos = ToDos.find().fetch();
             moduleToDos.forEach((moduleToDo) => {

@@ -201,25 +201,28 @@ export default {
   methods: {
     completeToDo(item) {
       item.item.completed = item.value;
-      for (let i = 0; i < this.myToDos.length; i++) {
-          let toDoIndex = this.myToDos[i].toDos.findIndex((toDo) => toDo.name === item.item.name);   
-          if (toDoIndex !== -1 && item.value === true) {
-            ++this.toDoCounts[i];
-          } else if(toDoIndex !== -1 && item.value === false){
-            --this.toDoCounts[i];
-          }
-
-      }
-
-      console.log(this.toDoCounts);
+      this.setProgress(item.item, item.value);
+      Meteor.call("toDo.complete", item.item);
     },
     completeAll(items) {
       items.items.forEach((toDo) => {
         toDo.completed = items.value;
+        this.setProgress(toDo, items.value)
+        
       });
     },
     setDate(toDo) {
       toDo.dueTo = this.date;
+    },
+    setProgress(myToDo, value){
+      for (let i = 0; i < this.myToDos.length; i++) {
+          let toDoIndex = this.myToDos[i].toDos.findIndex((toDo) => toDo.name === myToDo.name);   
+          if (toDoIndex !== -1 && value === true) {
+            ++this.toDoCounts[i];
+          } else if(toDoIndex !== -1 && value === false){
+            --this.toDoCounts[i];
+          }
+      }
     },
     editToDo(toDo) {
       toDo.dueTo = undefined;

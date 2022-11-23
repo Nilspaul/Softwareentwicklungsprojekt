@@ -6,5 +6,8 @@ Meteor.methods({
    },
    'toDo.delete'(toDo){
       toDoManagement.delete(toDo);
+   },
+   'toDo.complete'(toDo){
+      toDoManagement.complete(toDo)
    }
 });
