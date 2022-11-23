@@ -31,8 +31,15 @@ if (Meteor.isServer) {
             return ToDos.update({ _id: moduleToDo._id }, { $set: { toDos: moduleToDo.toDos } });
         }
 
-        complete(toDo){
-            
+        complete(selectedToDo){
+            let myToDos = ToDos.find().fetch();
+            myToDos.forEach((myToDo)=>{
+                let toDoIndex = myToDo.toDos.findIndex((toDo) => toDo.name === selectedToDo.name);
+                if(toDoIndex !== -1){
+                    myToDo.toDos[toDoIndex] = selectedToDo
+                }
+                return ToDos.update({ _id: myToDo._id }, { $set: { toDos: myToDo.toDos } })
+            })
         }
 
         delete(toDo) {

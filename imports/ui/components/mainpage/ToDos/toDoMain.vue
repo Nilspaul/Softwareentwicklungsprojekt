@@ -207,16 +207,15 @@ export default {
     completeAll(items) {
       items.items.forEach((toDo) => {
         toDo.completed = items.value;
-        this.setProgress(toDo, items.value)
-        
+        this.setProgress(toDo, items.value) 
       });
     },
     setDate(toDo) {
       toDo.dueTo = this.date;
     },
-    setProgress(myToDo, value){
+    setProgress(selectedToDo, value){
       for (let i = 0; i < this.myToDos.length; i++) {
-          let toDoIndex = this.myToDos[i].toDos.findIndex((toDo) => toDo.name === myToDo.name);   
+          let toDoIndex = this.myToDos[i].toDos.findIndex((toDo) => toDo.name === selectedToDo.name);   
           if (toDoIndex !== -1 && value === true) {
             ++this.toDoCounts[i];
           } else if(toDoIndex !== -1 && value === false){
@@ -241,8 +240,14 @@ export default {
       this.toDoCounts = [];
       this.myToDos = ToDos.find().fetch();
       this.modules = Modules.find().fetch();
-      this.myToDos.forEach((toDo) => {
-        this.toDoCounts.push(0);
+      this.myToDos.forEach((myToDo) => {
+        let count = 0
+        myToDo.toDos.forEach((toDo)=>{
+          if(toDo.completed){
+            ++count;
+          }
+        })
+        this.toDoCounts.push(count);
       });
     });
   },
