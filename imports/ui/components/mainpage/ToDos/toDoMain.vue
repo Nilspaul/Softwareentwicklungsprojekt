@@ -26,8 +26,8 @@
                       <strong dark>{{ toDo.moduleName }}</strong>
                     </v-col>
                   </v-row>
-                  <v-progress-linear height="50"></v-progress-linear>
-                  <div>{{toDoCounts + '/' + toDo.toDos.length }}  </div>
+                  <v-progress-linear v-model="toDoCounts[index] * 100 / toDo.toDos.length" height="20"></v-progress-linear>
+                  <div>{{ toDoCounts[index] + "/" + toDo.toDos.length }}</div>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <VDataTable
@@ -68,15 +68,15 @@
                       </div>
                     </template>
                     <template v-slot:item.icon="{ item }">
-                      <v-btn v-if="item.completed" icon @click="deleteToDo(item)">
-                        <v-icon color="red"
-                          >mdi-trash-can</v-icon
-                        >
+                      <v-btn
+                        v-if="item.completed"
+                        icon
+                        @click="deleteToDo(item)"
+                      >
+                        <v-icon color="red">mdi-trash-can</v-icon>
                       </v-btn>
                       <v-btn v-else icon @click="editToDo(item)">
-                        <v-icon>
-                          mdi-pencil
-                        </v-icon>
+                        <v-icon> mdi-pencil </v-icon>
                       </v-btn>
                     </template>
                     <template v-slot:item.dueTo="{ item }">
@@ -98,6 +98,10 @@
                       >
                         <template v-slot:activator="{ on, attrs }">
                           <v-text-field
+                            :class="{
+                              'text-decoration-line-through text--disabled':
+                                item.completed,
+                            }"
                             v-model="date"
                             label="Picker in dialog"
                             readonly
@@ -105,13 +109,22 @@
                             v-on="on"
                           ></v-text-field>
                         </template>
-                        <v-date-picker v-model="date" scrollable class="datePicker">
+                        <v-date-picker
+                          v-model="date"
+                          scrollable
+                          class="datePicker"
+                        >
                           <v-spacer></v-spacer>
-                          <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
+                          <v-btn text color="primary" @click="modal = false"
+                            >Cancel</v-btn
+                          >
                           <v-btn
                             text
                             color="primary"
-                            @click="modal=false; setDate(item)"
+                            @click="
+                              modal = false;
+                              setDate(item);
+                            "
                             >OK</v-btn
                           >
                         </v-date-picker>
@@ -188,16 +201,27 @@ export default {
   methods: {
     completeToDo(item) {
       item.item.completed = item.value;
+      for (let i = 0; i < this.myToDos.length; i++) {
+          let toDoIndex = this.myToDos[i].toDos.findIndex((toDo) => toDo.name === item.item.name);   
+          if (toDoIndex !== -1 && item.value === true) {
+            ++this.toDoCounts[i];
+          } else if(toDoIndex !== -1 && item.value === false){
+            --this.toDoCounts[i];
+          }
+
+      }
+
+      console.log(this.toDoCounts);
     },
     completeAll(items) {
       items.items.forEach((toDo) => {
         toDo.completed = items.value;
       });
     },
-    setDate(toDo){
+    setDate(toDo) {
       toDo.dueTo = this.date;
     },
-    editToDo(toDo){
+    editToDo(toDo) {
       toDo.dueTo = undefined;
     },
     deleteToDo(toDo) {
@@ -209,22 +233,21 @@ export default {
       });
     },
   },
-  watch:{
-    selected(val){
-      console.log(val)
-    },
-  },
   created() {
     Tracker.autorun(() => {
+      this.toDoCounts = [];
       this.myToDos = ToDos.find().fetch();
       this.modules = Modules.find().fetch();
+      this.myToDos.forEach((toDo) => {
+        this.toDoCounts.push(0);
+      });
     });
   },
 };
 </script>
 
 <style scoped>
-.v-progress-linear{
+.v-progress-linear {
   width: 25em;
 }
 </style>
