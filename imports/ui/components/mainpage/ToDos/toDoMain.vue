@@ -26,7 +26,7 @@
                       <strong dark>{{ toDo.moduleName }}</strong>
                     </v-col>
                   </v-row>
-                  <v-progress-linear :value="toDoCounts[index] * 100 / toDo.toDos.length" height="20"></v-progress-linear>
+                  <v-progress-linear :value="toDoCounts[index] * 100 / toDo.toDos.length" height="20" rounded></v-progress-linear>
                   <div>{{ toDoCounts[index] + "/" + toDo.toDos.length }}</div>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
@@ -63,10 +63,10 @@
                     </template>
                     <template v-slot:item.note="{ item }">
                       <div
-                        :class="{
+                        :class="['noteLim',{
                           'text-decoration-line-through text--disabled':
                             item.completed,
-                        }"
+                        }]"
                       >
                         {{ item.note }}
                       </div>
@@ -286,5 +286,8 @@ export default {
 <style scoped>
 .v-progress-linear {
   width: 25em;
+}
+.noteLim{
+  max-width: 35vw;
 }
 </style>
