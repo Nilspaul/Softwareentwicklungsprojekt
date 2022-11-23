@@ -1,6 +1,5 @@
 import ToDos from "../collections/ToDos";
 import { Meteor } from "meteor/meteor";
-import { random } from "lodash";
 
 let toDoManagement;
 
@@ -12,7 +11,7 @@ if (Meteor.isServer) {
             let moduleToDo = ToDos.findOne({ moduleName });
             let newToDos = [{...toDo }];
             if (moduleToDo) {
-                this.update(toDo, moduleToDo);
+                this.updateModuleToDo(toDo, moduleToDo);
             } else {
                 this.createModuleToDo(moduleName, newToDos);
             }
@@ -26,17 +25,17 @@ if (Meteor.isServer) {
             });
         }
 
-        update(toDo, moduleToDo) {
+        updateModuleToDo(toDo, moduleToDo) {
             moduleToDo.toDos.push(toDo);
             return ToDos.update({ _id: moduleToDo._id }, { $set: { toDos: moduleToDo.toDos } });
         }
 
-        complete(selectedToDo){
+        updateSubToDo(updatedToDo) {
             let myToDos = ToDos.find().fetch();
-            myToDos.forEach((myToDo)=>{
-                let toDoIndex = myToDo.toDos.findIndex((toDo) => toDo.name === selectedToDo.name);
-                if(toDoIndex !== -1){
-                    myToDo.toDos[toDoIndex] = selectedToDo
+            myToDos.forEach((myToDo) => {
+                let toDoIndex = myToDo.toDos.findIndex((toDo) => toDo.name === updatedToDo.name);
+                if (toDoIndex !== -1) {
+                    myToDo.toDos[toDoIndex] = updatedToDo
                 }
                 return ToDos.update({ _id: myToDo._id }, { $set: { toDos: myToDo.toDos } })
             })

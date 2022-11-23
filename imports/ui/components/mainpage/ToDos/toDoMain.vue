@@ -107,7 +107,7 @@
                                 item.completed,
                             }"
                             v-model="dateFormatted"
-                            label="Picker in dialog"
+                            label="Wähle dein Fälligkeitsdatum"
                             readonly
                             v-bind="attrs"
                             v-on="on"
@@ -212,7 +212,6 @@ export default {
       return this.formatDate(this.date)
     }
   },
-
     watch: {
     date (val) {
       this.dateFormatted = this.formatDate(this.date)
@@ -224,7 +223,7 @@ export default {
       item.completed = !item.completed;
       console.log(item)
       this.setProgress(item, item.completed);
-      Meteor.call("toDo.complete", item);
+      Meteor.call("toDo.updateSubToDo", item);
     },
     completeAll(items) {
       items.items.forEach((toDo) => {
@@ -234,15 +233,17 @@ export default {
     },
     setDate(toDo) {
       toDo.dueTo = this.dateFormatted;
+      Meteor.call("toDo.updateSubToDo", toDo);
+
     },
     setProgress(selectedToDo, value){
       for (let i = 0; i < this.myToDos.length; i++) {
-          let toDoIndex = this.myToDos[i].toDos.findIndex((toDo) => toDo.name === selectedToDo.name);   
-          if (toDoIndex !== -1 && value === true) {
-            ++this.toDoCounts[i];
-          } else if(toDoIndex !== -1 && value === false){
-            --this.toDoCounts[i];
-          }
+        let toDoIndex = this.myToDos[i].toDos.findIndex((toDo) => toDo.name === selectedToDo.name);   
+        if (toDoIndex !== -1 && value === true) {
+          ++this.toDoCounts[i];
+        } else if(toDoIndex !== -1 && value === false){
+          --this.toDoCounts[i];
+        }
       }
     },
     editToDo(toDo) {
@@ -251,13 +252,11 @@ export default {
     deleteToDo(toDo) {
       Meteor.call("toDo.delete", toDo);
     },
-        formatDate (date) {
+    formatDate (date) {
       if (!date) return null
-
       const [year, month, day] = date.split('-')
       return `${day}.${month}.${year}`
     },
-  
     setMainpage() {
       router.push({
         path: "/mainpage",
@@ -278,6 +277,7 @@ export default {
         })
         this.toDoCounts.push(count);
       });
+       this.dateFormatted = this.formatDate(this.date)
     });
   },
 };
