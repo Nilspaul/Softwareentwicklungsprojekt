@@ -26,7 +26,7 @@
                       <strong dark>{{ toDo.moduleName }}</strong>
                     </v-col>
                   </v-row>
-                  <v-progress-linear v-model="toDoCounts[index] * 100 / toDo.toDos.length" height="20"></v-progress-linear>
+                  <v-progress-linear :value="toDoCounts[index] * 100 / toDo.toDos.length" height="20"></v-progress-linear>
                   <div>{{ toDoCounts[index] + "/" + toDo.toDos.length }}</div>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
