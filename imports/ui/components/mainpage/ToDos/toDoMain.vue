@@ -106,7 +106,7 @@
                               'text-decoration-line-through text--disabled':
                                 item.completed,
                             }"
-                            v-model="date"
+                            v-model="dateFormatted"
                             label="Picker in dialog"
                             readonly
                             v-bind="attrs"
@@ -167,6 +167,7 @@ export default {
       modules: [],
       modal: false,
       date: new Date().toISOString().substr(0, 10),
+      dateFormatted: null,
       toDoStatus: "completed",
       done: null,
       selected: [{}],
@@ -206,6 +207,18 @@ export default {
       ],
     };
   },
+  computed: {
+    computedDateFormatted () {
+      return this.formatDate(this.date)
+    }
+  },
+
+    watch: {
+    date (val) {
+      this.dateFormatted = this.formatDate(this.date)
+    }
+  },
+
   methods: {
     completeToDo(item) {
       item.completed = !item.completed;
@@ -220,7 +233,7 @@ export default {
       });
     },
     setDate(toDo) {
-      toDo.dueTo = this.date;
+      toDo.dueTo = this.dateFormatted;
     },
     setProgress(selectedToDo, value){
       for (let i = 0; i < this.myToDos.length; i++) {
@@ -238,6 +251,13 @@ export default {
     deleteToDo(toDo) {
       Meteor.call("toDo.delete", toDo);
     },
+        formatDate (date) {
+      if (!date) return null
+
+      const [year, month, day] = date.split('-')
+      return `${day}.${month}.${year}`
+    },
+  
     setMainpage() {
       router.push({
         path: "/mainpage",
