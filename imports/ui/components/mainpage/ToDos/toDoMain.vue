@@ -19,15 +19,18 @@
                   icon-color="white"
                 >
                   <template v-slot:actions>
-                    <v-icon color="white"> $expand </v-icon>
+                    <v-icon> $expand </v-icon>
                   </template>
                   <v-row align="center" class="spacer" no-gutters>
-                    <v-col class="text-no-wrap" cols="5" sm="3">
+                    <v-col class="text-no-wrap">
                       <strong dark>{{ toDo.moduleName }}</strong>
                     </v-col>
+                    <div class="pr-4">{{ toDoCounts[index] + "/" + toDo.toDos.length }}</div>
+                    <v-col class="text-no-wrap">
+                    <v-progress-linear :value="toDoCounts[index] * 100 / toDo.toDos.length" height="20" rounded></v-progress-linear>
+                    </v-col>
+                 
                   </v-row>
-                  <v-progress-linear :value="toDoCounts[index] * 100 / toDo.toDos.length" height="20" rounded></v-progress-linear>
-                  <div>{{ toDoCounts[index] + "/" + toDo.toDos.length }}</div>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <VDataTable
