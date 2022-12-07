@@ -1,12 +1,16 @@
 <template>
-  <v-container class="pa-16 mt-16">
-    <v-card>
+<div>
+
+    <v-img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Technische_Hochschule_Mittelhessen_Logo.svg">
+    </v-img>
+  <v-container>
+    <v-card :class="['mt-16', {'loginContainer' : $vuetify.breakpoint.mobile}]">
       <v-card-title> Login </v-card-title>
       <v-card-text ref="loginForm">
         <v-text-field
           ref="email"
           v-model="email"
-          autofocus
+          autofocus 
           @keyup.enter="submit()"
           :error-messages="errorMessages"
           label="Email-address"
@@ -35,6 +39,7 @@
       <registerBase />
     </v-card>
   </v-container>
+  </div>
 </template>
 
 <script>
@@ -82,4 +87,15 @@ export default {
 p {
   font-family: serif;
 }
+.loginContainer{
+  height: 50vh!important;
+}
+
+.ingDiv{
+  margin-top:10vh;
+  max-height: 10vh!important;
+  max-width: 10vw!important;
+}
+
+
 </style>

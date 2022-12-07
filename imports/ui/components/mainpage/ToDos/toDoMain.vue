@@ -19,7 +19,7 @@
                   icon-color="white"
                 >
                   <template v-slot:actions>
-                    <v-icon> $expand </v-icon>
+                    <v-icon color="white"> $expand </v-icon>
                   </template>
                   <v-row align="center" class="spacer" no-gutters>
                     <v-col class="text-no-wrap">

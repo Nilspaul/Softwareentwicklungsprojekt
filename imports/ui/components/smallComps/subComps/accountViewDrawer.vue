@@ -11,7 +11,7 @@
       <v-list>
         <v-list-item>
           <v-list-item-avatar>
-            <v-icon>mdi-account-badge</v-icon>
+            <v-icon icon-color="white">mdi-account-badge</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title>{{ user.username }}</v-list-item-title>
@@ -81,4 +81,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+</style>
