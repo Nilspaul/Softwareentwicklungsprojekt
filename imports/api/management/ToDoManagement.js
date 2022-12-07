@@ -1,5 +1,6 @@
 import ToDos from "../collections/ToDos";
 import { Meteor } from "meteor/meteor";
+import { Random } from "meteor/random";
 
 let toDoManagement;
 
@@ -7,7 +8,7 @@ if (Meteor.isServer) {
     class ToDoManagement {
         createOrUpdate(toDo, moduleName) {
             Object.assign(toDo, { completed: false });
-            //Object.assign(toDo, { _id: new Meteor.Collection.ObjectID() })
+            Object.assign(toDo, { _id: Random.id() });
             let moduleToDo = ToDos.findOne({ moduleName });
             let newToDos = [{...toDo }];
             if (moduleToDo) {
@@ -33,7 +34,7 @@ if (Meteor.isServer) {
         updateSubToDo(updatedToDo) {
             let myToDos = ToDos.find().fetch();
             myToDos.forEach((myToDo) => {
-                let toDoIndex = myToDo.toDos.findIndex((toDo) => toDo.name === updatedToDo.name);
+                let toDoIndex = myToDo.toDos.findIndex((toDo) => toDo._id === updatedToDo._id);
                 if (toDoIndex !== -1) {
                     myToDo.toDos[toDoIndex] = updatedToDo
                 }

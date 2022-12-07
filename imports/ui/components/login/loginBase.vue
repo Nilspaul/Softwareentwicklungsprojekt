@@ -7,6 +7,7 @@
           ref="email"
           v-model="email"
           autofocus
+          @keyup.enter="submit()"
           :error-messages="errorMessages"
           label="Email-address"
           placeholder="Type in your mail address"
@@ -16,6 +17,7 @@
           autofocus
           ref="password"
           type="password"
+          @keyup.enter="submit()"
           v-model="password"
           :error-messages="errorMessages"
           label="Password"
@@ -26,7 +28,7 @@
       <v-divider class="mt-12"></v-divider>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn class="full-width" color="secondary" @click="submit">
+        <v-btn class="full-width" color="secondary" @click="submit()">
           Log in
         </v-btn>
       </v-card-actions>

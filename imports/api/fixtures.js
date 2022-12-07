@@ -3,23 +3,23 @@ import { Accounts } from "meteor/accounts-base";
 import Modules from "./collections/Modules";
 import ToDos from "./collections/ToDos";
 import modules from "../../data/specificModules.json";
+import { Random } from "meteor/random";
 
 const SEED_USERNAME = "Nils";
 const SEED_PASSWORD = "1234";
 const SEED_EMAIL = "nils.paul@iem.thm.de";
 
- const staticToDo = {
-    "toDos": [
-      {
+const staticToDo = {
+    "toDos": [{
+        "_id": Random.id(),
         "name": "Mein ToDo",
         "note": "Mache etwas sinnvolles",
         "dueTo": "30.11.2022",
         "completed": false
-      }
-    ],
+    }],
     "moduleName": "MyModuleName",
     "public": true
- };
+};
 
 Meteor.startup(() => {
     if (!Accounts.findUserByUsername(SEED_USERNAME)) {
@@ -29,7 +29,7 @@ Meteor.startup(() => {
             email: SEED_EMAIL,
         });
     }
-    
+
     if (!ToDos.findOne({ moduleName: staticToDo.moduleName })) {
         ToDos.insert({...staticToDo })
     }
