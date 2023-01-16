@@ -1,8 +1,5 @@
 <template>
 <div>
-
-    <v-img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Technische_Hochschule_Mittelhessen_Logo.svg">
-    </v-img>
   <v-container>
     <v-card :class="['mt-16', {'loginContainer' : $vuetify.breakpoint.mobile}]">
       <v-card-title> Login </v-card-title>
