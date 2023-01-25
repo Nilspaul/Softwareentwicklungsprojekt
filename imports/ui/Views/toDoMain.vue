@@ -150,10 +150,10 @@
 </template>
 
 <script>
-import createToDo from "./createToDo.vue";
-import ToDos from "../../../../api/collections/ToDos.js";
-import Modules from "../../../../api/collections/Modules";
-import { router } from "../../../plugins/router";
+import createToDo from "../components/ToDos/createToDo.vue";
+import ToDos from "../../api/collections/ToDos";
+import Modules from "../../api/collections/Modules";
+import { router } from "../plugins/router";
 
 export default {
   name: "toDoMain",

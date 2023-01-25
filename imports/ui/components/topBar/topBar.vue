@@ -17,8 +17,8 @@
 </template>
 
 <script>
+import AccountViewDrawer from './accountView/accountViewDrawer.vue';
 
-import AccountViewDrawer from './subComps/accountViewDrawer.vue';
 export default {
     name: "topBar",
     components : {

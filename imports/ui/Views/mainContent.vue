@@ -1,4 +1,4 @@
-<template>
+<template v-if="user">
   <v-sheet>
     <v-alert
       outlined
@@ -109,19 +109,16 @@
 </template>
 
 <script>
-import topBar from "../../smallComps/topBar";
-import tabs from "../subComps/tabs";
-import toDoBase from "../ToDos/toDoBase.vue";
-import Modules from "../../../../api/collections/Modules";
+import topBar from "../components/topBar/topBar.vue";
+import tabs from "../components/mainpage/tabs";
+import toDoBase from "../components/ToDos/toDoBase.vue";
+import Modules from "../../api/collections/Modules";
 export default {
   name: "mainContent",
   components: {
     topBar,
     tabs,
     toDoBase,
-  },
-  props: {
-    user: Object,
   },
   data: () => ({
     drawer: null,
@@ -161,15 +158,27 @@ export default {
     filterModules() {
       console.log(this.e6);
     },
+    leaving(){
+      this.alert("test")
+    }
   },
-  created() {
+  created(){
     Tracker.autorun(() => {
+      this.user = Meteor.user()
       this.modules = Modules.find().fetch();
       if (this.currentModule === null) {
         this.currentModule = this.modules[0];
       }
     });
   },
+
+  watch:{
+    user (){
+      console.log(this.user)
+    }
+  },
+ 
+
 };
 </script>
 
