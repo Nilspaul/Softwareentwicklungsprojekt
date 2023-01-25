@@ -1,5 +1,7 @@
-<template v-if="user">
-  <v-sheet>
+<template>
+
+    <div v-if="user">
+      <v-sheet>
     <v-alert
       outlined
       type="success"
@@ -106,6 +108,8 @@
       </v-container>
     </v-navigation-drawer>
   </v-sheet>
+    </div>
+  
 </template>
 
 <script>
@@ -113,6 +117,8 @@ import topBar from "../components/topBar/topBar.vue";
 import tabs from "../components/mainpage/tabs";
 import toDoBase from "../components/ToDos/toDoBase.vue";
 import Modules from "../../api/collections/Modules";
+import {Meteor} from 'meteor/meteor'
+import {Tracker} from 'meteor/tracker'
 export default {
   name: "mainContent",
   components: {
@@ -164,21 +170,14 @@ export default {
   },
   created(){
     Tracker.autorun(() => {
-      this.user = Meteor.user()
-      this.modules = Modules.find().fetch();
-      if (this.currentModule === null) {
-        this.currentModule = this.modules[0];
+      this.user = Meteor.user();
+      if (this.user !== undefined) {
+        this.$forceUpdate();
       }
+      this.modules = Modules.find().fetch();
+      this.currentModule = this.modules[0]
     });
   },
-
-  watch:{
-    user (){
-      console.log(this.user)
-    }
-  },
- 
-
 };
 </script>
 
