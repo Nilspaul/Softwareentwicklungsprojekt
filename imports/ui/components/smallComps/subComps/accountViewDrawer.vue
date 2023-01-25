@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import settings from "./accountViewComponents/settings.vue";
+import settings from "./settings.vue";
 import { router } from "../../../plugins/router";
 export default {
   name: "accountViewDrawer",

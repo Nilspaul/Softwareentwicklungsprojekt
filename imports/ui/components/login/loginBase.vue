@@ -41,8 +41,8 @@
 
 <script>
 import { Meteor } from "meteor/meteor";
-import { router } from "../plugins/router";
-import registerBase from "../Views/registerBase.vue";
+import { router } from "../../plugins";
+import registerBase from "../register/registerBase.vue";
 
 export default {
   name: "loginBase",
@@ -66,7 +66,7 @@ export default {
       Meteor.loginWithPassword(this.email, this.password, (error, result) => {
         if (error) {
           this.setErr(error);
-        } else if(Meteor.user()){
+        } else {
           router.push({
             path: "/mainpage",
           });
