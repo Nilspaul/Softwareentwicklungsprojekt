@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import {router} from "../../../plugins/router"
+import {router} from "../../plugins/router"
 export default {
   name: "toDoBase",
   data: () => ({
