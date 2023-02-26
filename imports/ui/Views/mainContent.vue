@@ -1,115 +1,129 @@
 <template>
-
-    <div v-if="user">
-      <v-sheet>
-    <v-alert
-      outlined
-      type="success"
-      text
-      v-model="alert"
-      border="left"
-      close-text="Close Alert"
-      dismissible
-    >
-      Sie haben das Modul {{ currentModule.name }} abonniert!
-    </v-alert>
-    <topBar :user="user" v-on:drawNav="drawNav()"></topBar>
-    <tabs :currentModule="currentModule"></tabs>
-    <v-container class="fill-height">
-      <v-row align="center" justify="center">
-        <v-carousel
-          :class="[{ mobileSlider: $vuetify.breakpoint.mobile }]"
-          cycle
-          show-arrows-on-hover
-        >
-          <v-carousel-item
-            v-for="(item, i) in items"
-            :key="i"
-            :src="item.src"
-          ></v-carousel-item>
-        </v-carousel>
-      </v-row>
-    </v-container>
-    <v-navigation-drawer
-      :class="[
-        { mainNav: !$vuetify.breakpoint.mobile },
-        { mainNavMobile: $vuetify.breakpoint.mobile },
-      ]"
-      temporary
-      v-model="drawer"
-    >
-      <v-list-item>
-        <v-list-item-content>
-          <v-img
-            src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Technische_Hochschule_Mittelhessen_Logo.svg"
+  <div v-if="user">
+    <v-sheet>
+      <v-alert
+        outlined
+        type="success"
+        text
+        v-model="alert"
+        border="left"
+        close-text="Close Alert"
+        dismissible
+      >
+        Sie haben das Modul {{ currentModule.name }} abonniert!
+      </v-alert>
+      <topBar :user="user" @drawNav="drawNav()" @setContent="setContent"></topBar>
+      <tabs :currentModule="currentModule" :currentTab="currentTab"></tabs>
+      <v-container class="fill-height">
+        <v-row align="center" justify="center">
+          <v-carousel
+            :class="[{ mobileSlider: $vuetify.breakpoint.mobile }]"
+            cycle
+            show-arrows-on-hover
           >
-          </v-img>
-        </v-list-item-content>
-      </v-list-item>
-      <v-divider></v-divider>
-      <toDoBase></toDoBase>
-      <v-row align="center">
-        <v-col cols="12" sm="6">
-          <v-subheader :class="[{ textSizeMobile: $vuetify.breakpoint.mobile }]"
-            >Filter options:</v-subheader
-          >
-        </v-col>
-        <v-col cols="12" sm="6">
-          <v-select
-            :class="[
-              { 'display-5': $vuetify.breakpoint.sm },
-              { 'display-5': !$vuetify.breakpoint.mobile },
-            ]"
-            v-model="e6"
-            :items="filterOptions"
-            label="Select"
-            @input="filterModules()"
-            persistent-hint
-          >
-          </v-select>
-        </v-col>
-      </v-row>
-      <v-divider></v-divider>
-      <v-container fluid>
-        <v-row justify="center">
-          <v-subheader>Die Module auf einen Blick!</v-subheader>
-          <v-expansion-panels popout>
-            <v-expansion-panel
-              v-for="module in modules"
-              :key="module.name"
-              hide-actions
-            >
-              <v-expansion-panel-header class="white--text" color="secondary" icon-color="white" @click="currentModule=module">
-                <template v-slot:actions>
-                  <v-icon color="white">
-                    $expand
-                  </v-icon>
-                </template>
-                <v-row align="center" class="spacer" no-gutters>
-                  <v-col class="text-no-wrap" cols="5" sm="3">
-                    <strong dark>{{module.name}}</strong>
-                  </v-col>
-                </v-row>
-              </v-expansion-panel-header>
-
-              <v-expansion-panel-content>
-                <v-divider></v-divider>
-                <v-card-text v-text="module.inhalte.infotext"></v-card-text>
-                <p class="text-decoration-underline primary--text row-pointer" @click="drawer=false"> Mehr Inhalte entdecken!</p>
-                <v-row align="center" class="spacer" no-gutters>
-                  <v-col class="text-no-wrap" cols="5" sm="3">
-                    <v-btn color="primary" @click="subscribeModule(module); alert=true"> Subscribe</v-btn>
-                  </v-col>
-                </v-row>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-          </v-expansion-panels>
+            <v-carousel-item
+              v-for="(item, i) in items"
+              :key="i"
+              :src="item.src"
+            ></v-carousel-item>
+          </v-carousel>
         </v-row>
       </v-container>
-    </v-navigation-drawer>
-  </v-sheet>
-    </div>
-  
+      <v-navigation-drawer
+        :class="[
+          { mainNav: !$vuetify.breakpoint.mobile },
+          { mainNavMobile: $vuetify.breakpoint.mobile },
+        ]"
+        temporary
+        v-model="drawer"
+      >
+        <v-list-item>
+          <v-list-item-content>
+            <v-img
+              src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Technische_Hochschule_Mittelhessen_Logo.svg"
+            >
+            </v-img>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider></v-divider>
+        <toDoBase></toDoBase>
+        <v-row align="center">
+          <v-col cols="12" sm="6">
+            <v-subheader :class="[{ textSizeMobile: $vuetify.breakpoint.mobile }]"
+              >Filter options:</v-subheader
+            >
+          </v-col>
+          <v-col cols="12" sm="6">
+            <v-select
+              :class="[
+                { 'display-5': $vuetify.breakpoint.sm },
+                { 'display-5': !$vuetify.breakpoint.mobile },
+              ]"
+              v-model="e6"
+              :items="filterOptions"
+              label="Select"
+              @input="filterModules()"
+              persistent-hint
+            >
+            </v-select>
+          </v-col>
+        </v-row>
+        <v-divider></v-divider>
+        <v-container fluid>
+          <v-row justify="center">
+            <v-subheader>Die Module auf einen Blick!</v-subheader>
+            <v-expansion-panels popout>
+              <v-expansion-panel
+                v-for="module in modules"
+                :key="module.name"
+                hide-actions
+              >
+                <v-expansion-panel-header
+                  class="white--text"
+                  color="secondary"
+                  icon-color="white"
+                  @click="currentModule = module"
+                >
+                  <template v-slot:actions>
+                    <v-icon color="white"> $expand </v-icon>
+                  </template>
+                  <v-row align="center" class="spacer" no-gutters>
+                    <v-col class="text-no-wrap" cols="5" sm="3">
+                      <strong dark>{{ module.name }}</strong>
+                    </v-col>
+                  </v-row>
+                </v-expansion-panel-header>
+
+                <v-expansion-panel-content>
+                  <v-divider></v-divider>
+                  <v-card-text v-text="module.inhalte.infotext"></v-card-text>
+                  <p
+                    class="text-decoration-underline primary--text row-pointer"
+                    @click="drawer = false"
+                  >
+                    Mehr Inhalte entdecken!
+                  </p>
+                  <v-row align="center" class="spacer" no-gutters>
+                    <v-col class="text-no-wrap" cols="5" sm="3">
+                      <v-btn
+                        color="primary"
+                        @click="
+                          subscribeModule(module);
+                          alert = true;
+                        "
+                      >
+                        Subscribe</v-btn
+                      >
+                    </v-col>
+                  </v-row>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+            </v-expansion-panels>
+          </v-row>
+        </v-container>
+      </v-navigation-drawer>
+    </v-sheet>
+  </div>
 </template>
 
 <script>
@@ -117,9 +131,9 @@ import topBar from "../components/topBar/topBar.vue";
 import tabs from "../components/mainpage/tabs";
 import toDoBase from "../components/ToDos/toDoBase.vue";
 import Modules from "../../api/collections/Modules";
-import SubscribedModules from "../../api/collections/SubscribedModules"
-import {Meteor} from 'meteor/meteor'
-import {Tracker} from 'meteor/tracker'
+import SubscribedModules from "../../api/collections/SubscribedModules";
+import { Meteor } from "meteor/meteor";
+import { Tracker } from "meteor/tracker";
 export default {
   name: "mainContent",
   components: {
@@ -131,6 +145,7 @@ export default {
     drawer: null,
     alert: false,
     currentModule: null,
+    currentTab: null,
     modules: [],
     dbModules: [],
     subscribedModules: [],
@@ -165,17 +180,33 @@ export default {
       this.drawer = false;
     },
     filterModules() {
-      if(this.e6 === 'Show only subscribed'){
+      if (this.e6 === "Show only subscribed") {
         this.modules = this.subscribedModules;
-      }else {
+      } else {
         this.modules = this.dbModules;
       }
     },
-    leaving(){
-      this.alert("test")
-    }
+    leaving() {
+      this.alert("test");
+    },
+    setContent(content) {
+      let moduleName;
+      if (content.length !== 1) {
+        moduleName = content[1];
+        this.currentTab = content[0];
+      } else {
+        moduleName = content[0];
+      }
+      Meteor.call("module.findModule", moduleName, (error, result) => {
+        if (error) {
+          console.log(error);
+        } else {
+          this.currentModule = result;
+        }
+      });
+    },
   },
-  created(){
+  created() {
     Tracker.autorun(() => {
       this.user = Meteor.user();
       if (this.user !== undefined) {
@@ -183,7 +214,7 @@ export default {
       }
       this.subscribedModules = SubscribedModules.find().fetch();
       this.dbModules = Modules.find().fetch();
-      this.modules = this.dbModules
+      this.modules = this.dbModules;
       this.currentModule = this.modules[0];
     });
   },

@@ -25,16 +25,18 @@
 </template>
 
 <script>
+import { timeStamp } from "console";
 import gsap from "gsap";
 
 export default {
   name: "tabs",
   props: {
     currentModule: Object,
+    currentTab: String,
   },
   data() {
     return {
-      active: null,
+      
       moduleContents: [],
     };
   },
@@ -51,5 +53,40 @@ export default {
       });
     },
   },
+  watch: {
+    currentModule(){
+      console.log(this.currentModule)
+      if(this.currentTab !== null){
+        for(let i = 0; i<this.currentModule.inhalte.length; i++){
+          console.log(this.currentModule.inhalte[i])
+          if(this.currentModule.inhalte[i] === this.currentTab){
+            this.active = i;
+          }
+        }
+      }
+    },
+    active(){
+      console.log(this.active)
+    },
+    currentTab(){
+      console.log(this.currentTab)
+      for(let i = 0; i<this.currentModule.inhalte.length; i++){
+          console.log(this.currentModule.inhalte[i])
+          if(this.currentModule.inhalte[i] === this.currentTab){
+            this.active = i;
+          }
+        }
+    }
+  },
+  computed: {
+    active(){
+      const keys = Object.keys(this.currentModule.inhalte); 
+      let index = keys.indexOf(this.currentTab);
+      if(index === -1 || this.currentTab === null){
+        index = 0;
+      } 
+      return index;
+    }
+  }
 };
 </script>

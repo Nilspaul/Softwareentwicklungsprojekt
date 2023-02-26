@@ -25,6 +25,11 @@
       :items="items"
       :search-input.sync="search"
       cache-items>
+      <template #item="{ item }">
+        <v-list-item class="d-flex">
+            <div class="ml-2" @click="pickContent(item)">{{ item }}</div>
+        </v-list-item>
+    </template>
     </v-autocomplete>
     <AccountViewDrawer :user="user" />
   </v-app-bar>
@@ -69,6 +74,10 @@ export default {
     drawNav() {
       this.$emit("drawNav");
     },
+    pickContent(item){
+        let content = item.split('/',2);
+        this.$emit("setContent", content);
+    }
   },
   created() {
     Tracker.autorun(() => {
@@ -77,7 +86,7 @@ export default {
       this.modules.forEach((module) => {
         this.content.push(module.name);
         for(let inhalt in module.inhalte){
-            this.content.push(inhalt + '/'+module)
+            this.content.push(inhalt + '/'+module.name)
         }
       });
     });
