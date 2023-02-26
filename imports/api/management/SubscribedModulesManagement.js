@@ -11,6 +11,13 @@ if (Meteor.isServer) {
                 subscribedModules.insert({...module });
             }
         }
+
+        unsubscribeModule(module){
+            if (subscribedModules.findOne({ name: module.name })) {
+                module.subscriber = Meteor.userId();
+                subscribedModules.remove({...module });
+            }
+        }
     }
     subscribedModulesManagement = new SubscribedModulesManagement();
 }

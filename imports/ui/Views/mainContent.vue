@@ -117,6 +117,7 @@ import topBar from "../components/topBar/topBar.vue";
 import tabs from "../components/mainpage/tabs";
 import toDoBase from "../components/ToDos/toDoBase.vue";
 import Modules from "../../api/collections/Modules";
+import SubscribedModules from "../../api/collections/SubscribedModules"
 import {Meteor} from 'meteor/meteor'
 import {Tracker} from 'meteor/tracker'
 export default {
@@ -131,6 +132,8 @@ export default {
     alert: false,
     currentModule: null,
     modules: [],
+    dbModules: [],
+    subscribedModules: [],
     e6: null,
     filterOptions: ["Show all", "Show only subscribed"],
     items: [
@@ -162,7 +165,11 @@ export default {
       this.drawer = false;
     },
     filterModules() {
-      console.log(this.e6);
+      if(this.e6 === 'Show only subscribed'){
+        this.modules = this.subscribedModules;
+      }else {
+        this.modules = this.dbModules;
+      }
     },
     leaving(){
       this.alert("test")
@@ -174,8 +181,10 @@ export default {
       if (this.user !== undefined) {
         this.$forceUpdate();
       }
-      this.modules = Modules.find().fetch();
-      this.currentModule = this.modules[0]
+      this.subscribedModules = SubscribedModules.find().fetch();
+      this.dbModules = Modules.find().fetch();
+      this.modules = this.dbModules
+      this.currentModule = this.modules[0];
     });
   },
 };
