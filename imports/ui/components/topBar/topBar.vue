@@ -1,45 +1,92 @@
 <template>
-    <v-app-bar :class="[{'mobileTopbar pt-5 pr-10' : $vuetify.breakpoint.mobile}, {'topBar pt-5 pr-10' : !$vuetify.breakpoint.mobile}]" color="primary" dark>
-        <VIcon class="display-1 pr-5" @click="drawNav()">mdi-menu</VIcon>
-        <v-toolbar-title class="display-1" v-show="$vuetify.breakpoint.mdAndUp" >Discover</v-toolbar-title>
-        <v-spacer></v-spacer>
-         <v-text-field
-          append-icon="mdi-microphone"
-          flat
-          hide-details
-          label="Search"
-          class="mr-16"
-          prepend-inner-icon="mdi-magnify"
-          solo-inverted
-        ></v-text-field>
-        <AccountViewDrawer :user="user"/>
-    </v-app-bar>
+  <v-app-bar
+    :class="[
+      { 'mobileTopbar pt-5 pr-10': $vuetify.breakpoint.mobile },
+      { 'topBar pt-5 pr-10': !$vuetify.breakpoint.mobile },
+    ]"
+    color="primary"
+    dark
+  >
+    <VIcon class="display-1 pr-5" @click="drawNav()">mdi-menu</VIcon>
+    <v-toolbar-title class="display-1" v-show="$vuetify.breakpoint.mdAndUp">
+        Discover
+    </v-toolbar-title>
+    <v-spacer></v-spacer>
+    <v-autocomplete
+      flat
+      label="Search"
+      class="mr-16 mt-10"
+      prepend-inner-icon="mdi-magnify"
+      hide-no-data
+      no-data-text
+      solo-inverted
+      v-model="select"
+      :loading="loading"
+      :items="items"
+      :search-input.sync="search"
+      cache-items>
+    </v-autocomplete>
+    <AccountViewDrawer :user="user" />
+  </v-app-bar>
 </template>
 
 <script>
-import AccountViewDrawer from './accountView/accountViewDrawer.vue';
+import AccountViewDrawer from "./accountView/accountViewDrawer.vue";
+import Modules from "../../../api/collections/Modules";
 
 export default {
-    name: "topBar",
-    components : {
+  name: "topBar",
+  components: {
     AccountViewDrawer,
-},
-props: {
+  },
+  props: {
     user: Object,
-},
-    data: () => ({
-        group: null,
-    }),
-    methods: {
-        drawNav(){
-            this.$emit('drawNav');
-        }
+  },
+  data: () => ({
+    group: null,
+    content: [],
+    currentModule: null,
+    loading: false,
+    items: [],
+    search: null,
+    select: null,
+  }),
+  watch: {
+    search(val) {
+      val && val !== this.select && this.querySelections(val);
     },
-}
+  },
+  methods: {
+    querySelections(v) {
+      this.loading = true;
+      setTimeout(() => {
+        this.items = this.content.filter((e) => {
+          return (e || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
+        });
+        this.loading = false;
+      }, 500);
+    },
+    drawNav() {
+      this.$emit("drawNav");
+    },
+  },
+  created() {
+    Tracker.autorun(() => {
+      this.modules = Modules.find().fetch();
+      this.currentModule = this.modules[0];
+      this.modules.forEach((module) => {
+        this.content.push(module.name);
+        for(let inhalt in module.inhalte){
+            this.content.push(inhalt + '/'+module)
+        }
+      });
+    });
+  },
+};
 </script>
 
 <style scoped>
 p {
-    font-family: serif;
+  font-family: serif;
 }
 </style>
