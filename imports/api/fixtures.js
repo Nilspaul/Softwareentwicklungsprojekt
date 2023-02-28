@@ -24,10 +24,6 @@ const staticToDo = {
 };
 
 Meteor.startup(() => {
-    Accounts.emailTemplates.resetPassword.text = function(user, url) {
-        url = url.replace('#/', '');
-        return `Nils Click this link to reset your password: ${url}`;
-      }
       Accounts.urls.resetPassword = function(token) {
         return Meteor.absoluteUrl('reset-password/' + token);
       };
