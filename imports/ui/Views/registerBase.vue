@@ -1,24 +1,14 @@
 <template>
   <v-dialog v-model="dialog">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn
-        color="primary"
-        class="mt-7 boldLink"
-        plain
-        v-bind="attrs"
-        v-on="on"
-      >
+      <v-btn color="primary" class="mt-7 boldLink" plain v-bind="attrs" v-on="on">
         Don't have an account yet? Register now!
       </v-btn>
     </template>
     <v-card ref="form">
       <div class="d-flex justify-center bg-surface-variant">
         <v-sheet class="ma-2 pa-2">
-          <v-card-title
-            align-center
-            :style="{ color: '#4a5c66' }"
-            class="text-h4"
-          >
+          <v-card-title align-center :style="{ color: '#4a5c66' }" class="text-h4">
             Register
           </v-card-title>
         </v-sheet>
@@ -34,49 +24,64 @@
           placeholder="John Doe"
           required
         ></v-text-field>
-        <p bold>Address Line</p>
-        <v-text-field
-          outlined
-          ref="address"
-          v-model="address"
-          :rules="[
-            () => !!address || 'This field is required',
-            () =>
-              (!!address && address.length <= 25) ||
-              'Address must be less than 25 characters',
-            addressCheck,
-          ]"
-          placeholder="Snowy Rock Pl"
-          counter="25"
-          required
-        >
-        </v-text-field>
+        <div>
+          <v-sheet class="d-flex bg-surface-variant flex-wrap">
+            <v-sheet class="me-auto flex-grow-1 pr-4">
+              <p bold>adress Line</p>
+              <v-text-field
+                outlined
+                ref="adressLine"
+                v-model="adressLine"
+                :rules="[
+                  () => !!adressLine || 'This field is required',
+                  () =>
+                    (!!adressLine && adressLine.length <= 25) ||
+                    'adressLine must be less than 25 characters',
+                  adressLineCheck,
+                ]"
+                placeholder="Snowy Rock Pl"
+                counter="25"
+                required
+              ></v-text-field>
+            </v-sheet>
+            <v-sheet class="me-auto flex-grow-2">
+              <p bold>House number</p>
+              <v-text-field
+                outlined
+                ref="houseNumber"
+                v-model="houseNumber"
+                :rules="[() => !!houseNumber || 'This field is required']"
+                placeholder="666"
+                required
+              >
+              </v-text-field>
+            </v-sheet>
+          </v-sheet>
+        </div>
         <p bold>City</p>
         <v-text-field
           outlined
           ref="city"
           v-model="city"
-          :rules="[() => !!city || 'This field is required', addressCheck]"
+          :rules="[() => !!city || 'This field is required', adressLineCheck]"
           placeholder="Friedberg"
           required
         ></v-text-field>
         <div>
           <v-sheet class="d-flex bg-surface-variant flex-wrap">
-            <v-sheet class="me-auto flex-grow-1 pr-4"
-              ><p bold>Province</p>
+            <v-sheet class="me-auto flex-grow-1 pr-4">
+              <p bold>Province</p>
               <v-text-field
                 outlined
-                
                 ref="state"
                 v-model="state"
                 :rules="[() => !!state || 'This field is required']"
                 required
                 placeholder="Hessen"
-              ></v-text-field
-            ></v-sheet>
-
-            <v-sheet  class="me-auto flex-grow-2"
-              ><p bold>Zip Code</p>
+              ></v-text-field>
+            </v-sheet>
+            <v-sheet class="me-auto flex-grow-2">
+              <p bold>Zip Code</p>
               <v-text-field
                 outlined
                 class="flex-grow-1"
@@ -85,11 +90,10 @@
                 :rules="[() => !!zip || 'This field is required']"
                 required
                 placeholder="79938"
-              ></v-text-field
-            ></v-sheet>
+              ></v-text-field>
+            </v-sheet>
           </v-sheet>
         </div>
-
         <p bold>Country</p>
         <v-autocomplete
           outlined
@@ -123,15 +127,12 @@
                 placeholder="Gib dein Passwort ein"
               ></v-text-field>
             </v-sheet>
-
-            <v-sheet class="me-auto flex-grow-1 ml-4" 
-              ><p bold>Confirm Passord</p>
+            <v-sheet class="me-auto flex-grow-1 ml-4">
+              <p bold>Confirm Passord</p>
               <v-text-field
                 outlined
                 :rules="[
-                  () =>
-                    passwordConfirmer !== password ||
-                    'The passwords do not match',
+                  () => passwordConfirmer !== password || 'The passwords do not match',
                 ]"
                 required
                 placeholder="Confirm your password"
@@ -368,7 +369,8 @@ export default {
     email: null,
     password: null,
     passwordConfirmer: null,
-    address: null,
+    adressLine: null,
+    houseNumber: null,
     city: null,
     state: null,
     zip: null,
@@ -382,7 +384,8 @@ export default {
       return {
         name: this.name,
         email: this.email,
-        address: this.address,
+        adressLine: this.adressLine,
+        houseNumber: this.houseNumber,
         city: this.city,
         state: this.state,
         zip: this.zip,
@@ -400,9 +403,8 @@ export default {
   },
 
   methods: {
-    addressCheck() {
-      this.errorMessages =
-        this.address && !this.name ? `Hey! I'm required` : "";
+    adressLineCheck() {
+      this.errorMessages = this.adressLine && !this.name ? `Hey! I'm required` : "";
       return true;
     },
     submit() {

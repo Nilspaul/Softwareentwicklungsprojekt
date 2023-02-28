@@ -202,6 +202,8 @@ p {
 .biggerButton {
   width: 10em;
   margin-top: -4em;
+  font-weight: bold;
+  font-size:1em
 }
 
 #background {
