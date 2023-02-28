@@ -20,6 +20,7 @@
     "vue-meteor-tracker": "^3.0.0-beta.7",
     "vue-responsive-text": "^0.1.4",
     "vue-router": "^3.6.5",
+    "vue-sweetalert2": "^5.0.5",
     "vuetify": "^2.6.12",
     "web-push": "^3.5.0"
   },

@@ -7,7 +7,9 @@
       <v-card
         :class="['mt-16', { loginContainer: $vuetify.breakpoint.mobile }]"
       >
-        <v-card-title class="text-h4 pb-6" :style="{'color':  '#4a5c66'}"> Login </v-card-title>
+        <v-card-title class="text-h4 pb-6" :style="{ color: '#4a5c66' }">
+          Login
+        </v-card-title>
         <v-card-text ref="loginForm">
           <p bold>Email</p>
           <v-text-field
@@ -30,79 +32,79 @@
             placeholder="Type in your password"
             required
           ></v-text-field>
-          <v-form>
-    </v-form>
+          <v-form> </v-form>
         </v-card-text>
-        <v-dialog
-        v-model="dialog"
-        width="auto"
-      >
-        <template v-slot:activator="{ props }">
-          <v-btn
-            color="primary"
-            class="boldLink"
-            v-bind="props"
-            plain
-            @click="dialog = true"
-          >
-            Forgot password?
-          </v-btn>
-        </template>
-        <v-card width="800">
-          <div class="d-flex justify-center">
-            <v-card-title color="red--text">Enter your Email to request a new password</v-card-title>
-          </div>
-          
-          <v-card-text>
-            <p class="pb-4" bold>Email</p>
-        <v-text-field
-          outlined
-          ref="email"
-          v-model="email"
-          :error-messages="errorMessages"
-          placeholder="max-muster@mail.de"
-          required
-        ></v-text-field>
-          </v-card-text>
-          <div class="d-flex justify-center bg-surface-variant">
-        <v-sheet class="ma-2 pa-2">
-          <v-hover v-slot="{ hover }">
-                <v-btn
-                  class="white--text biggerButton"
-                  elevation="2"
-                  :style="{
-                    'background-color': hover ? ' #80ba24' : '#4a5c66',
-                  }"
-                  @click="sendEmail()"
-                >
-                  Send
-                </v-btn>
-              </v-hover>
-        </v-sheet>
-      </div>
-        </v-card>
-      </v-dialog>
+        <v-dialog v-model="dialog" width="auto">
+          <template v-slot:activator="{ props }">
+            <v-btn
+              color="primary"
+              class="boldLink"
+              v-bind="props"
+              plain
+              @click="dialog = true"
+            >
+              Forgot password?
+            </v-btn>
+          </template>
+          <v-card width="800">
+            <div class="d-flex justify-center">
+              <v-card-title color="red--text"
+                >Enter your Email to request a new password</v-card-title
+              >
+            </div>
+            <v-card-text>
+              <p class="pb-4" bold>Email</p>
+              <v-text-field
+                outlined
+                ref="email"
+                v-model="email"
+                :error-messages="errorMessages"
+                placeholder="max-muster@mail.de"
+                required
+              ></v-text-field>
+            </v-card-text>
+            <div class="d-flex justify-center bg-surface-variant">
+              <v-sheet class="ma-2 pa-2">
+                <v-hover v-slot="{ hover }">
+                  <v-btn
+                    class="white--text biggerButton"
+                    elevation="2"
+                    :style="{
+                      'background-color': hover ? ' #80ba24' : '#4a5c66',
+                    }"
+                    @click="
+                      sendEmail();
+                      sweetAlert();
+                    "
+                  >
+                    Send
+                  </v-btn>
+                </v-hover>
+              </v-sheet>
+            </div>
+          </v-card>
+        </v-dialog>
 
         <v-card-actions>
           <v-spacer></v-spacer>
         </v-card-actions>
-       
-          <div class="d-flex justify-center bg-surface-variant">
-            <v-sheet class="ma-2 pa-2">
-              <v-hover v-slot="{ hover }">
-                <v-btn
-                  class="white--text biggerButton"
-                  elevation="2"
-                  :style="{
-                    'background-color': hover ? ' #80ba24' : '#4a5c66',
-                  }"
-                  @click="submit()"
-                >
-                  Log in
-                </v-btn>
-              </v-hover>
-            </v-sheet>
-          </div>
+
+        <div class="d-flex justify-center bg-surface-variant">
+          <v-sheet class="ma-2 pa-2">
+            <v-hover v-slot="{ hover }">
+              <v-btn
+                class="white--text biggerButton"
+                elevation="2"
+                :style="{
+                  'background-color': hover ? ' #80ba24' : '#4a5c66',
+                }"
+                @click="submit()"
+              >
+                Log in
+              </v-btn>
+            </v-hover>
+          </v-sheet>
+        </div>
         <v-divider></v-divider>
         <registerBase />
       </v-card>
@@ -113,7 +115,6 @@
 <script>
 import { Meteor } from "meteor/meteor";
 import { router } from "../plugins/router";
-import { Email } from 'meteor/email';
 import gsap from "gsap";
 import registerBase from "../Views/registerBase.vue";
 
@@ -132,7 +133,7 @@ export default {
       password: null,
       username: null,
     },
-    dialog:false,
+    dialog: false,
   }),
 
   methods: {
@@ -147,16 +148,24 @@ export default {
         }
       });
     },
-    sendEmail(){ 
-      console.log(this.email)
-      Meteor.call('users.resetPassword', this.email, (error, result) => {
+    sweetAlert() {
+      this.$swal({
+        icon: "success",
+        title: "Check your emails!",
+        text: "If you provided an already registered email You will receive a reset-link if you provided an already registered email ",
+        showCloseButton: true,
+        confirmButtonColor: "#4a5c66",
+      });
+    },
+    sendEmail() {
+      console.log(this.email);
+      Meteor.call("users.resetPassword", this.email, (error, result) => {
         if (error) {
-          console.log(error)
-        } else  {
-         console.log(result)
+          console.log(error);
+        } else {
+          console.log(result);
         }
       });
-   
     },
     setErr() {
       this.errorMessages = "Überprüfe deine Eingaben";
@@ -173,11 +182,11 @@ export default {
 </script>
 
 <style scoped>
-.v-text-field{
+.v-text-field {
   border-left: 200px;
 }
 p {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: bold;
   color: #4a5c66;
   margin-bottom: -10px;
@@ -190,7 +199,7 @@ p {
   color: #80ba24;
   font-weight: bold;
 }
-.biggerButton{
+.biggerButton {
   width: 10em;
   margin-top: -4em;
 }
