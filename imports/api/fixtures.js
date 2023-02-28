@@ -4,6 +4,8 @@ import Modules from "./collections/Modules";
 import ToDos from "./collections/ToDos";
 import modules from "../../data/specificModules.json";
 import { Random } from "meteor/random";
+import setMailUrl from "./emails/setMailUrl";
+
 
 const SEED_USERNAME = "Nils";
 const SEED_PASSWORD = "1234";
@@ -22,6 +24,8 @@ const staticToDo = {
 };
 
 Meteor.startup(() => {
+    setMailUrl()
+
     if (!Accounts.findUserByUsername(SEED_USERNAME)) {
         Accounts.createUser({
             username: SEED_USERNAME,
@@ -39,4 +43,6 @@ Meteor.startup(() => {
             Modules.insert({...module });
         }
     })
+
+
 });

@@ -48,13 +48,38 @@
             Forgot password?
           </v-btn>
         </template>
-        <v-card>
+        <v-card width="800">
+          <div class="d-flex justify-center">
+            <v-card-title color="red--text">Enter your Email to request a new password</v-card-title>
+          </div>
+          
           <v-card-text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <p class="pb-4" bold>Email</p>
+        <v-text-field
+          outlined
+          ref="email"
+          v-model="email"
+          :error-messages="errorMessages"
+          placeholder="max-muster@mail.de"
+          required
+        ></v-text-field>
           </v-card-text>
-          <v-card-actions>
-            <v-btn color="primary" block @click="dialog = false">Close Dialog</v-btn>
-          </v-card-actions>
+          <div class="d-flex justify-center bg-surface-variant">
+        <v-sheet class="ma-2 pa-2">
+          <v-hover v-slot="{ hover }">
+                <v-btn
+                  class="white--text biggerButton"
+                  elevation="2"
+                  :style="{
+                    'background-color': hover ? ' #80ba24' : '#4a5c66',
+                  }"
+                  @click="sendEmail()"
+                >
+                  Send
+                </v-btn>
+              </v-hover>
+        </v-sheet>
+      </div>
         </v-card>
       </v-dialog>
 
@@ -88,6 +113,7 @@
 <script>
 import { Meteor } from "meteor/meteor";
 import { router } from "../plugins/router";
+import { Email } from 'meteor/email';
 import gsap from "gsap";
 import registerBase from "../Views/registerBase.vue";
 
@@ -120,6 +146,17 @@ export default {
           });
         }
       });
+    },
+    sendEmail(){ 
+      console.log(this.email)
+      Meteor.call('users.resetPassword', this.email, (error, result) => {
+        if (error) {
+          console.log(error)
+        } else  {
+         console.log(result)
+        }
+      });
+   
     },
     setErr() {
       this.errorMessages = "Überprüfe deine Eingaben";
