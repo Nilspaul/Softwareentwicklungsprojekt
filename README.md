@@ -9,7 +9,7 @@ meteor create myApp --vue // create project
 plugin folder in imports/ui with all plugins (tracker,vuetify,router...)
 import in client/main.js
 
-Wenn man alle deps installiert hat: meteor run
+Wenn man alle deps installiert hat: meteor --settings settings.json
 
 
 
