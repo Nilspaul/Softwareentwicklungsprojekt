@@ -4,7 +4,8 @@ import VueRouter from 'vue-router';
 import loginBase from '../Views/loginBase.vue';
 import mainpageBase from '../Views/mainContentNew.vue';
 import toDoMain from '../Views/toDoMain.vue';
-import resetPassword from '../Views/resetPassword.vue'
+import resetPassword from '../Views/resetPassword.vue';
+import calendar from '../Views/calendar.vue'
 Vue.use(VueRouter);
 
 const routes = [
@@ -16,7 +17,9 @@ const routes = [
     //ToDos
     { path: '/toDo', component: toDoMain, name: 'toDo' },
     //ResetPassword
-    { path: '/reset-password/:token', name: 'resetPassword', component: resetPassword,}
+    { path: '/reset-password/:token', name: 'resetPassword', component: resetPassword},
+    //calendar
+    {path: '/calendar', component: calendar, name: 'calendar'}
 ];
 
 
