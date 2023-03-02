@@ -12,7 +12,11 @@
       >
         Sie haben das Modul {{ currentModule.name }} abonniert!
       </v-alert>
-      <topBar :user="user" @drawNav="drawNav()" @setContent="setContent"></topBar>
+      <topBar
+        :user="user"
+        @drawNav="drawNav()"
+        @setContent="setContent"
+      ></topBar>
       <tabs :currentModule="currentModule" :currentTab="currentTab"></tabs>
       <v-container class="fill-height">
         <v-row align="center" justify="center">
@@ -49,7 +53,8 @@
         <toDoBase></toDoBase>
         <v-row align="center">
           <v-col cols="12" sm="6">
-            <v-subheader :class="[{ textSizeMobile: $vuetify.breakpoint.mobile }]"
+            <v-subheader
+              :class="[{ textSizeMobile: $vuetify.breakpoint.mobile }]"
               >Filter options:</v-subheader
             >
           </v-col>
@@ -69,7 +74,7 @@
           </v-col>
         </v-row>
         <v-divider></v-divider>
-        <v-container fluid>
+        <!-- <v-container fluid>
           <v-row justify="center">
             <v-subheader>Die Module auf einen Blick!</v-subheader>
             <v-expansion-panels popout>
@@ -120,7 +125,20 @@
               </v-expansion-panel>
             </v-expansion-panels>
           </v-row>
-        </v-container>
+        </v-container> -->
+        
+        <v-list dense>
+          <v-list-item class="moduleList pa-2" v-for="item in modules" :key="item.title" link>
+            <v-list-item-content class="d-flex justify-left">
+                <v-card-title
+                  class="font-weight-bold secondary--text"
+                >
+                  {{ item.name }}
+                </v-card-title>
+            </v-list-item-content>
+          </v-list-item>
+          <settings></settings>
+        </v-list>
       </v-navigation-drawer>
     </v-sheet>
   </div>
@@ -221,4 +239,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+  .moduleList{
+    height: 2.5em !important;
+  }
+  .moduleSheet:nth-child(2){
+  width: 95vw !important;
+  height: 20em;
+  background-color: red !important;
+}
+</style>

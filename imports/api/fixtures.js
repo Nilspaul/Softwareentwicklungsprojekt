@@ -10,7 +10,7 @@ const SEED_USERNAME = "Nils";
 const SEED_PASSWORD = "1234";
 const SEED_EMAIL = "nils.paul@iem.thm.de";
 
-const staticToDo = {
+const myToDos = {
   toDos: [
     {
       _id: Random.id(),
@@ -47,8 +47,8 @@ Meteor.startup(() => {
     });
   }
 
-  if (!ToDos.findOne({ moduleName: staticToDo.moduleName })) {
-    ToDos.insert({ ...staticToDo });
+  if (!ToDos.findOne({ moduleName: myToDos.moduleName })) {
+    ToDos.insert({ ...myToDos });
   }
 
   modules.forEach((module) => {

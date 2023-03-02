@@ -8,10 +8,19 @@ let usersManagement;
 if (Meteor.isServer) {
   class UsersManagement {
     create(user) {
+      console.log()
       Accounts.createUser({
         username: user.name,
         password: user.password,
         email: user.email,
+        profile: {    
+          adressLine: user.adressLine||'',
+          houseNumber:  user.houseNumber||'',
+          city: user.city||'',
+          state: user.state||'',
+          zip: user.zip||'',
+          country: user.country||''
+        }
       });
     }
     login(user) {

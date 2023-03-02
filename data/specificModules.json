@@ -1,34 +1,110 @@
-[{
-        "name": "Softwareentwicklungsprojekt",
-        "schwerpunkt": "Web und Mobile Anwendungen",
-        "crp": 9,
-        "inhalte": {
-            "infotext": "In diesem Modul lernst du die methodische Bearbeitung einer neuen fachlichen Aufgabe des Berufsfeldes PPS und lernst ausgewählte Techniken des PPS darzustellen und in eigenen Aufgabenbereichen einzusetzen.",
-            "firstSpecificContent": "Hier steht ein weiter Modulinhalt und Informationen, die für dich wichtig sind. Zum Beispiel das Semester oder Ähnliches",
-            "nextContent": "More content"
-        },
-        "laufzeit": "3. Semester"
+[
+  {
+    "name": "Softwareentwicklungsprojekt",
+    "schwerpunkt": "Web und Mobile Anwendungen",
+    "crp": 9,
+    "inhalte": {
+      "infotext": "In diesem Modul lernst du die methodische Bearbeitung einer neuen fachlichen Aufgabe des Berufsfeldes PPS und lernst ausgewählte Techniken des PPS darzustellen und in eigenen Aufgabenbereichen einzusetzen.",
+      "firstSpecificContent": "Hier steht ein weiter Modulinhalt und Informationen, die für dich wichtig sind. Zum Beispiel das Semester oder Ähnliches",
+      "nextContent": "More content"
     },
-    {
-        "name": "Theoretische Informatik und Algorithmik",
-        "schwerpunkt": "Web und Mobile Anwendungen",
-        "crp": 6,
-        "inhalte": {
-            "infotext": "In diesem Modul werden die theoretischen Grundlagen von Algorithmen und Datenstrukturen behandelt",
-            "Listen": "Liste mit Testdaten füllen, Liste leeren, Liste ausgeben, Liste sortieren (aufsteigend nach Nachname),Neues Element in sortierte Liste an der richtigen Stelle einfügen,Element in der Liste suchen",
-            "Bubblesort": "Beschreibung und Bilder von Bubblesorterklärungen"
-        },
-        "laufzeit": "3. Semester"
+    "laufzeit": "3. Semester"
+  },
+  {
+    "name": "Theoretische Informatik und Algorithmik",
+    "schwerpunkt": "Web und Mobile Anwendungen",
+    "crp": 6,
+    "ankündigungen": ["Bitte laden Sie sich die apk-Dateien herunter!"],
+    "lernplattformen": {
+      "miro": "Arbeite mit deinen Kommilitonen auf dem Online-Whiteboard zusammen!-"
     },
-    {
-        "name": "Datenbankensysteme",
-        "schwerpunkt": "Web und Mobile Anwendungen",
-        "crp": 6,
-        "inhalte": {
-            "infotext": "In diesem Modul werden die theoretischen Grundlagen von Datenmodellierung und Datenbankabfragen behandelt",
-            "ERM": "Beschreibung und Beispiele in Bezug auf das Entitiy Relationship Modells",
-            "SERM": "Beschreibung und Bilder des Structured Entitiy Relationship Modells"
-        },
-        "laufzeit": "3. Semester"
-    }
+    "modulKapitel": [
+      {
+        "kapitelName": "Sortieren",
+        "kapitelInhalte": [
+          {
+            "name": "Sortieren Intro",
+            "inhalt": "Sortier Intro irgendwas"
+          },
+          {
+            "name": "Quicksort",
+            "inhalt": "Quicksort irgendwas"
+          },
+          {
+            "name": "Zeitfresser",
+            "inhalt": "Zeitfresser irgendwas"
+          },
+          {
+            "name": "Sortieren Outro",
+            "inhalt": "Zeitfresser irgendwas"
+          }
+        ],
+        "imageLink": "@/public/images/Quick.png"
+      },
+      {
+        "kapitelName": "Routenplanung",
+        "kapitelInhalte": [
+          {
+            "name": "Graphentheorie",
+            "inhalt": "Graphentheorie Zeug"
+          },
+          {
+            "name": "Traversierung",
+            "inhalt": "Traversierung irgendwas"
+          },
+          {
+            "name": "Dijkstra",
+            "inhalt": "Dijkstra irgendwas"
+          },
+          {
+            "name": "Implementierung",
+            "inhalt": "Implementierung irgendwas"
+          },
+          {
+            "name": "Route Planning",
+            "inhalt": "Route Planning irgendwas"
+          }
+        ],
+        "imageLink": "../public/images/Quick.png"
+      },
+      {
+        "kapitelName": "Suchmaschinen",
+        "kapitelInhalte": [
+          {
+            "name": "Suchmaschinen",
+            "inhalt": "Suchmaschinen Zeug"
+          },
+          {
+            "name": "Suche",
+            "inhalt": "Suche irgendwas"
+          }
+        ]
+      },
+      {
+        "kapitelName": "Theroetische Informatik",
+        "kapitelInhalte": [
+          {
+            "name": "Theroetische Informatik",
+            "inhalt": "Theroetische Informatik Zeug"
+          },
+          {
+            "name": "Turingmaschine",
+            "inhalt": "Turingmaschinen irgendwas"
+          }
+        ]
+      }
+    ],
+    "laufzeit": "3. Semester"
+  },
+  {
+    "name": "Datenbankensysteme",
+    "schwerpunkt": "Web und Mobile Anwendungen",
+    "crp": 6,
+    "inhalte": {
+      "infotext": "In diesem Modul werden die theoretischen Grundlagen von Datenmodellierung und Datenbankabfragen behandelt",
+      "ERM": "Beschreibung und Beispiele in Bezug auf das Entitiy Relationship Modells",
+      "SERM": "Beschreibung und Bilder des Structured Entitiy Relationship Modells"
+    },
+    "laufzeit": "3. Semester"
+  }
 ]

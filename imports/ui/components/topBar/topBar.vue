@@ -1,15 +1,19 @@
 <template>
-  <v-app-bar
-    :class="[
+  <!-- <v-app-bar
+   :class="[
       { 'mobileTopbar pt-5 pr-10': $vuetify.breakpoint.mobile },
       { 'topBar pt-5 pr-10': !$vuetify.breakpoint.mobile },
     ]"
     color="primary"
     dark
-  >
+  > -->
+  <v-app-bar
+    color="primary"
+    dark
+  > 
     <VIcon class="display-1 pr-5" @click="drawNav()">mdi-menu</VIcon>
-    <v-toolbar-title class="display-1" v-show="$vuetify.breakpoint.mdAndUp">
-        Discover
+    <v-toolbar-title class="display-1 font-weight-bold" v-show="$vuetify.breakpoint.mdAndUp">
+        THMStudyPlanner
     </v-toolbar-title>
     <v-spacer></v-spacer>
     <v-autocomplete

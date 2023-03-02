@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import loginBase from '../Views/loginBase.vue';
-import mainpageBase from '../Views/mainContent.vue';
+import mainpageBase from '../Views/mainContentNew.vue';
 import toDoMain from '../Views/toDoMain.vue';
 import resetPassword from '../Views/resetPassword.vue'
 Vue.use(VueRouter);

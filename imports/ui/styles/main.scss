@@ -48,10 +48,10 @@
     }
     
     .tabSubheader {
-        padding-top: 1vh;
-        height: 7vh;
+        height: 5vh;
         background-color: #dfe5e6 !important;
-        color: "primary";
+        font-weight: bold !important;
+        color:#4a5c66 !important;
     }
     
     .tabSubheaderMobile {
@@ -121,4 +121,18 @@
         font-weight: bold;
     }
 
-    
+    .moduleSheet {
+        width: 95vw !important;
+        background-color: #dfe5e6 !important;
+        padding-bottom: 1em !important;
+    }
+      
+    .moduleSheetDark {
+        width: 95vw !important;
+        background-color: #4a5c66 !important;
+        padding-bottom: 1em !important;
+      }
+      
+    .moduleContent{
+        max-width: 20em!important;
+    }
