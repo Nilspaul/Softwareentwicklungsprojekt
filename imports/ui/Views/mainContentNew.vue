@@ -1,6 +1,7 @@
 <template>
   <div v-if="user">
-    <topBar :user="user" @drawNav="drawNav()" @setContent="setContent"></topBar>
+    <topBar :user="user" @drawNav="handleEvent()" @setContent="setContent"></topBar>
+    <Navigation ref="sibling2" @openModule="openModule"></Navigation>
     <v-subheader class="tabSubheader text-h5">{{
       currentModule.name
     }}</v-subheader>
@@ -106,69 +107,8 @@
         </div>
           </v-col>
         </v-row>
-
       </v-sheet>
     </v-row>
-
-    <v-navigation-drawer
-      :class="[
-        { mainNav: !$vuetify.breakpoint.mobile },
-        { mainNavMobile: $vuetify.breakpoint.mobile },
-      ]"
-      temporary
-      v-model="drawer"
-    >
-      <v-list-item>
-        <v-list-item-content>
-          <v-img
-            src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Technische_Hochschule_Mittelhessen_Logo.svg"
-          >
-          </v-img>
-        </v-list-item-content>
-      </v-list-item>
-      <v-divider></v-divider>
-      <toDoBase></toDoBase>
-      <v-row align="center">
-        <v-col cols="12" sm="6">
-          <v-subheader :class="[{ textSizeMobile: $vuetify.breakpoint.mobile }]"
-            >Filter options:</v-subheader
-          >
-        </v-col>
-        <v-col cols="12" sm="6">
-          <v-select
-            :class="[
-              { 'display-5': $vuetify.breakpoint.sm },
-              { 'display-5': !$vuetify.breakpoint.mobile },
-            ]"
-            v-model="e6"
-            :items="filterOptions"
-            label="Select"
-            @input="filterModules()"
-            persistent-hint
-          >
-          </v-select>
-        </v-col>
-      </v-row>
-      <v-divider></v-divider>
-      <v-list dense>
-        <v-list-item
-          class="moduleList pa-2"
-          v-for="module in modules"
-          :key="module.name"
-          link
-          @click="
-            currentModule = module;
-            drawer = false;
-          "
-        >
-          <v-list-item-content class="d-flex justify-left">
-            <p class="font-weight-bold secondary--text pt-3">
-              {{ module.name }}
-            </p>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
   </div>
 </template>
 
@@ -178,6 +118,7 @@ import tabs from "../components/mainpage/tabs";
 import toDoBase from "../components/ToDos/toDoBase.vue";
 import Modules from "../../api/collections/Modules";
 import SubscribedModules from "../../api/collections/SubscribedModules";
+import Navigation from "../components/topBar/navigation.vue";
 import { Meteor } from "meteor/meteor";
 import { Tracker } from "meteor/tracker";
 export default {
@@ -186,9 +127,9 @@ export default {
     topBar,
     tabs,
     toDoBase,
+    Navigation
   },
   data: () => ({
-    drawer: null,
     alert: false,
     currentModule: null,
     currentTab: null,
@@ -213,8 +154,8 @@ export default {
     ],
   }),
   methods: {
-    drawNav() {
-      this.drawer = !this.drawer;
+    handleEvent() {
+      this.$refs.sibling2.handleEventFromParent(true);
     },
     subscribeModule(clickedModule) {
       this.currentModule = clickedModule;
@@ -223,7 +164,6 @@ export default {
     },
     openModule(module) {
       this.currentModule = module;
-      this.drawer = false;
     },
     filterModules() {
       if (this.e6 === "Show only subscribed") {
@@ -231,9 +171,6 @@ export default {
       } else {
         this.modules = this.dbModules;
       }
-    },
-    leaving() {
-      this.alert("test");
     },
     setContent(content) {
       let moduleName;

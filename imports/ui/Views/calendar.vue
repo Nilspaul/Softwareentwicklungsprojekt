@@ -1,7 +1,15 @@
 <template>
-    <v-row class="fill-height">
+  <div>
+  <div class="d-flex justify-center bg-surface-variant">
+        <v-sheet class="pa-2">
+          <v-card-title align-center class="text-h3 primary--text font-weight-bold">
+            My StudyPlanner
+          </v-card-title>
+        </v-sheet>
+      </div>
+    <v-row class="calenderView">
       <v-col>
-        <v-sheet height="64">
+        <v-sheet>
           <v-toolbar flat color="white">
             <v-btn outlined class="mr-4" color="grey darken-2" @click="setToday">
               Today
@@ -42,7 +50,7 @@
             </v-menu>
           </v-toolbar>
         </v-sheet>
-        <v-sheet height="600">
+        <v-sheet>
           <v-calendar
             ref="calendar"
             v-model="focus"
@@ -50,12 +58,17 @@
             :events="events"
             :event-color="getEventColor"
             :type="type"
+            :event-overlap-mode="'column'"
+            dark
+            class="font-weight-bold ma-5"
+            :formatter="customFormatter"
             @click:event="showEvent"
             @click:more="viewDay"
             @click:date="viewDay"
             @change="updateRange"
-
-          ></v-calendar>
+            :locale="'de'"
+          >
+          </v-calendar>
           <v-menu
             v-model="selectedOpen"
             :close-on-content-click="false"
@@ -64,7 +77,6 @@
           >
             <v-card
               color="grey lighten-4"
-              min-width="350px"
               flat
             >
               <v-toolbar
@@ -74,7 +86,9 @@
                 <v-btn icon>
                   <v-icon>mdi-pencil</v-icon>
                 </v-btn>
-                <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
+                <v-toolbar-title>
+                {{ selectedEvent.name }}
+                </v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn icon>
                   <v-icon>mdi-heart</v-icon>
@@ -84,7 +98,7 @@
                 </v-btn>
               </v-toolbar>
               <v-card-text>
-                <span v-html="selectedEvent.details"></span>
+                <span> My content</span>
               </v-card-text>
               <v-card-actions>
                 <v-btn
@@ -100,6 +114,7 @@
         </v-sheet>
       </v-col>
     </v-row>
+    </div>
 </template>
 
 <script>
@@ -107,7 +122,7 @@ export default {
     name: "calendar",
     data: () => ({
     focus: '',
-    type: 'month',
+    type: 'week',
     typeToLabel: {
       month: 'Month',
       week: 'Week',
@@ -125,6 +140,12 @@ export default {
     this.$refs.calendar.checkChange()
   },
   methods: {
+    customFormatter ({ timestamp, isAllDay }) {
+    const date = new Date(timestamp)
+    const hours = date.getHours()
+    const minutes = date.getMinutes().toString().padStart(2, '0')
+    return `${hours.toString().padStart(2, '0')}:${minutes}`
+  },
     viewDay ({ date }) {
       this.focus = date
       this.type = 'day'
@@ -171,7 +192,6 @@ export default {
         const first = new Date(firstTimestamp - (firstTimestamp % 900000))
         const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000
         const second = new Date(first.getTime() + secondTimestamp)
-
         events.push({
           name: this.names[this.rnd(0, this.names.length - 1)],
           start: first,
@@ -182,6 +202,7 @@ export default {
       }
 
       this.events = events
+      console.log(this.events)
     },
     rnd (a, b) {
       return Math.floor((b - a + 1) * Math.random()) + a
@@ -191,6 +212,10 @@ export default {
 </script>
 <style scoped>
 .v-calendar{
-    background-color: #4a5c66 !important;
+  background-color: #4a5c66 !important;
+  height: 40em !important;
+}
+.calenderView{
+  margin-top: 1em !important;
 }
 </style>

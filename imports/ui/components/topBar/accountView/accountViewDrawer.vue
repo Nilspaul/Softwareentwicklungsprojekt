@@ -26,7 +26,7 @@
             </v-list-item-icon>
 
             <v-list-item-content>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
+              <v-list-item-title @click="setRoute(item.link)">{{ item.title }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <settings></settings>
@@ -61,12 +61,14 @@ export default {
     drawer: null,
     items: [
       {
-        title: "Home",
-        icon: "mdi-view-dashboard",
+        title: "Profile",
+        icon: "mdi-account",
+        link: "/profile"
       },
       {
-        title: "About",
-        icon: "mdi-forum",
+        title: "Planner",
+        icon: "mdi-calendar",
+        link: "/calendar"
       },
     ],
   }),
@@ -77,6 +79,12 @@ export default {
       });
       Meteor.logout();
     },
+    setRoute(link) {
+      console.log(link)
+      router.push({
+        path: link
+      });
+    }
   },
 };
 </script>
