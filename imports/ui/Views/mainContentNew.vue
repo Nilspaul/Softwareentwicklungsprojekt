@@ -15,7 +15,7 @@
       <div class="d-flex justify-end">
         <v-sheet class="mr-6 pa-2 secondary--text">
           <p class="text-h5 font-weight-bold">Lernplattformen</p>
-          <p v-for="ann in currentModule.ankündigungen">{{ ann }}</p>
+          <p v-for="ann in currentModule.lernplattformen">{{ ann }}</p>
         </v-sheet>
       </div>
       <div class="d-flex justify-start">
@@ -205,9 +205,6 @@ export default {
 </script>
 
 <style scoped>
-.moduleList {
-  height: 3em !important;
-}
 .content {
   margin-left: 5em;
   margin-right: 10em;

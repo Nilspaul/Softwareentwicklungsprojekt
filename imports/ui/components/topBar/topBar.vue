@@ -19,7 +19,7 @@
     <v-autocomplete
       flat
       label="Search"
-      class="mr-16 mt-10"
+      class="mr-16 mt-8"
       prepend-inner-icon="mdi-magnify"
       hide-no-data
       no-data-text

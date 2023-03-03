@@ -7,14 +7,21 @@
     temporary
     v-model="drawer"
   >
-    <v-list-item>
-      <v-list-item-content>
+    <div class="d-flex">
+      <v-icon class="font-weight-bold text-h3 secondary--text" @click="drawer=false" text
+        >mdi-close</v-icon
+      >
+      <p class="font-weight-bold text-h4 secondary--text pt-4 ml-9">Menu</p>
+      <div class="justify-end thmImg pr-4 pt-3">
         <v-img
           src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Technische_Hochschule_Mittelhessen_Logo.svg"
+          aspect-ratio="16/9"
+          width="150"
         >
         </v-img>
-      </v-list-item-content>
-    </v-list-item>
+      </div>
+    </div>
+
     <v-divider></v-divider>
     <toDoBase></toDoBase>
     <v-row align="center">
@@ -40,22 +47,32 @@
     </v-row>
     <v-divider></v-divider>
     <v-list dense>
-      <v-list-item
-        class="moduleList pa-2"
-        v-for="module in modules"
-        :key="module.name"
-        link
-        @click="
-          openModule(module);
-          drawer = false;
-        "
-      >
-        <v-list-item-content class="d-flex justify-left">
-          <p class="font-weight-bold secondary--text pt-3">
-            {{ module.name }}
-          </p>
-        </v-list-item-content>
-      </v-list-item>
+      <v-hover v-for="module in modules" v-slot="{ hover }">
+        <v-list-item
+          class="moduleList"
+          :style="{
+            'background-color': hover ? ' #4a5c66' : 'white',
+          }"
+          :key="module.name"
+          link
+          @click="
+            openModule(module);
+            drawer = false;
+          "
+        >
+          <v-list-item-content>
+            <v-list-item-title
+              :class="
+                hover
+                  ? ' #4a5c66 white--text font-weight-bold'
+                  : 'font-weight-bold secondary--text'
+              "
+            >
+              {{ module.name }}</v-list-item-title
+            >
+          </v-list-item-content>
+        </v-list-item>
+      </v-hover>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -80,20 +97,27 @@ export default {
   },
   methods: {
     handleEventFromParent(data) {
-    console.log(data)
+      console.log(data);
       this.drawer = data;
     },
-    openModule(module){
-        console.log(module)
-        this.$emit('openModule', module)
-    }
+    openModule(module) {
+      console.log(module);
+      this.$emit("openModule", module);
+    },
   },
 };
 </script>
 
 <style>
 .v-navigation-drawer {
-    height: 100vh !important;
-    z-index: 2 !important;
+  height: 100vh !important;
+  z-index: 2 !important;
+}
+.moduleList {
+  padding-left: 3em !important;
+  height: 3em !important;
+}
+.thmImg{
+  margin-left: auto;
 }
 </style>
