@@ -5,10 +5,12 @@ import ToDos from "./collections/ToDos";
 import modules from "../../data/specificModules.json";
 import { Random } from "meteor/random";
 import setMailUrl from "./emails/setMailUrl";
+import dayjs from "dayjs";
 
 const SEED_USERNAME = "Nils";
 const SEED_PASSWORD = "1234";
 const SEED_EMAIL = "nils.paul@iem.thm.de";
+const startDate = new Date();
 
 const myToDos = {
   toDos: [
@@ -16,8 +18,11 @@ const myToDos = {
       _id: Random.id(),
       name: "Mein ToDo",
       note: "Mache etwas sinnvolles",
-      dueTo: "30.11.2022",
-      completed: false,
+      start: startDate,
+      end: dayjs(startDate).add(1, 'day').$d,
+      priority: 'High',
+      timed: false,
+      description: 'test'
     },
   ],
   moduleName: "MyModuleName",

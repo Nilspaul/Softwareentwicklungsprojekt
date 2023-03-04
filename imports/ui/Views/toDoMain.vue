@@ -237,7 +237,6 @@ export default {
     setDate(toDo) {
       toDo.dueTo = this.dateFormatted;
       Meteor.call("toDo.updateSubToDo", toDo);
-
     },
     setProgress(selectedToDo, value){
       for (let i = 0; i < this.myToDos.length; i++) {

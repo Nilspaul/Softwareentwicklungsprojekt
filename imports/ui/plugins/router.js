@@ -22,5 +22,13 @@ const routes = [
     {path: '/calendar', component: calendar, name: 'calendar'}
 ];
 
-
 export const router = new VueRouter({ mode: 'history', routes });
+
+router.beforeEach((to, from, next) => {
+    const isLoggedIn = Meteor.user() !== null;
+    if (to.name !== 'login' && !isLoggedIn) {
+      next({ name: 'login' });
+    } else {
+      next();
+    }
+  });

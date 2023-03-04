@@ -1,17 +1,25 @@
 <template>
   <div>
-  <div class="d-flex justify-center bg-surface-variant">
-        <v-sheet class="pa-2">
-          <v-card-title align-center class="text-h3 primary--text font-weight-bold">
-            My StudyPlanner
-          </v-card-title>
-        </v-sheet>
-      </div>
+    <div class="d-flex justify-center bg-surface-variant">
+      <v-sheet class="pa-2">
+        <v-card-title
+          align-center
+          class="text-h3 primary--text font-weight-bold"
+        >
+          My StudyPlanner
+        </v-card-title>
+      </v-sheet>
+    </div>
     <v-row class="calenderView">
       <v-col>
         <v-sheet>
           <v-toolbar flat color="white">
-            <v-btn outlined class="mr-4" color="grey darken-2" @click="setToday">
+            <v-btn
+              outlined
+              class="mr-4"
+              color="grey darken-2"
+              @click="setToday"
+            >
               Today
             </v-btn>
             <v-btn fab text small color="grey darken-2" @click="prev">
@@ -26,12 +34,7 @@
             <v-spacer></v-spacer>
             <v-menu bottom right>
               <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  outlined
-                  color="grey darken-2"
-                  v-bind="attrs"
-                  v-on="on"
-                >
+                <v-btn outlined color="grey darken-2" v-bind="attrs" v-on="on">
                   <span>{{ typeToLabel[type] }}</span>
                   <v-icon right>mdi-menu-down</v-icon>
                 </v-btn>
@@ -61,13 +64,17 @@
             :event-overlap-mode="'column'"
             dark
             class="font-weight-bold ma-5"
-            :formatter="customFormatter"
             @click:event="showEvent"
             @click:more="viewDay"
             @click:date="viewDay"
             @change="updateRange"
             :locale="'de'"
           >
+            <template v-slot:event="{ event }">
+              <div class="text-body-1 font-weight-bold">
+                <div>{{ event.name }}</div>
+              </div>
+            </template>
           </v-calendar>
           <v-menu
             v-model="selectedOpen"
@@ -75,19 +82,13 @@
             :activator="selectedElement"
             offset-x
           >
-            <v-card
-              color="grey lighten-4"
-              flat
-            >
-              <v-toolbar
-                :color="selectedEvent.color"
-                dark
-              >
+            <v-card color="grey lighten-4" flat>
+              <v-toolbar :color="selectedEvent.color" dark>
                 <v-btn icon>
                   <v-icon>mdi-pencil</v-icon>
                 </v-btn>
                 <v-toolbar-title>
-                {{ selectedEvent.name }}
+                  {{ selectedEvent.name }}
                 </v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn icon>
@@ -101,11 +102,7 @@
                 <span> My content</span>
               </v-card-text>
               <v-card-actions>
-                <v-btn
-                  text
-                  color="secondary"
-                  @click="selectedOpen = false"
-                >
+                <v-btn text color="secondary" @click="selectedOpen = false">
                   Cancel
                 </v-btn>
               </v-card-actions>
@@ -114,109 +111,143 @@
         </v-sheet>
       </v-col>
     </v-row>
-    </div>
+    <createToDo/>
+  </div>
 </template>
 
 <script>
+import ToDos from "../../api/collections/ToDos";
+import createToDo from "../components/ToDos/createToDo.vue"
 export default {
-    name: "calendar",
-    data: () => ({
-    focus: '',
-    type: 'week',
+  name: "calendar",
+  components: {
+    createToDo
+  },
+  data: () => ({
+    focus: "",
+    type: "week",
     typeToLabel: {
-      month: 'Month',
-      week: 'Week',
-      day: 'Day',
-      
+      month: "Month",
+      week: "Week",
+      day: "Day",
     },
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
     events: [],
-    colors: ['blue', 'red', 'orange'],
-    names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party'],
+    colors: ["blue", "red", "orange"],
+    names: [
+      "Meeting",
+      "Holiday",
+      "PTO",
+      "Travel",
+      "Event",
+      "Birthday",
+      "Conference",
+      "Party",
+    ],
   }),
-  mounted () {
-    this.$refs.calendar.checkChange()
+  mounted() {
+    this.$refs.calendar.checkChange();
   },
   methods: {
-    customFormatter ({ timestamp, isAllDay }) {
-    const date = new Date(timestamp)
-    const hours = date.getHours()
-    const minutes = date.getMinutes().toString().padStart(2, '0')
-    return `${hours.toString().padStart(2, '0')}:${minutes}`
-  },
-    viewDay ({ date }) {
-      this.focus = date
-      this.type = 'day'
+    viewDay({ date }) {
+      this.focus = date;
+      this.type = "day";
     },
-    getEventColor (event) {
-      return event.color
+    getEventColor(event) {
+      return event.color;
     },
-    setToday () {
-      this.focus = ''
+    setToday() {
+      this.focus = "";
     },
-    prev () {
-      this.$refs.calendar.prev()
+    prev() {
+      this.$refs.calendar.prev();
     },
-    next () {
-      this.$refs.calendar.next()
+    next() {
+      this.$refs.calendar.next();
     },
-    showEvent ({ nativeEvent, event }) {
+    showEvent({ nativeEvent, event }) {
       const open = () => {
-        this.selectedEvent = event
-        this.selectedElement = nativeEvent.target
-        setTimeout(() => this.selectedOpen = true, 10)
-      }
+        this.selectedEvent = event;
+        this.selectedElement = nativeEvent.target;
+        setTimeout(() => (this.selectedOpen = true), 10);
+      };
 
       if (this.selectedOpen) {
-        this.selectedOpen = false
-        setTimeout(open, 10)
+        this.selectedOpen = false;
+        setTimeout(open, 10);
       } else {
-        open()
+        open();
       }
 
-      nativeEvent.stopPropagation()
+      nativeEvent.stopPropagation();
     },
-    updateRange ({ start, end }) {
-      const events = []
+    updateRange({ start, end }) {
+      const events = [];
 
-      const min = new Date(`${start.date}T00:00:00`)
-      const max = new Date(`${end.date}T23:59:59`)
-      const days = (max.getTime() - min.getTime()) / 86400000
-      const eventCount = this.rnd(days, days + 20)
+      const min = new Date(`${start.date}T00:00:00`);
+      const max = new Date(`${end.date}T23:59:59`);
+      const days = (max.getTime() - min.getTime()) / 86400000;
+      const eventCount = this.rnd(days, days + 20);
 
       for (let i = 0; i < eventCount; i++) {
-        const allDay = this.rnd(0, 3) === 0
-        const firstTimestamp = this.rnd(min.getTime(), max.getTime())
-        const first = new Date(firstTimestamp - (firstTimestamp % 900000))
-        const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000
-        const second = new Date(first.getTime() + secondTimestamp)
+        const allDay = this.rnd(0, 3) === 0;
+        const firstTimestamp = this.rnd(min.getTime(), max.getTime());
+        const first = new Date(firstTimestamp - (firstTimestamp % 900000));
+        const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000;
+        const second = new Date(first.getTime() + secondTimestamp);
         events.push({
           name: this.names[this.rnd(0, this.names.length - 1)],
           start: first,
           end: second,
           color: this.colors[this.rnd(0, this.colors.length - 1)],
           timed: !allDay,
-        })
+          description: "test",
+        });
       }
-
-      this.events = events
-      console.log(this.events)
     },
-    rnd (a, b) {
-      return Math.floor((b - a + 1) * Math.random()) + a
+    rnd(a, b) {
+      return Math.floor((b - a + 1) * Math.random()) + a;
     },
   },
-}
+  created() {
+    Tracker.autorun(() => {
+      this.toDos = ToDos.find().fetch();
+      this.toDos.forEach((moduleToDo) => {
+        moduleToDo.toDos.forEach((toDo) => {
+          switch (toDo.priority) {
+            case "High":
+              Object.assign(toDo, { color: "#e55353" });
+              break;
+            case "Medium":
+              Object.assign(toDo, { color: "#f4aa00" });
+              break;
+            case "Low":
+              Object.assign(toDo, { color: "#75cddb" });
+              break;
+              case "completed":
+              Object.assign(toDo, { color: "grey" });
+          }
+          this.events.push(toDo);
+        });
+      });
+    });
+    console.log(this.events);
+  },
+};
 </script>
 <style scoped>
-.v-calendar{
+.v-calendar {
   background-color: #4a5c66 !important;
   height: 60em !important;
   margin-bottom: 20em !important;
 }
-.calenderView{
+.calenderView {
   margin-top: 1em !important;
+}
+
+.theme--dark.v-calendar-events {
+  border: 1px solid !important;
 }
 </style>

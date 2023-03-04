@@ -90,6 +90,6 @@ body {
   width: 100vw !important;
 }
 .inhalt-container {
-  min-height: 85%;
+  min-height: 100%;
 }
 </style>

@@ -80,7 +80,6 @@ export default {
       Meteor.logout();
     },
     setRoute(link) {
-      console.log(link)
       router.push({
         path: link
       });
