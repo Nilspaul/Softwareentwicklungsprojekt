@@ -6,6 +6,7 @@ let toDoManagement;
 
 if (Meteor.isServer) {
     class ToDoManagement {
+        /*
         createOrUpdate(toDo, moduleName) {
             Object.assign(toDo, { completed: false });
             Object.assign(toDo, { _id: Random.id() });
@@ -53,6 +54,11 @@ if (Meteor.isServer) {
                     return ToDos.update({ _id: moduleToDo._id }, { $set: { toDos: moduleToDo.toDos } })
                 }
             });
+        }
+        */
+        createMyToDo(toDo) {
+            console.log(toDo)
+            return ToDos.insert({...toDo})
         }
     }
     toDoManagement = new ToDoManagement();

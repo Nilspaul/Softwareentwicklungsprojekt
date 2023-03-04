@@ -214,8 +214,8 @@ export default {
   created() {
     Tracker.autorun(() => {
       this.toDos = ToDos.find().fetch();
-      this.toDos.forEach((moduleToDo) => {
-        moduleToDo.toDos.forEach((toDo) => {
+      this.toDos.forEach((toDo) => {
+          console.log(toDo)
           switch (toDo.priority) {
             case "High":
               Object.assign(toDo, { color: "#e55353" });
@@ -232,7 +232,6 @@ export default {
           this.events.push(toDo);
         });
       });
-    });
     console.log(this.events);
   },
 };

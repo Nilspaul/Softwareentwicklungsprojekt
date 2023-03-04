@@ -10,4 +10,7 @@ Meteor.methods({
     'toDo.updateSubToDo' (toDo) {
         toDoManagement.updateSubToDo(toDo)
     },
+    'toDo.createMyToDo' (toDo) {
+        toDoManagement.createMyToDo(toDo)
+    }
 });

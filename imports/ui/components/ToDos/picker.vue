@@ -14,7 +14,7 @@
           <template v-slot:activator="{ on }">
             <v-text-field
               v-model="formattedStartDate"
-              label="Picker without buttons"
+              label="Select Startdate"
               readonly
               v-on="on"
               class="mt-4"
@@ -50,7 +50,6 @@
             v-model="startTime"
             format="24hr"
             full-width
-            @change="onChange"
           ></v-time-picker>
         </v-menu>
       </v-col>
@@ -71,7 +70,7 @@
           <template v-slot:activator="{ on }">
             <v-text-field
               v-model="formattedEndDate"
-              label="Picker without buttons"
+              label="Select Enddate"
               readonly
               v-on="on"
               class="mt-4"
@@ -97,7 +96,7 @@
           <template v-slot:activator="{ on, attrs }">
             <v-text-field
               v-model="endTime"
-              label="Select Starttime"
+              label="Select Endtime"
               readonly
               v-bind="attrs"
               v-on="on"
@@ -106,8 +105,6 @@
           <v-time-picker
             v-model="endTime"
             format="24hr"
-            full-width
-            @change="onChange"
           ></v-time-picker>
         </v-menu>
       </v-col>
@@ -123,37 +120,95 @@ export default {
       formattedEndDate: null,
       formattedStartDate: null,
       startDate: null,
-      startTime: "00:00",
+      startTime: null,
       startTimeMenu: false,
       startDateMenu: false,
       endDateMenu: false,
       endTimeMenu: false,
       endDate: null,
-      endTime: "00:00",
+      endTime: null,
     };
   },
   methods: {
     updateFormattedDate(datePicked, isStartDate) {
-  const date = new Date(datePicked);
-  this.startDateMenu = false; // close the menu after selecting a date
-  const formattedDate = date.toLocaleDateString("de", {
-    day: "numeric",
-    month: "numeric",
-    year: "numeric",
-  });
-  if (isStartDate) {
-    this.formattedStartDate = formattedDate;
-  } else {
-    this.formattedEndDate = formattedDate;
-  }
-
- if(typeof this.formattedEndDate === 'string' && typeof this.formattedStartDate === 'string'){
-  this.$emit('getDates', this.formattedStartDate, this.formattedEndDate )
- }
-},
-
-    onChange(value) {
-      console.log(value); // value is a string in 24hr format, e.g. "14:30"
+      const date = new Date(datePicked);
+      this.startDateMenu = false; // close the menu after selecting a date
+      const formattedDate = date.toLocaleDateString("de", {
+        day: "numeric",
+        month: "numeric",
+        year: "numeric",
+      });
+      if (isStartDate) {
+        this.formattedStartDate = formattedDate;
+      } else {
+        this.formattedEndDate = formattedDate;
+      }
+    },
+  },
+  watch: {
+    formattedEndDate: function (newVal, oldVal) {
+      if (
+        typeof this.formattedEndDate === "string" &&
+        typeof this.formattedStartDate === "string" &&
+        typeof this.startTime === "string" &&
+        typeof this.endTime === "string"
+      ) {
+        this.$emit(
+          "getDates",
+          this.formattedStartDate,
+          this.startTime,
+          this.formattedEndDate,
+          this.endTime
+        );
+      }
+    },
+    formattedStartDate: function (newVal, oldVal) {
+      if (
+        typeof this.formattedEndDate === "string" &&
+        typeof this.formattedStartDate === "string" &&
+        typeof this.startTime === "string" &&
+        typeof this.endTime === "string"
+      ) {
+        this.$emit(
+          "getDates",
+          this.formattedStartDate,
+          this.startTime,
+          this.formattedEndDate,
+          this.endTime
+        );
+      }
+    },
+    startTime: function (newVal, oldVal) {
+      if (
+        typeof this.formattedEndDate === "string" &&
+        typeof this.formattedStartDate === "string" &&
+        typeof this.startTime === "string" &&
+        typeof this.endTime === "string"
+      ) {
+        this.$emit(
+          "getDates",
+          this.formattedStartDate,
+          this.startTime,
+          this.formattedEndDate,
+          this.endTime
+        );
+      }
+    },
+    endTime: function (newVal, oldVal) {
+      if (
+        typeof this.formattedEndDate === "string" &&
+        typeof this.formattedStartDate === "string" &&
+        typeof this.startTime === "string" &&
+        typeof this.endTime === "string"
+      ) {
+        this.$emit(
+          "getDates",
+          this.formattedStartDate,
+          this.startTime,
+          this.formattedEndDate,
+          this.endTime
+        );
+      }
     },
   },
 };

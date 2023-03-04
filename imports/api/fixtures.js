@@ -51,11 +51,11 @@ Meteor.startup(() => {
       email: SEED_EMAIL,
     });
   }
-
+/*
   if (!ToDos.findOne({ moduleName: myToDos.moduleName })) {
     ToDos.insert({ ...myToDos });
   }
-
+*/
   modules.forEach((module) => {
     if (!Modules.findOne({ name: module.name })) {
       Modules.insert({ ...module });

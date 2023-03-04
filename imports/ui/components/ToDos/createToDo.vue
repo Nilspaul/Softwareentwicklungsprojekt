@@ -5,7 +5,6 @@
         color="primary"
         dark
         elevation="50"
-        class="mt-10"
         absolute
         middle
         right
@@ -47,13 +46,19 @@
 
         <picker @getDates="getDates"></picker>
 
-        <v-switch
-          v-model="allDay"
-          hide-details
-          inset
-          label="Ganztags"
-        ></v-switch>
+        <v-select
+          label="Select your ToDos priority"
+          v-model="priority"
+          :items="['High', 'Medium', 'Low']"
+        ></v-select>
       </v-card-text>
+      <v-switch
+        v-model="allDay"
+        hide-details
+        inset
+        label="Ganztags"
+        class="ml-7"
+      ></v-switch>
       <v-divider class="mt-12"></v-divider>
       <v-card-actions>
         <v-btn @click="dialog = false" text> Cancel </v-btn>
@@ -66,11 +71,11 @@
 
 <script>
 import dayjs from "dayjs";
-import picker from "./picker"
+import picker from "./picker";
 export default {
   name: "createToDo",
   components: {
-    picker
+    picker,
   },
   data: () => ({
     toDo: {},
@@ -89,6 +94,7 @@ export default {
     endDate: null,
     endTime: "00:00",
     allDay: false,
+    priority: null,
   }),
   props: {
     toDos: [],
@@ -100,27 +106,61 @@ export default {
         name: this.name,
         note: this.note,
         moduleName: this.module,
-        startDate: this.startDate,
-        startTime: this.startTime,
-        endDate: this.endDate,
-        endTime: this.endTime,
+        start: this.startDate,
+        end: this.endDate,
+        priority: this.priority,
         allDay: this.allDay,
       };
     },
   },
   methods: {
     submit() {
+      /*
       this.toDo.name = this.form.name;
       this.toDo.note = this.form.note;
       Meteor.call("toDo.createOrUpdate", this.toDo, this.module);
       this.dialog = false;
+      */
+      this.toDo = this.form;
+      Meteor.call("toDo.createMyToDo", this.toDo);
     },
     onChange(value) {
       console.log(value); // value is a string in 24hr format, e.g. "14:30"
     },
-    getDates(startDate, endDate){
-      console.log(startDate, endDate)
-    }
+    getDates(startDate, startTime, endDate, endTime) {
+      console.log(startDate, startTime, endDate, endTime);
+
+      const startDateParts = startDate.split(".");
+      const timeParts = startTime.split(":");
+
+      const startyear = parseInt(startDateParts[2]);
+      const startmonth = parseInt(startDateParts[1]) - 1;
+      const startday = parseInt(startDateParts[0]);
+      const starthour = parseInt(timeParts[0]);
+      const startminute = parseInt(timeParts[1]);
+
+      const startcombinedDate = new Date(startyear, startmonth, startday, starthour, startminute);
+
+      this.startDate = startcombinedDate.toISOString();
+
+      const endDateParts = endDate.split(".");
+      const endtimeParts = endTime.split(":");
+
+      const endyear = parseInt(endDateParts[2]);
+      const endmonth = parseInt(endDateParts[1]) - 1;
+      const endday = parseInt(endDateParts[0]);
+      const endhour = parseInt(endtimeParts[0]);
+      const endminute = parseInt(endtimeParts[1]);
+
+      const endcombinedDate = new Date(endyear, endmonth, endday, endhour, endminute);
+
+      this.startDate = startcombinedDate.toISOString();
+      this.endDate = endcombinedDate.toISOString()
+      this.startDate = dayjs(this.startDate).format("YYYY-MM-DD hh:mm")
+      this.endDate = dayjs(this.endDate).format("YYYY-MM-DD hh:mm")
+      console.log(this.startDate)
+      console.log(this.endDate)
+    },
   },
 };
 </script>
