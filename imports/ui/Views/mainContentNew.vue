@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="user">
     <topBar :user="user" @drawNav="handleEvent()" @setContent="setContent"></topBar>
     <Navigation ref="sibling2" @openModule="openModule"></Navigation>
     <v-subheader class="tabSubheader text-h5">{{

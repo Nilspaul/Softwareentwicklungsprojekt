@@ -70,7 +70,9 @@
 </template>
 
 <script>
+import { timingSafeEqual } from "crypto";
 import dayjs from "dayjs";
+import moment from "moment"
 import picker from "./picker";
 export default {
   name: "createToDo",
@@ -109,7 +111,7 @@ export default {
         start: this.startDate,
         end: this.endDate,
         priority: this.priority,
-        allDay: this.allDay,
+        timed: !this.allDay,
       };
     },
   },
@@ -130,36 +132,12 @@ export default {
     getDates(startDate, startTime, endDate, endTime) {
       console.log(startDate, startTime, endDate, endTime);
 
-      const startDateParts = startDate.split(".");
-      const timeParts = startTime.split(":");
+      this.startDate = moment(startDate, 'DD.MM.YYYY').format('YYYY-MM-DD')
+      this.startDate = this.startDate+'T'+startTime+':00'
 
-      const startyear = parseInt(startDateParts[2]);
-      const startmonth = parseInt(startDateParts[1]) - 1;
-      const startday = parseInt(startDateParts[0]);
-      const starthour = parseInt(timeParts[0]);
-      const startminute = parseInt(timeParts[1]);
+      this.endDate = moment(endDate, 'DD.MM.YYYY').format('YYYY-MM-DD')
+      this.endDate = this.endDate+'T'+endTime+':00'
 
-      const startcombinedDate = new Date(startyear, startmonth, startday, starthour, startminute);
-
-      this.startDate = startcombinedDate.toISOString();
-
-      const endDateParts = endDate.split(".");
-      const endtimeParts = endTime.split(":");
-
-      const endyear = parseInt(endDateParts[2]);
-      const endmonth = parseInt(endDateParts[1]) - 1;
-      const endday = parseInt(endDateParts[0]);
-      const endhour = parseInt(endtimeParts[0]);
-      const endminute = parseInt(endtimeParts[1]);
-
-      const endcombinedDate = new Date(endyear, endmonth, endday, endhour, endminute);
-
-      this.startDate = startcombinedDate.toISOString();
-      this.endDate = endcombinedDate.toISOString()
-      this.startDate = dayjs(this.startDate).format("YYYY-MM-DD hh:mm")
-      this.endDate = dayjs(this.endDate).format("YYYY-MM-DD hh:mm")
-      console.log(this.startDate)
-      console.log(this.endDate)
     },
   },
 };

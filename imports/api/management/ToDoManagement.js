@@ -57,7 +57,21 @@ if (Meteor.isServer) {
         }
         */
         createMyToDo(toDo) {
+            switch (toDo.priority) {
+                case "High":
+                  Object.assign(toDo, { color: "#e55353" });
+                  break;
+                case "Medium":
+                  Object.assign(toDo, { color: "#f4aa00" });
+                  break;
+                case "Low":
+                  Object.assign(toDo, { color: "#75cddb" });
+                  break;
+                  case "completed":
+                  Object.assign(toDo, { color: "grey" });
+              }
             console.log(toDo)
+
             return ToDos.insert({...toDo})
         }
     }

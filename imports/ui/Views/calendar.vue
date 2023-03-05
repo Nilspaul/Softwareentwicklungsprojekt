@@ -89,6 +89,7 @@
                 </v-btn>
                 <v-toolbar-title>
                   {{ selectedEvent.name }}
+                  
                 </v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn icon>
@@ -99,7 +100,7 @@
                 </v-btn>
               </v-toolbar>
               <v-card-text>
-                <span> My content</span>
+                <span>   {{ selectedEvent.start }}</span>
               </v-card-text>
               <v-card-actions>
                 <v-btn text color="secondary" @click="selectedOpen = false">
@@ -134,7 +135,11 @@ export default {
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
-    events: [],
+    events: [{name: "Static Event",
+      start: new Date("2023-03-10T09:00:00"),
+      end: new Date("2023-03-10T12:00:00"),
+      color: "purple",
+      timed: true}],
     colors: ["blue", "red", "orange"],
     names: [
       "Meeting",
@@ -206,6 +211,7 @@ export default {
           description: "test",
         });
       }
+    
     },
     rnd(a, b) {
       return Math.floor((b - a + 1) * Math.random()) + a;
@@ -213,26 +219,21 @@ export default {
   },
   created() {
     Tracker.autorun(() => {
+      this.user = Meteor.user();
+      if (this.user !== undefined) {
+        this.$forceUpdate();
+      }
       this.toDos = ToDos.find().fetch();
-      this.toDos.forEach((toDo) => {
-          console.log(toDo)
-          switch (toDo.priority) {
-            case "High":
-              Object.assign(toDo, { color: "#e55353" });
-              break;
-            case "Medium":
-              Object.assign(toDo, { color: "#f4aa00" });
-              break;
-            case "Low":
-              Object.assign(toDo, { color: "#75cddb" });
-              break;
-              case "completed":
-              Object.assign(toDo, { color: "grey" });
-          }
-          this.events.push(toDo);
-        });
-      });
-    console.log(this.events);
+      this.toDos.forEach((toDo)=>{
+        this.events.push({
+          name: toDo.name,
+          start: new Date(toDo.start),
+          end: new Date(toDo.end),
+          color: toDo.color,
+          timed: toDo.timed
+        })
+      })
+    });
   },
 };
 </script>

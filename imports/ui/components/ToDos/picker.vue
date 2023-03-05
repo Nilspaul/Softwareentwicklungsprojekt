@@ -134,8 +134,8 @@ export default {
       const date = new Date(datePicked);
       this.startDateMenu = false; // close the menu after selecting a date
       const formattedDate = date.toLocaleDateString("de", {
-        day: "numeric",
-        month: "numeric",
+        day: "2-digit",
+  month: "2-digit",
         year: "numeric",
       });
       if (isStartDate) {
