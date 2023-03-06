@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import { router } from '../plugins/router';
 export default {
   name: "landingpage",
   components: {
@@ -35,14 +34,13 @@ export default {
   }),
   methods: {
     moduleManagement() {
-      router.push({
+     this.$router.push({
         path: "/moduleManagement",
       });
     }
   },
   computed: {
     currentModule() {
-      console.log(this.$route.params.module)
       return this.$route.params.module;
     }
   },

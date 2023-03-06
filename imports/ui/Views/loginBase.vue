@@ -48,7 +48,7 @@
           </template>
           <v-card width="800">
             <div class="d-flex justify-center">
-              <v-card-title color="red--text"
+              <v-card-title color="secondary--text"
                 >Enter your Email to request a new password</v-card-title
               >
             </div>

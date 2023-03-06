@@ -163,9 +163,15 @@ export default {
   },
   computed: {
     currentModule() {
+      console.log(this.$route.params.module)
       return this.$route.params.module;
     }
   },
+  watch: {
+    currentModule(val1, val2) {
+      console.log(val1, val2)
+    }
+  }
 };
 </script>
 

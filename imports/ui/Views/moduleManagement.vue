@@ -32,7 +32,6 @@ export default {
         const isSubscribed = this.subscribedModules.some(obj => {
             return obj._id === module._id;
         });
-        console.log(isSubscribed)
        return isSubscribed;
     }
   },

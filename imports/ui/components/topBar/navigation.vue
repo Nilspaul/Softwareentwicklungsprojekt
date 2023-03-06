@@ -1,14 +1,10 @@
 <template>
-  <v-navigation-drawer
-    :class="[
-      { mainNav: !$vuetify.breakpoint.mobile },
-      { mainNavMobile: $vuetify.breakpoint.mobile },
-    ]"
-    temporary
-    v-model="drawer"
-  >
+  <v-navigation-drawer class="mainNav" temporary v-model="drawer">
     <div class="d-flex">
-      <v-icon class="font-weight-bold text-h3 secondary--text" @click="drawer=false" text
+      <v-icon
+        class="font-weight-bold text-h3 secondary--text"
+        @click="drawer = false"
+        text
         >mdi-close</v-icon
       >
       <p class="font-weight-bold text-h4 secondary--text pt-4 ml-9">Menu</p>
@@ -21,8 +17,8 @@
         </v-img>
       </div>
     </div>
-
     <v-divider></v-divider>
+    <p class="listHeader secondary--text">My ToDos</p>
     <toDoBase></toDoBase>
     <!--
     <v-row align="center">
@@ -48,6 +44,20 @@
     </v-row>
     <v-divider></v-divider>
     -->
+    <div class="d-flex secondary--text pb-3">
+      <div class="listHeader">My Modules</div>
+      <v-btn
+        color="primary"
+        class="boldLink mt-3 ml-10"
+        plain
+        text
+        @click="toModuleManagement()"
+      >
+        Manage my Modules
+      </v-btn>
+    </div>
+
+    <v-divider></v-divider>
     <v-list dense>
       <v-hover v-for="module in modules" v-slot="{ hover }">
         <v-list-item
@@ -106,20 +116,24 @@ export default {
     },
     openModule(module) {
       this.$router.push({
-        name: 'mainpage',
-        params: { module: {...module} ,  moduleName: module.name },
+        name: "mainpage",
+        params: { module: { ...module }, moduleName: module.name },
+      });
+    },
+    toModuleManagement() {
+      this.$router.push({
+        path: "/moduleManagement",
       });
     },
   },
   created() {
-  Tracker.autorun(() => {
-    const sModules = Meteor.subscribe('subscribedModules');
-    if(sModules.ready()){
-      this.modules = SubscribedModules.find().fetch();
-      
-    }
-  })
-}
+    Tracker.autorun(() => {
+      const sModules = Meteor.subscribe("subscribedModules");
+      if (sModules.ready()) {
+        this.modules = SubscribedModules.find().fetch();
+      }
+    });
+  },
 };
 </script>
 
@@ -132,7 +146,13 @@ export default {
   padding-left: 3em !important;
   height: 3em !important;
 }
-.thmImg{
+.thmImg {
   margin-left: auto;
+}
+.listHeader {
+  font-weight: bold !important;
+  padding-top: 1em !important;
+  padding-left: 1em !important;
+  font-size: 1.2em !important;
 }
 </style>
