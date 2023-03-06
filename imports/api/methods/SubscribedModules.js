@@ -4,4 +4,7 @@ Meteor.methods({
     'module.subscribe' (module) {
         subscribedModulesManagement.subscribeModule(module)
     },
+    'module.unsubscribe' (module) {
+        subscribedModulesManagement.unsubscribeModule(module)
+    },
 });

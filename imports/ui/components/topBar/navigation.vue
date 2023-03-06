@@ -24,6 +24,7 @@
 
     <v-divider></v-divider>
     <toDoBase></toDoBase>
+    <!--
     <v-row align="center">
       <v-col cols="12" sm="6">
         <v-subheader :class="[{ textSizeMobile: $vuetify.breakpoint.mobile }]"
@@ -46,6 +47,7 @@
       </v-col>
     </v-row>
     <v-divider></v-divider>
+    -->
     <v-list dense>
       <v-hover v-for="module in modules" v-slot="{ hover }">
         <v-list-item
@@ -79,7 +81,9 @@
 
 <script>
 import Modules from "../../../api/collections/Modules";
+import SubscribedModules from "../../../api/collections/SubscribedModules";
 import toDoBase from "../ToDos/toDoBase.vue";
+import { router } from "../../plugins/router";
 export default {
   name: "navigation",
   components: {
@@ -88,6 +92,7 @@ export default {
   data: () => ({
     drawer: false,
     e6: null,
+    modules: [],
     filterOptions: ["Show all", "Show only subscribed"],
   }),
   created() {
@@ -97,14 +102,24 @@ export default {
   },
   methods: {
     handleEventFromParent(data) {
-      console.log(data);
       this.drawer = data;
     },
     openModule(module) {
-      console.log(module);
-      this.$emit("openModule", module);
+      this.$router.push({
+        name: 'mainpage',
+        params: { module: {...module} ,  moduleName: module.name },
+      });
     },
   },
+  created() {
+  Tracker.autorun(() => {
+    const sModules = Meteor.subscribe('subscribedModules');
+    if(sModules.ready()){
+      this.modules = SubscribedModules.find().fetch();
+      
+    }
+  })
+}
 };
 </script>
 

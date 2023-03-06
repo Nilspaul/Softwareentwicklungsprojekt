@@ -6,14 +6,20 @@ import mainpageBase from '../Views/mainContentNew.vue';
 import toDoMain from '../Views/toDoMain.vue';
 import resetPassword from '../Views/resetPassword.vue';
 import calendar from '../Views/calendar.vue'
+import landingPage from '../Views/landingpage.vue'
+import moduleManagement from '../Views/moduleManagement.vue'
 Vue.use(VueRouter);
 
 const routes = [
-    { path: '/', redirect: '/login' },
+    { path: '*', redirect: '/login' },
     // Login
     { path: '/login', component: loginBase, name: 'login' },
-    //MainPage
-    { path: '/mainpage', component: mainpageBase, name: 'mainpage' },
+    //Landingpage
+    {path: '/landingpage', component: landingPage, name: 'landingpage'},
+    //Landingpagen
+    {path: '/moduleManagement', component: moduleManagement, name: 'moduleManagement'},
+    //MainContent
+    { path: '/mainpage/:moduleName', component: mainpageBase, name: 'mainpage' },
     //ToDos
     { path: '/toDo', component: toDoMain, name: 'toDo' },
     //ResetPassword

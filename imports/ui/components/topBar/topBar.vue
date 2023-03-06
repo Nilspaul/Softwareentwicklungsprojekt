@@ -35,7 +35,7 @@
         </v-list-item>
     </template>
     </v-autocomplete>
-    <AccountViewDrawer :user="user" />
+    <AccountViewDrawer />
   </v-app-bar>
 </template>
 
@@ -48,9 +48,7 @@ export default {
   components: {
     AccountViewDrawer,
   },
-  props: {
-    user: Object,
-  },
+
   data: () => ({
     group: null,
     content: [],
@@ -59,6 +57,7 @@ export default {
     items: [],
     search: null,
     select: null,
+    user: null
   }),
   watch: {
     search(val) {
@@ -85,6 +84,10 @@ export default {
   },
   created() {
     Tracker.autorun(() => {
+      this.user = Meteor.user();
+      if (this.user !== undefined) {
+        this.$forceUpdate();
+      }
       this.modules = Modules.find().fetch();
       this.currentModule = this.modules[0];
       this.modules.forEach((module) => {

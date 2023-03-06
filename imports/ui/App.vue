@@ -1,5 +1,12 @@
 <template>
   <v-app>
+    <div v-if="$route.path !== '/login'">
+      <topBar
+        @drawNav="handleEvent()"
+        @setContent="setContent"
+      ></topBar>
+      <navigation ref="sibling2" @openModule="openModule"></navigation>
+    </div>
     <div class="inhalt-container">
       <router-view />
     </div>
@@ -65,7 +72,45 @@
 </template>
 
 <script>
-export default {};
+import navigation from "./components/topBar/navigation.vue";
+import topBar from "./components/topBar/topBar.vue";
+export default {
+  components: {
+    topBar,
+    navigation,
+  },
+  data: () => ({
+    user: null,
+  }),
+  methods: {
+    handleEvent() {
+      this.$refs.sibling2.handleEventFromParent(true);
+    },
+    openModule(module) {
+      console.log(module)
+    },
+    setContent(content) {
+      console.log(content)
+      let moduleName;
+      if (content.length !== 1) {
+        moduleName = content[1];
+        this.currentTab = content[0];
+      } else {
+        moduleName = content[0];
+      }
+      Meteor.call("module.findModule", moduleName, (error, result) => {
+        if (error) {
+          console.log(error);
+        } else {
+          this.currentModule = result;
+        }
+      });
+    },
+  },
+  created() {
+   
+  },
+};
 </script>
 <style scoped>
 body {

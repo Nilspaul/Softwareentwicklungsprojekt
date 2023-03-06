@@ -13,7 +13,7 @@ if (Meteor.isServer) {
         }
 
         unsubscribeModule(module){
-            if (subscribedModules.findOne({ name: module.name })) {
+            if (subscribedModules.findOne({ _id: module._id })) {
                 module.subscriber = Meteor.userId();
                 subscribedModules.remove({...module });
             }

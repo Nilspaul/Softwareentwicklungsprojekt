@@ -67,14 +67,8 @@
             @click:event="showEvent"
             @click:more="viewDay"
             @click:date="viewDay"
-            @change="updateRange"
             :locale="'de'"
           >
-            <template v-slot:event="{ event }">
-              <div class="text-body-1 font-weight-bold">
-                <div>{{ event.name }}</div>
-              </div>
-            </template>
           </v-calendar>
           <v-menu
             v-model="selectedOpen"
@@ -99,8 +93,11 @@
                   <v-icon>mdi-dots-vertical</v-icon>
                 </v-btn>
               </v-toolbar>
-              <v-card-text>
-                <span>   {{ selectedEvent.start }}</span>
+              <v-card-text class="d-flex flex-column">
+                <p class="font-weight-bold">Zeitraum</p>
+                <div> {{ selectedEvent.start}}</div>
+                <p class="font-weight-bold pt-4">Details</p>
+                <span>   {{ selectedEvent.description }}</span>
               </v-card-text>
               <v-card-actions>
                 <v-btn text color="secondary" @click="selectedOpen = false">
@@ -119,14 +116,20 @@
 <script>
 import ToDos from "../../api/collections/ToDos";
 import createToDo from "../components/ToDos/createToDo.vue"
+import dayjs from "dayjs"
+import topBar from "../components/topBar/topBar.vue";
+import navigation from "../components/topBar/navigation.vue";
 export default {
   name: "calendar",
   components: {
-    createToDo
+    createToDo,
+    navigation,
+    topBar
   },
   data: () => ({
     focus: "",
     type: "week",
+    user: null,
     typeToLabel: {
       month: "Month",
       week: "Week",
@@ -135,11 +138,7 @@ export default {
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
-    events: [{name: "Static Event",
-      start: new Date("2023-03-10T09:00:00"),
-      end: new Date("2023-03-10T12:00:00"),
-      color: "purple",
-      timed: true}],
+    events: [],
     colors: ["blue", "red", "orange"],
     names: [
       "Meeting",
@@ -185,56 +184,28 @@ export default {
       } else {
         open();
       }
-
       nativeEvent.stopPropagation();
-    },
-    updateRange({ start, end }) {
-      const events = [];
-
-      const min = new Date(`${start.date}T00:00:00`);
-      const max = new Date(`${end.date}T23:59:59`);
-      const days = (max.getTime() - min.getTime()) / 86400000;
-      const eventCount = this.rnd(days, days + 20);
-
-      for (let i = 0; i < eventCount; i++) {
-        const allDay = this.rnd(0, 3) === 0;
-        const firstTimestamp = this.rnd(min.getTime(), max.getTime());
-        const first = new Date(firstTimestamp - (firstTimestamp % 900000));
-        const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000;
-        const second = new Date(first.getTime() + secondTimestamp);
-        events.push({
-          name: this.names[this.rnd(0, this.names.length - 1)],
-          start: first,
-          end: second,
-          color: this.colors[this.rnd(0, this.colors.length - 1)],
-          timed: !allDay,
-          description: "test",
-        });
-      }
-    
-    },
-    rnd(a, b) {
-      return Math.floor((b - a + 1) * Math.random()) + a;
     },
   },
   created() {
-    Tracker.autorun(() => {
-      this.user = Meteor.user();
-      if (this.user !== undefined) {
-        this.$forceUpdate();
-      }
+  Tracker.autorun(() => {
+    const toDoSubscription = Meteor.subscribe('toDos');
+    if(toDoSubscription.ready()){
       this.toDos = ToDos.find().fetch();
-      this.toDos.forEach((toDo)=>{
-        this.events.push({
+      this.events = this.toDos.map((toDo) => {
+        return {
           name: toDo.name,
           start: new Date(toDo.start),
           end: new Date(toDo.end),
           color: toDo.color,
-          timed: toDo.timed
-        })
-      })
-    });
-  },
+          timed: toDo.timed,
+          description: toDo.note
+        };
+      });
+    }
+  });
+},
+  
 };
 </script>
 <style scoped>

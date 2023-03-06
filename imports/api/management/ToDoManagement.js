@@ -70,6 +70,8 @@ if (Meteor.isServer) {
                   case "completed":
                   Object.assign(toDo, { color: "grey" });
               }
+            Object.assign(toDo, { creator: Meteor.userId() });
+            Object.assign(toDo, { _id: Random.id() });
             console.log(toDo)
 
             return ToDos.insert({...toDo})

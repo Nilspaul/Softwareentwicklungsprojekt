@@ -143,7 +143,7 @@ export default {
           this.setErr(error);
         } else if (Meteor.user()) {
           router.push({
-            path: "/mainpage",
+            name: 'landingpage',
           });
         }
       });

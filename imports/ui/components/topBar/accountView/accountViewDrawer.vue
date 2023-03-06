@@ -1,5 +1,5 @@
 <template>
-  <div class="mr-4">
+  <div class="mr-4" v-if="user && user.username">
     <v-menu bottom offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-btn icon v-bind="attrs" v-on="on">
@@ -14,7 +14,8 @@
             <v-icon icon-color="white">mdi-account-badge</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>{{ user.username }}</v-list-item-title>
+            <v-list-item-title>    {{ user.username }}
+</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -54,11 +55,10 @@ export default {
   components: {
     settings,
   },
-  props: {
-    user: Object,
-  },
+
   data: () => ({
     drawer: null,
+    user:null,
     items: [
       {
         title: "Profile",
@@ -84,6 +84,14 @@ export default {
         path: link
       });
     }
+  },
+  created() {
+    Tracker.autorun(() => {
+      this.user = Meteor.user();
+      if (this.user !== undefined) {
+        this.$forceUpdate();
+      }
+    });
   },
 };
 </script>
