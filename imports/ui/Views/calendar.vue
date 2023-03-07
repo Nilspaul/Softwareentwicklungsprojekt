@@ -63,7 +63,7 @@
             :type="type"
             :event-overlap-mode="'column'"
             dark
-            class="font-weight-bold ma-5"
+            class="font-weight-bold ml-5 mr-5"
             @click:event="showEvent"
             @click:more="viewDay"
             @click:date="viewDay"
@@ -211,8 +211,8 @@ export default {
 <style scoped>
 .v-calendar {
   background-color: #4a5c66 !important;
-  height: 60em !important;
-  margin-bottom: 20em !important;
+  height: 50em !important;
+  margin-bottom: 6em !important;
 }
 .calenderView {
   margin-top: 1em !important;

@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div>
-                <v-btn>
+                <v-btn @click="planner()">
                     <v-icon>mdi-notebook</v-icon>
                     <div>Go To My Planner</div>
                 </v-btn>
@@ -36,6 +36,11 @@ export default {
     moduleManagement() {
      this.$router.push({
         path: "/moduleManagement",
+      });
+    },
+    planner() {
+      this.$router.push({
+        path: "/calendar",
       });
     }
   },

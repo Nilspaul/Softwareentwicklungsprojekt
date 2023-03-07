@@ -58,6 +58,30 @@
     </div>
 
     <v-divider></v-divider>
+    <v-hover v-slot="{ hover }">
+        <v-list-item
+          class="moduleList"
+          :style="{
+            'background-color': hover ? '#80ba24' : 'white',
+          }"
+          link
+          @click="setLandingPage()
+            drawer = false;
+          "
+        >
+          <v-list-item-content>
+            <v-list-item-title
+              :class="
+                hover
+                  ? '  white--text font-weight-bold'
+                  : 'font-weight-bold secondary--text'
+              "
+            >
+              Back to Homepage</v-list-item-title
+            >
+          </v-list-item-content>
+        </v-list-item>
+      </v-hover>
     <v-list dense>
       <v-hover v-for="module in modules" v-slot="{ hover }">
         <v-list-item
@@ -93,7 +117,6 @@
 import Modules from "../../../api/collections/Modules";
 import SubscribedModules from "../../../api/collections/SubscribedModules";
 import toDoBase from "../ToDos/toDoBase.vue";
-import { router } from "../../plugins/router";
 export default {
   name: "navigation",
   components: {
@@ -126,6 +149,11 @@ export default {
         path: "/moduleManagement",
       });
     },
+    setLandingPage() {
+      this.$router.push({
+        path: "/landingpage",
+      });
+    }
   },
   created() {
     Tracker.autorun(() => {

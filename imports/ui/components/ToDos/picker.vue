@@ -1,8 +1,7 @@
 <template>
-  <div class="ml-4">
-    <v-row>
-      <v-spacer></v-spacer>
-      <v-flex xs12 sm6 md4>
+  <div>
+    <v-row class="d-flex">
+      <v-col class="flex-grow-1">
         <v-menu
           v-model="startDateMenu"
           :close-on-content-click="false"
@@ -17,7 +16,6 @@
               label="Select Startdate"
               readonly
               v-on="on"
-              class="mt-4"
             ></v-text-field>
           </template>
           <v-date-picker
@@ -26,9 +24,9 @@
             format="dd.MM.yyyy"
           ></v-date-picker>
         </v-menu>
-      </v-flex>
+      </v-col>
 
-      <v-col cols="12" sm="6" md="4">
+      <v-col class="flex-grow-1">
         <v-menu
           v-model="startTimeMenu"
           :close-on-content-click="false"
@@ -53,12 +51,10 @@
           ></v-time-picker>
         </v-menu>
       </v-col>
-      <v-spacer></v-spacer>
     </v-row>
 
-    <v-row>
-      <v-spacer></v-spacer>
-      <v-flex xs12 sm6 md4>
+    <v-row class="d-flex">
+      <v-col class="flex-grow-1">
         <v-menu
           v-model="endDateMenu"
           :close-on-content-click="false"
@@ -73,7 +69,6 @@
               label="Select Enddate"
               readonly
               v-on="on"
-              class="mt-4"
             ></v-text-field>
           </template>
           <v-date-picker
@@ -82,9 +77,9 @@
             format="dd.MM.yyyy"
           ></v-date-picker>
         </v-menu>
-      </v-flex>
+      </v-col>
 
-      <v-col cols="12" sm="6" md="4">
+      <v-col class="flex-grow-1">
         <v-menu
           v-model="endTimeMenu"
           :close-on-content-click="false"
@@ -108,7 +103,6 @@
           ></v-time-picker>
         </v-menu>
       </v-col>
-      <v-spacer></v-spacer>
     </v-row>
   </div>
 </template>
@@ -213,3 +207,7 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+</style>

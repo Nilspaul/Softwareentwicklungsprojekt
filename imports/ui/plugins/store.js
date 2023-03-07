@@ -1,37 +1,34 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import createPersistedState from 'vuex-persistedstate'
+import Vue from "vue";
+import Vuex from "vuex";
+import createPersistedState from "vuex-persistedstate";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const store = new Vuex.Store({
-    plugins: [
-        createPersistedState()
-      ],
+  plugins: [createPersistedState()],
   state: {
-    myVar: 'Hello Vuex!',
+    myVar: "Hello Vuex!",
     currentModule: {},
   },
   mutations: {
     setMyVar(state, newVal) {
-      state.myVar = newVal
+      state.myVar = newVal;
     },
     setCurrentModule(state, payload) {
-        state.currentModule = payload;
-      }
+      state.currentModule = payload;
+    },
   },
   actions: {
     updateMyVar({ commit }, newVal) {
-      commit('setMyVar', newVal)
+      commit("setMyVar", newVal);
     },
-    setMyObject({commit}, payload) {
-        commit('setCurrentModule', payload);
-      }
-    
+    setMyObject({ commit }, payload) {
+      commit("setCurrentModule", payload);
+    },
   },
   getters: {
-    getMyVar: state => state.myVar
-  }
-})
+    getMyVar: (state) => state.myVar,
+  },
+});
 
-export default store
+export default store;
