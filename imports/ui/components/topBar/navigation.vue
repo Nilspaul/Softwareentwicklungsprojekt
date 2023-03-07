@@ -115,6 +115,7 @@ export default {
       this.drawer = data;
     },
     openModule(module) {
+      this.$store.dispatch('setMyObject', module);
       this.$router.push({
         name: "mainpage",
         params: { module: { ...module }, moduleName: module.name },

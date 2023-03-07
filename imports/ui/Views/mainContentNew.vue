@@ -126,6 +126,8 @@ import SubscribedModules from "../../api/collections/SubscribedModules";
 import Navigation from "../components/topBar/navigation.vue";
 import { Meteor } from "meteor/meteor";
 import { Tracker } from "meteor/tracker";
+import { mapState } from 'vuex';
+
 export default {
   name: "mainContent",
   components: {
@@ -162,11 +164,11 @@ export default {
    
   },
   computed: {
-    currentModule() {
-      console.log(this.$route.params.module)
-      return this.$route.params.module;
-    }
+    ...mapState({
+      currentModule: state => state.currentModule
+    })
   },
+
   watch: {
     currentModule(val1, val2) {
       console.log(val1, val2)

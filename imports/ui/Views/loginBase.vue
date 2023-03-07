@@ -8,7 +8,7 @@
         :class="['mt-16', { loginContainer: $vuetify.breakpoint.mobile }]"
       >
         <v-card-title class="text-h4 pb-6" :style="{ color: '#4a5c66' }">
-          Login
+          Login {{ myVar }}
         </v-card-title>
         <v-card-text ref="loginForm">
           <p bold>Email</p>
@@ -117,6 +117,8 @@ import { Meteor } from "meteor/meteor";
 import { router } from "../plugins/router";
 import gsap from "gsap";
 import registerBase from "../Views/registerBase.vue";
+import { mapState } from 'vuex'
+
 
 export default {
   name: "loginBase",
@@ -137,6 +139,9 @@ export default {
   }),
 
   methods: {
+    updateMyVar() {
+      this.$store.dispatch('updateMyVar', 'Hello from Vuex!')
+    },
     submit() {
       Meteor.loginWithPassword(this.email, this.password, (error, result) => {
         if (error) {
@@ -177,6 +182,11 @@ export default {
         { delay: 1, duration: 2, x: 0, opacity: 1, ease: "back.out(2)" }
       );
     },
+  },
+  computed: {
+    ...mapState({
+      myVar: 'myVar'
+    })
   },
 };
 </script>
