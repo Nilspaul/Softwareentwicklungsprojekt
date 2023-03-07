@@ -43,7 +43,7 @@
           label="Modul"
           placeholder="Zu welchem Modul soll das ToDo gehören?"
         ></v-text-field>
-        
+
         <picker @getDates="getDates"></picker>
 
         <v-select
@@ -70,9 +70,7 @@
 </template>
 
 <script>
-import { timingSafeEqual } from "crypto";
-import dayjs from "dayjs";
-import moment from "moment"
+import moment from "moment";
 import picker from "./picker";
 export default {
   name: "createToDo",
@@ -132,12 +130,11 @@ export default {
     getDates(startDate, startTime, endDate, endTime) {
       console.log(startDate, startTime, endDate, endTime);
 
-      this.startDate = moment(startDate, 'DD.MM.YYYY').format('YYYY-MM-DD')
-      this.startDate = this.startDate+'T'+startTime+':00'
+      this.startDate = moment(startDate, "DD.MM.YYYY").format("YYYY-MM-DD");
+      this.startDate = this.startDate + "T" + startTime + ":00";
 
-      this.endDate = moment(endDate, 'DD.MM.YYYY').format('YYYY-MM-DD')
-      this.endDate = this.endDate+'T'+endTime+':00'
-
+      this.endDate = moment(endDate, "DD.MM.YYYY").format("YYYY-MM-DD");
+      this.endDate = this.endDate + "T" + endTime + ":00";
     },
   },
 };
