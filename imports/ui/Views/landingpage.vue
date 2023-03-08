@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="d-flex justify-space-between mb-6 bg-surface-variant">
-      <v-sheet class="ma-2 pa-2">
+    <div class="d-flex justify-space-around mb-6 flex-wrap-reverse">
+      <v-sheet class="ma-2">
         <div>
           <v-sheet class="ma-2 pa-2 mt-10 ml-10 mb-10">
             <div class="d-flex">
@@ -76,8 +76,8 @@
         </div>
         <div>
           <v-card
-            width="25em"
-            class="d-flex flex-column rounded-xl mt-16 ml-12"
+          :width="$vuetify.breakpoint.xs? '90vw':'30em'"
+            class="d-flex flex-column rounded-xl mt-16"
             color="secondary"
             outlined
           >
@@ -86,12 +86,12 @@
               :style="{ color: '#4a5c66' }"
               class="text-h5 d-flex justify-center white--text"
             >
-              <v-icon color="white" class="mr-10">mdi-link-variant</v-icon>
+              <v-icon color="white" class="mr-5">mdi-link-variant</v-icon>
 
-              <div class="mr-15">Important links</div>
+              <div>Important links</div>
             </v-card-title>
             <hr class="ml-4 mr-4 mb-2" color="#80ba24" />
-            <div class="white--text ml-8">
+            <div class="white--text ml-8 importantLinks">
               <p>Prüfungs- und Studienausschüsse</p>
               <p>Moodle</p>
               <p>E-Campus</p>
@@ -100,9 +100,9 @@
           </v-card>
         </div>
       </v-sheet>
-      <v-sheet class="ma-2 pa-2 mr-16">
+      <v-sheet :width="$vuetify.breakpoint.xs? '90vw':'30em'">
         <div>
-          <v-sheet class="ma-2 pa-2 mt-10 ml-10 mb-10">
+          <v-sheet class="mt-10 mb-10">
             <div class="d-flex flex-column">
               <div
                 class="font-weight-bold text-h5"
@@ -111,9 +111,10 @@
                 Calendar
               </div>
               <v-date-picker
-              dark
-              color="secondary"
-              width="30em"
+                class="rounded-xl"
+                dark
+                color="secondary"
+                :width="$vuetify.breakpoint.xs? '90vw':'30em'"
                 v-model="date1"
                 :events="arrayEvents"
                 event-color="green lighten-1"
@@ -123,28 +124,32 @@
         </div>
         <div>
           <v-card
-            width="25em"
-            class="d-flex flex-column rounded-xl mt-16 ml-12"
+            width="30em"
+            class="d-flex flex-column rounded-xl mt-16"
             color="#f4aa00"
             outlined
           >
             <v-card-title
               align-center
               :style="{ color: '#4a5c66' }"
-              class="text-h5 d-flex justify-center white--text"
+              class="text-h5 white--text"
             >
-              <v-icon color="white" class="mr-10"
+            <div class="d-flex"> 
+                          <v-icon color="white" class="mr-10"
                 >mdi-format-list-checks</v-icon
               >
+              <div>
+                <p>Your 5 upcoming To-Do's</p>
+                <p class="text-subtitle-2">(Look into your planner for more details)</p>
+              </div>
+            </div>
 
-              <div class="mr-15">Upcoming To-Do's</div>
             </v-card-title>
             <hr class="ml-4 mr-4 mb-2" color="white" />
-            <div class="white--text ml-8">
-              <p>Prüfungs- und Studienausschüsse</p>
-              <p>Moodle</p>
-              <p>E-Campus</p>
-              <p>Klausurplan</p>
+            <div class="white--text ml-8 upcomingToDos">
+              <p v-for="(toDo, index) in toDos" v-if="index<5">
+                {{ toDo.name + " " + toDo.start + " Uhr" }}
+              </p>
             </div>
           </v-card>
         </div>
@@ -154,11 +159,15 @@
 </template>
 
 <script>
+import ToDos from "../../api/collections/ToDos";
+import moment from "moment";
 export default {
   name: "landingpage",
   components: {},
   data: () => ({
-    arrayEvents: null,
+    arrayEvents: [],
+    toDos: [],
+    toDoDates: [],
     date1: new Date().toISOString().substr(0, 10),
     date2: new Date().toISOString().substr(0, 10),
   }),
@@ -185,12 +194,34 @@ export default {
       return this.$route.params.module;
     },
   },
-  mounted() {
-    this.arrayEvents = [...Array(6)].map(() => {
-      const day = Math.floor(Math.random() * 30);
-      const d = new Date();
-      d.setDate(day);
-      return d.toISOString().substr(0, 10);
+
+  created() {
+    Tracker.autorun(() => {
+      const toDoSubscription = Meteor.subscribe("toDos");
+      if (toDoSubscription.ready()) {
+        this.toDos = ToDos.find().fetch();
+      }
+      this.toDos.sort((a, b) => {
+        const dateA = a.start; // ignore upper and lowercase
+        const dateB = b.start; // ignore upper and lowercase
+        if (dateA < dateB) {
+          return -1;
+        }
+        if (dateA > dateB) {
+          return 1;
+        }
+        // names must be equal
+        return 0;
+      });
+
+      this.toDos.forEach((toDo, index) => {
+        if (index < 5) {
+          console.log(index)
+
+          this.arrayEvents.push(moment(new Date(toDo.start)).format("YYYY-MM-DD"));
+          toDo.start = moment(new Date(toDo.start)).format("DD.MM.YY hh:mm");
+        }
+      });
     });
   },
 };
@@ -202,8 +233,12 @@ export default {
   margin-right: 10em;
 }
 
-p:hover {
+.importantLinks p:hover {
   color: #80ba24 !important;
+  text-decoration: underline !important;
+}
+.upcomingToDos p:hover {
+  color: white !important;
   text-decoration: underline !important;
 }
 .leftSide {

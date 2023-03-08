@@ -11,8 +11,7 @@
       <router-view />
     </div>
 
-    <v-footer color="secondary">
-      <div class="d-flex justify-space-around full-width">
+    <v-footer color="secondary" class="d-flex justify-space-around full-width">
         <div class="ma-2 pa-2 white--text text-h6">
           <div>SOCIALS</div>
           <div class="subline">
@@ -66,7 +65,6 @@
             </div>
           </div>
         </div>
-      </div>
     </v-footer>
   </v-app>
 </template>

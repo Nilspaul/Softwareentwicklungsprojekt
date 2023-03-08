@@ -1,19 +1,11 @@
 <template>
-  <!-- <v-app-bar
-   :class="[
-      { 'mobileTopbar pt-5 pr-10': $vuetify.breakpoint.mobile },
-      { 'topBar pt-5 pr-10': !$vuetify.breakpoint.mobile },
-    ]"
-    color="primary"
-    dark
-  > -->
-  <v-app-bar
-    color="primary"
-    dark
-  > 
+  <v-app-bar color="primary" class="full-width" dark> 
     <VIcon class="display-1 pr-5" @click="drawNav()">mdi-menu</VIcon>
-    <v-toolbar-title class="display-1 font-weight-bold" v-show="$vuetify.breakpoint.mdAndUp">
-        THMStudyPlanner
+    <v-toolbar-title
+      class="display-1 font-weight-bold"
+      v-show="$vuetify.breakpoint.mdAndUp"
+    >
+      THMStudyPlanner
     </v-toolbar-title>
     <v-spacer></v-spacer>
     <v-autocomplete
@@ -28,12 +20,13 @@
       :loading="loading"
       :items="items"
       :search-input.sync="search"
-      cache-items>
+      cache-items
+    >
       <template #item="{ item }">
         <v-list-item class="d-flex">
-            <div class="ml-2" @click="pickContent(item)">{{ item }}</div>
+          <div class="ml-2" @click="pickContent(item)">{{ item }}</div>
         </v-list-item>
-    </template>
+      </template>
     </v-autocomplete>
     <AccountViewDrawer />
   </v-app-bar>
@@ -42,6 +35,7 @@
 <script>
 import AccountViewDrawer from "./accountView/accountViewDrawer.vue";
 import Modules from "../../../api/collections/Modules";
+import SubscribedModules from "../../../api/collections/SubscribedModules";
 
 export default {
   name: "topBar",
@@ -55,9 +49,10 @@ export default {
     currentModule: null,
     loading: false,
     items: [],
+    modules: [],
     search: null,
     select: null,
-    user: null
+    user: null,
   }),
   watch: {
     search(val) {
@@ -77,25 +72,33 @@ export default {
     drawNav() {
       this.$emit("drawNav");
     },
-    pickContent(item){
-        let content = item.split('/',2);
-        this.$emit("setContent", content);
-    }
+    pickContent(item) {
+      console.log(item);
+      let module = this.modules[this.modules.findIndex(x=>x.name == item)] 
+      this.$store.dispatch('setMyObject', module);
+      this.$router.push({
+        name: "mainpage",
+        params: { module: { ...module }, moduleName: module.name },
+      });
+    },
   },
   created() {
     Tracker.autorun(() => {
+      const moduleSubscription = Meteor.subscribe("modules");
+      const subscribedModulesSubscription = Meteor.subscribe("subscribedModules");
       this.user = Meteor.user();
       if (this.user !== undefined) {
         this.$forceUpdate();
+      } 
+      if (moduleSubscription.ready()) {
+        this.modules = Modules.find().fetch();
       }
-      this.modules = Modules.find().fetch();
-      this.currentModule = this.modules[0];
-      this.modules.forEach((module) => {
-        this.content.push(module.name);
-        for(let inhalt in module.inhalte){
-            this.content.push(inhalt + '/'+module.name)
-        }
-      });
+      if (subscribedModulesSubscription.ready()) {
+        this.subscribedModules = SubscribedModules.find().fetch();
+      }
+      this.modules.forEach((module)=>{
+        this.content.push(module.name)
+      })
     });
   },
 };

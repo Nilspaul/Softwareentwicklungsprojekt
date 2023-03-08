@@ -7,21 +7,14 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   plugins: [createPersistedState()],
   state: {
-    myVar: "Hello Vuex!",
     currentModule: {},
   },
   mutations: {
-    setMyVar(state, newVal) {
-      state.myVar = newVal;
-    },
     setCurrentModule(state, payload) {
       state.currentModule = payload;
     },
   },
   actions: {
-    updateMyVar({ commit }, newVal) {
-      commit("setMyVar", newVal);
-    },
     setMyObject({ commit }, payload) {
       commit("setCurrentModule", payload);
     },
