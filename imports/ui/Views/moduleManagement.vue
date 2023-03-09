@@ -1,97 +1,96 @@
 <template>
   <div>
     <div class="d-flex justify-center">
-      <v-sheet class="ma-2 pa-2">
-        <v-card-title
+        <div
           align-center
           :style="{ color: '#4a5c66' }"
-          class="text-h3 font-weight-bold"
+          class="text-h3 font-weight-bold mt-10"
         >
           Module Management
-        </v-card-title>
-      </v-sheet>
-    </div>
-    
-      <div class="d-flex flex-wrap justify-center">
-        <v-sheet width="30em">
-          <div class="font-weight-bold secondary--text">Department</div>
-          <v-autocomplete
-            outlined
-            v-model="department"
-            :items="departments"
-            placeholder="Select..."
-            required
-          ></v-autocomplete>
-        </v-sheet>
-        <v-sheet class="ml-4" width="30em">
-          <div class="font-weight-bold secondary--text">Study programm</div>
-          <v-autocomplete
-            outlined
-            v-model="studyProgram"
-            :items="studyPrograms"
-            placeholder="Select..."
-            required
-          ></v-autocomplete>
-        </v-sheet>
-      </div>
-      <div class="d-flex flex-wrap justify-center">
-          <v-sheet width="61em">
-            <div class="font-weight-bold secondary--text">Search module</div>
-            <v-text-field outlined></v-text-field>
-          </v-sheet>
         </div>
- 
-
-    <div class="d-flex flex-wrap ma-10">
-      <v-card
-        v-for="(module, index) in modules"
-        height="15em"
-        width="30em"
-        class="mr-4 mb-4"
-      >
-        <v-img
-          @click="changeOverlayVal(index)"
-          :src="module.imageUrl"
-          height="100%"
-          width="100%"
-          :lazy-src="module.imageUrl"
-        >
-          <v-icon
-            color="primary"
-            class="ma-3"
-            style="transform: scale(2)"
-            v-if="checkIfSubscribed(module)"
-            >mdi-check-circle-outline</v-icon
-          >
-          <div v-if="!overlay[index]" class="white--text text-h5 modulebar">
-            <div>{{ module.name }}</div>
-          </div>
-        </v-img>
-        <v-overlay
-          absolute
-          :value="overlay[index]"
-          @click="changeOverlayVal(index)"
-        >
-          <v-btn
-            color="secondary"
-            class="text-h6"
-            v-if="checkIfSubscribed(module)"
-            @click="manageSubscription(module)"
-          >
-            UNSUBSCRIBE
-          </v-btn>
-          <v-btn
-            v-else
-            color="secondary"
-            class="text-h6"
-            @click="manageSubscription(module)"
-          >
-            SUBSCRIBE</v-btn
-          >
-        </v-overlay>
-      </v-card>
     </div>
-  </div>
+    <div class="d-flex flex-wrap justify-center">
+      <v-sheet width="30em">
+        <div class="font-weight-bold secondary--text">Department</div>
+        <v-autocomplete
+          outlined
+          v-model="department"
+          :items="departments"
+          placeholder="Select..."
+          required
+        ></v-autocomplete>
+      </v-sheet>
+      <v-sheet class="ml-4" width="30em">
+        <div class="font-weight-bold secondary--text">Study programm</div>
+        <v-autocomplete
+          outlined
+          v-model="studyProgram"
+          :items="studyPrograms"
+          placeholder="Select..."
+          required
+        ></v-autocomplete>
+      </v-sheet>
+
+      <v-sheet width="61em">
+        <div class="font-weight-bold secondary--text">Search module</div>
+        <v-text-field outlined></v-text-field>
+      </v-sheet>
+
+      <div class="d-flex flex-wrap justify-center">
+          <v-card
+            v-for="(module, index) in modules"
+            height="15em"
+            width="30em"
+            class="mr-4 mb-4"
+          >
+            <v-img
+              @click="changeOverlayVal(index)"
+              :src="module.imageUrl"
+              height="100%"
+              width="100%"
+              :lazy-src="module.imageUrl"
+            >
+              <v-icon
+                color="primary"
+                class="ma-3"
+                style="transform: scale(2)"
+                v-if="checkIfSubscribed(module)"
+                >mdi-check-circle-outline</v-icon
+              >
+              <div v-if="!overlay[index]" class="white--text text-h5 modulebar">
+                <div class="ml-4">{{ module.name }}</div>
+              </div>
+            </v-img>
+            <v-overlay
+              absolute
+              :value="overlay[index]"
+              @click="changeOverlayVal(index)"
+              class="d-flex align-end"
+            >
+              <div class="shortInfo">
+                <div>Aktuelle Themen der Energietechnik (SoSe20)</div>
+              </div>
+              <v-btn
+                color="secondary"
+                class="text-h6 unsubscribeBtn"
+                v-if="checkIfSubscribed(module)"
+                @click="manageSubscription(module)"
+              >
+                UNSUBSCRIBE
+              </v-btn>
+              <v-btn
+                v-else
+                color="secondary"
+                class="text-h6"
+                @click="manageSubscription(module)"
+              >
+                SUBSCRIBE</v-btn
+              >
+            </v-overlay>
+          </v-card>
+        </div>
+      </div>    
+      </div>
 </template>
 
 <script>
@@ -169,12 +168,20 @@ export default {
   position: absolute;
   bottom: 0;
   width: 20em;
-  height: 3em;
+  min-height: 3em;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .v-overlay .v-btn:hover {
   background-color: #80ba24 !important;
+}
+.v-overlay .unsubscribeBtn:hover {
+  background-color: red !important;
+}
+
+.subscribeBtn {
+  position: absolute !important;
+  bottom: 0 !important;
 }
 </style>

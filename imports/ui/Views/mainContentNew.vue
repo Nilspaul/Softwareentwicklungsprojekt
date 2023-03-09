@@ -1,25 +1,37 @@
 <template>
-  <div  v-if="currentModule">
-  <!--
+  <div v-if="currentModule">
+    <!--
     <topBar
       :user="user"
       @drawNav="handleEvent()"
       @setContent="setContent"
     ></topBar>
     <Navigation ref="sibling2" @openModule="openModule"></Navigation> -->
-    <v-subheader class="tabSubheader text-h5">{{ currentModule ? currentModule.name : '' }}</v-subheader>
-
+    <v-subheader class="tabSubheader text-h5">{{
+      currentModule ? currentModule.name : ""
+    }}</v-subheader>
     <div>
-      <div class="d-flex justify-start">
-        <v-sheet class="mt-5 ml-5 secondary--text">
-          <p class="text-h4">Ankündigungen</p>
-          <p v-for="ann in currentModule.ankündigungen">{{ ann }}</p>
-        </v-sheet>
-      </div>
+      <v-sheet class="mt-10 ml-5 secondary--text">
+        <p class="text-h4">Ankündigungen</p>
+        <div
+          class="d-flex justify-space-between flex-wrap"
+          v-for="ann in currentModule.ankündigungen"
+        >
+          <div v-html="ann.text" :class="[{'anntext' : ann.image}]"></div>
+          <div class="d-flex align-center flex-wrap" v-if="ann.image">
+            <v-img
+              :aspect-ratio="16 / 9"
+              width="500"
+              :src="ann.image"
+              class="annimg"
+            ></v-img>
+          </div>
+        </div>
+      </v-sheet>
       <div class="d-flex justify-end">
         <v-sheet class="mr-6 pa-2 secondary--text">
           <p class="text-h5 font-weight-bold">Lernplattformen</p>
-          <p v-for="ann in currentModule.lernplattformen">{{ ann }}</p>
+          <p v-for="ann in currentModule.lernplattformen" v-html="ann" class="lp"></p>
         </v-sheet>
       </div>
       <div class="d-flex justify-start">
@@ -39,7 +51,7 @@
           <v-col cols="12" md="6" :order="index % 2 === 0 ? 1 : 2">
             <div class="mt-4">
               <v-img
-                src="/images/shutterstock_127728257-rcm1200x0.jpg"
+                :src="item.imageLink"
                 alt=""
                 height="400"
                 contain
@@ -63,7 +75,8 @@
               <div class="mt-5 d-flex">
                 <div>
                   <p class="text-h5 content">{{ item.kapitelName }}</p>
-                  <v-row class="flex-column flex-end">
+                  <v-row 
+                  >
                     <v-expansion-panels
                       flat
                       popout
@@ -126,7 +139,7 @@ import SubscribedModules from "../../api/collections/SubscribedModules";
 import Navigation from "../components/topBar/navigation.vue";
 import { Meteor } from "meteor/meteor";
 import { Tracker } from "meteor/tracker";
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
 export default {
   name: "mainContent",
@@ -161,19 +174,24 @@ export default {
     ],
   }),
   methods: {
-   
+    unescape(string) {
+      return decodeURIComponent(string);
+    },
+  },
+  mounted() {
+    console.log(this.currentModule);
   },
   computed: {
     ...mapState({
-      currentModule: state => state.currentModule
-    })
+      currentModule: (state) => state.currentModule,
+    }),
   },
 
   watch: {
     currentModule(val1, val2) {
-      console.log(val1, val2)
-    }
-  }
+      console.log(val1, val2);
+    },
+  },
 };
 </script>
 
@@ -181,5 +199,18 @@ export default {
 .content {
   margin-left: 5em;
   margin-right: 10em;
+}
+.anntext {
+  width: 50vw !important;
+  margin-right: 3em !important;
+}
+
+.annimg {
+  margin-top: -3em;
+  margin-right: 4em;
+}
+
+.lp{
+  max-width: 40vw !important;
 }
 </style>

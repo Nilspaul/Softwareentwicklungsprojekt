@@ -1,9 +1,13 @@
 [
   {
-    "name": "Theoretische Informatik und Algorithmik",
-    "schwerpunkt": "Web und Mobile Anwendungen",
+    "name": "MIB15 Theoretische Informatik und Algorithmik (WS 2022/23)",
+    "schwerpunkt": "Grundlage",
     "crp": 6,
-    "ankündigungen": ["Bitte laden Sie sich die apk-Dateien herunter!"],
+    "ankündigungen": [
+      {
+        "text": "Bitte laden Sie sich die apk-Dateien herunter!"
+      }
+    ],
     "lernplattformen": {
       "miro": "Arbeite mit deinen Kommilitonen auf dem Online-Whiteboard zusammen!"
     },
@@ -86,29 +90,314 @@
     ],
     "laufzeit": "3. Semester"
   },
+
   {
-    "name": "Softwareentwicklungsprojekt",
-    "schwerpunkt": "Web und Mobile Anwendungen",
-    "crp": 9,
-    "inhalte": {
-      "infotext": "In diesem Modul lernst du die methodische Bearbeitung einer neuen fachlichen Aufgabe des Berufsfeldes PPS und lernst ausgewählte Techniken des PPS darzustellen und in eigenen Aufgabenbereichen einzusetzen.",
-      "firstSpecificContent": "Hier steht ein weiter Modulinhalt und Informationen, die für dich wichtig sind. Zum Beispiel das Semester oder Ähnliches",
-      "nextContent": "More content"
+    "name": "MIB12 Audiovisuelle Medien 2: Filmtechnik + Filmproduktion (WiSe 2022/23)",
+    "schwerpunkt": "Grundlage",
+    "crp": 6,
+    "ankündigungen": [
+      { 
+        "text":"... im Modul MIB12 \"Audiovisuelle Medien 2: Filmtechnik + Filmproduktion\" im Wintersemester 2022/23. Wir freuen uns auf ein spannendes Modul mit Ihnen allen. Im Mittelpunkt steht dabei die individuelle Ausdifferenzierung von Kompetenzen in den Bereichen Filmtechnik und Filmproduktion. <p> Das Modul MIB2 \"Audiovisuelle Medien 2: Filmtechnik + Filmproduktion\" setzt sich aus den beiden Modulbestandteilen \"Filmtechnik\" und \"Filmproduktion\" zusammen. Der Modulbestandteil \"Filmtechnik\" findet im Wintersemester 2022/23 im Inverted Classroom Modell statt. Wir haben eine Online-Vorlesungsreihe für Sie vorbereitet, die von wöchentlichen Sprechstunden (online) begleitet wird. Der Modulbestandteil \"Filmproduktion\" wird im Wintersemester 2022/2023 die Nachproduktion eines Musikvideos zum Gegenstand haben. Für die Vorbereitung und Durchführung der Produktion bieten wir Ihnen vorbereitende Workshops an.</p> <p>Die Termine für Sprechstunden und Workshops haben wir für Sie im Kalender des Kurses eingetragen.</p><p>Wir freuen uns auf ein spannendes Semester mit Ihnen, Ihr Team AV, <b>Sebastian Vogt, Benjamin Rupp und Sebastian Rupp</b></p> ",
+        "image": "/images/AV2Welcome.png"
+      }
+
+    ],
+    "lernplattformen": {
+      "Zoom": "<b>Einige der Termine finden als Online-Meetings via Zoom statt. Für die Teilnahme an den Online- Meetings (293 809 1038/labor10) bitten wir sie, jeweils spätestens fünf Minuten vor Beginn im Zoom-Meeting anwesend zu sein und mit Ihrem vollen Namen teilzunehmen.</b>"
     },
+    "imageUrl": "/images/csm_news-kfru-web_74cb7faf31.jpg",
+    "modulKapitel": [
+      {
+        "kapitelName": "Einführung 1: Willkommen und Organisatorisches",
+        "kapitelInhalte": [
+          {
+            "name": "Foliensatz",
+            "inhalt": "Foliensatz herunterladen"
+          }
+        ],
+        "imageLink": "/images/AV2Welcome.png"
+      },
+      {
+        "kapitelName": "Teil 1: Audiovisuelle Artefakte als mediale Ausdrucksformen",
+        "kapitelInhalte": [
+          {
+            "name": "Foliensatz",
+            "inhalt": "Foliensatz runterladen"
+          },
+          {
+            "name": "Aufzeichnung",
+            "inhalt": "Auszeichnung ansehen ... (PW:labor10)"
+          },
+          {
+            "name": "Quiz",
+            "inhalt": "Quiz #1 durchführen ..."
+          }
+        ],
+        "imageLink": "/images/AudiovisuelleArtefaktAlsMedialeAusdrucksform.PNG"
+      },
+      {
+        "kapitelName": "Teil 2: Audiovisuelle Filmproduktion als gestalterischer, technischer und ökonomischer Medienproduktionsprozess",
+        "kapitelInhalte": [
+          {
+            "name": "Foliensatz",
+            "inhalt": "Foliensatz runterladen"
+          },
+          {
+            "name": "Aufzeichnung",
+            "inhalt": "Auszeichnung ansehen ... (PW:fassbinder)"
+          },
+          {
+            "name": "Quiz",
+            "inhalt": "Quiz #2 durchführen ..."
+          }
+        ],
+        "imageLink": "/images/Teil2AudiovisuelleFilmproduktion.PNG"
+      },
+      {
+        "kapitelName": "Teil 3: Projektorganisation von audiovisuellen Filmproduktion",
+        "kapitelInhalte": [
+          {
+            "name": "Foliensatz",
+            "inhalt": "Foliensatz runterladen"
+          },
+          {
+            "name": "Aufzeichnung",
+            "inhalt": "Auszeichnung ansehen ... (PW:tarantino)"
+          },
+          {
+            "name": "Quiz",
+            "inhalt": "Quiz #3 durchführen ..."
+          }
+        ],
+        "imageLink": "/images/AVRollenUndAkteure.PNG"
+      },
+      {
+        "kapitelName": "Teil 4: Musiktheorie: der perfekte Song",
+        "kapitelInhalte": [
+          {
+            "name": "Foliensatz",
+            "inhalt": "Foliensatz runterladen"
+          },
+          {
+            "name": "Aufzeichnung",
+            "inhalt": "Auszeichnung ansehen ... (PW:beethoven)"
+          },
+          {
+            "name": "Quiz",
+            "inhalt": "Quiz #4 durchführen ..."
+          }
+        ],
+        "imageLink": "/images/AVMusik.PNG"
+      }
+    ],
     "laufzeit": "3. Semester",
-    "imageUrl": "/images/csm_news-kfru-web_74cb7faf31.jpg"
+    "bottomContent": [
+      {
+        "name": "Studientagebuch",
+        "text": "<b>Das Studientagebuch in Audiovisuelle Medien 2 besteht aus einer VLog-Cast-Serie mit mehreren Episoden.</b> <p>In jeder einzelnen Episode greifen Sie einen von Ihnen ausgewählten Vorlesungsteil zu \"Filmtechnik\" auf, wählen einen fachlichen Aspekt aus, den Sie dann im Selbststudium vertiefen und in Ihrer Episode auditiv-visuell in einer technisch-wissenschaftlichen Anmutung darstellen.</p><p><b>        Bitte melden Sie sich für das Studientagebuch im Prüfungssystem an, der Anmeldezeitraum ist 10.10.2022 bis 30.10.2022, das Ende der Rücktrittsphase ist 20.11.2022. Die Vodcasts des Studientagebuchs müssen bis zum 18.12.2022 vollständig hier in Moodle abgegeben sein.</b><p>"
+      },
+      {
+        "name": "Probeklausuren",
+        "links": [
+          "Probeklausur Wintersemester 2022/2023",
+          "Abbildung 1: Technische Spezifikation iPhone 12 Pro",
+          "Abbildung 2: Technische Spezifikation Shure SM7B"
+        ]
+      }
+    ]
+  },
+
+  {
+    "name": "MIB14 Softwareentwicklungsprojekt",
+    "schwerpunkt": "Grundlage",
+    "crp": 6,
+    "ankündigungen": [
+      { 
+        "text":"... im Modul MIB12 \"Audiovisuelle Medien 2: Filmtechnik + Filmproduktion\" im Wintersemester 2022/23. Wir freuen uns auf ein spannendes Modul mit Ihnen allen. Im Mittelpunkt steht dabei die individuelle Ausdifferenzierung von Kompetenzen in den Bereichen Filmtechnik und Filmproduktion. <p> Das Modul MIB2 \"Audiovisuelle Medien 2: Filmtechnik + Filmproduktion\" setzt sich aus den beiden Modulbestandteilen \"Filmtechnik\" und \"Filmproduktion\" zusammen. Der Modulbestandteil \"Filmtechnik\" findet im Wintersemester 2022/23 im Inverted Classroom Modell statt. Wir haben eine Online-Vorlesungsreihe für Sie vorbereitet, die von wöchentlichen Sprechstunden (online) begleitet wird. Der Modulbestandteil \"Filmproduktion\" wird im Wintersemester 2022/2023 die Nachproduktion eines Musikvideos zum Gegenstand haben. Für die Vorbereitung und Durchführung der Produktion bieten wir Ihnen vorbereitende Workshops an.</p> <p>Die Termine für Sprechstunden und Workshops haben wir für Sie im Kalender des Kurses eingetragen.</p><p>Wir freuen uns auf ein spannendes Semester mit Ihnen, Ihr Team AV, <b>Sebastian Vogt, Benjamin Rupp und Sebastian Rupp</b></p> ",
+        "image": "/images/AV2Welcome.png"
+      }
+
+    ],
+    "lernplattformen": {
+      "Zoom": "<b>Einige der Termine finden als Online-Meetings via Zoom statt. Für die Teilnahme an den Online- Meetings (293 809 1038/labor10) bitten wir sie, jeweils spätestens fünf Minuten vor Beginn im Zoom-Meeting anwesend zu sein und mit Ihrem vollen Namen teilzunehmen.</b>"
+    },
+    "imageUrl": "/images/csm_news-kfru-web_74cb7faf31.jpg",
+    "modulKapitel": [
+      {
+        "kapitelName": "Einführung 1: Willkommen und Organisatorisches",
+        "kapitelInhalte": [
+          {
+            "name": "Foliensatz",
+            "inhalt": "Foliensatz herunterladen"
+          }
+        ],
+        "imageLink": "/images/AV2Welcome.png"
+      },
+      {
+        "kapitelName": "Teil 1: Audiovisuelle Artefakte als mediale Ausdrucksformen",
+        "kapitelInhalte": [
+          {
+            "name": "Foliensatz",
+            "inhalt": "Foliensatz runterladen"
+          },
+          {
+            "name": "Aufzeichnung",
+            "inhalt": "Auszeichnung ansehen ... (PW:labor10)"
+          },
+          {
+            "name": "Quiz",
+            "inhalt": "Quiz #1 durchführen ..."
+          }
+        ],
+        "imageLink": "/images/AudiovisuelleArtefaktAlsMedialeAusdrucksform.PNG"
+      },
+      {
+        "kapitelName": "Teil 2: Audiovisuelle Filmproduktion als gestalterischer, technischer und ökonomischer Medienproduktionsprozess",
+        "kapitelInhalte": [
+          {
+            "name": "Foliensatz",
+            "inhalt": "Foliensatz runterladen"
+          },
+          {
+            "name": "Aufzeichnung",
+            "inhalt": "Auszeichnung ansehen ... (PW:fassbinder)"
+          },
+          {
+            "name": "Quiz",
+            "inhalt": "Quiz #2 durchführen ..."
+          }
+        ],
+        "imageLink": "/images/Teil2AudiovisuelleFilmproduktion.PNG"
+      },
+      {
+        "kapitelName": "Teil 3: Projektorganisation von audiovisuellen Filmproduktion",
+        "kapitelInhalte": [
+          {
+            "name": "Foliensatz",
+            "inhalt": "Foliensatz runterladen"
+          },
+          {
+            "name": "Aufzeichnung",
+            "inhalt": "Auszeichnung ansehen ... (PW:tarantino)"
+          },
+          {
+            "name": "Quiz",
+            "inhalt": "Quiz #3 durchführen ..."
+          }
+        ],
+        "imageLink": "/images/AVRollenUndAkteure.PNG"
+      },
+      {
+        "kapitelName": "Teil 4: Musiktheorie: der perfekte Song",
+        "kapitelInhalte": [
+          {
+            "name": "Foliensatz",
+            "inhalt": "Foliensatz runterladen"
+          },
+          {
+            "name": "Aufzeichnung",
+            "inhalt": "Auszeichnung ansehen ... (PW:beethoven)"
+          },
+          {
+            "name": "Quiz",
+            "inhalt": "Quiz #4 durchführen ..."
+          }
+        ],
+        "imageLink": "/images/AVMusik.PNG"
+      }
+    ],
+    "laufzeit": "3. Semester"
   },
  
   {
-    "name": "Datenbankensysteme",
+    "name": "MIB13: Datenbanken (WS 2022/23)",
     "schwerpunkt": "Web und Mobile Anwendungen",
     "crp": 6,
-    "inhalte": {
-      "infotext": "In diesem Modul werden die theoretischen Grundlagen von Datenmodellierung und Datenbankabfragen behandelt",
-      "ERM": "Beschreibung und Beispiele in Bezug auf das Entitiy Relationship Modells",
-      "SERM": "Beschreibung und Bilder des Structured Entitiy Relationship Modells"
+    "ankündigungen": [
+      { 
+        "text":"... im Modul MIB12 \"Audiovisuelle Medien 2: Filmtechnik + Filmproduktion\" im Wintersemester 2022/23. Wir freuen uns auf ein spannendes Modul mit Ihnen allen. Im Mittelpunkt steht dabei die individuelle Ausdifferenzierung von Kompetenzen in den Bereichen Filmtechnik und Filmproduktion. <br> Das Modul MIB2 \"Audiovisuelle Medien 2: Filmtechnik + Filmproduktion\" setzt sich aus den beiden Modulbestandteilen \"Filmtechnik\" und \"Filmproduktion\" zusammen. Der Modulbestandteil \"Filmtechnik\" findet im Wintersemester 2022/23 im Inverted Classroom Modell statt. Wir haben eine Online-Vorlesungsreihe für Sie vorbereitet, die von wöchentlichen Sprechstunden (online) begleitet wird. Der Modulbestandteil \"Filmproduktion\" wird im Wintersemester 2022/2023 die Nachproduktion eines Musikvideos zum Gegenstand haben. Für die Vorbereitung und Durchführung der Produktion bieten wir Ihnen vorbereitende Workshops an."
+      }
+    ],
+    "lernplattformen": {
+      "miro": "Arbeite mit deinen Kommilitonen auf dem Online-Whiteboard zusammen!"
     },
-    "laufzeit": "3. Semester",
-    "imageUrl": "/images/csm_news-kfru-web_74cb7faf31.jpg"
+    "imageUrl": "/images/csm_news-kfru-web_74cb7faf31.jpg",
+    "modulKapitel": [
+      {
+        "kapitelName": "Sortieren",
+        "kapitelInhalte": [
+          {
+            "name": "Sortieren Intro",
+            "inhalt": "Sortier Intro irgendwas"
+          },
+          {
+            "name": "Quicksort",
+            "inhalt": "Quicksort irgendwas"
+          },
+          {
+            "name": "Zeitfresser",
+            "inhalt": "Zeitfresser irgendwas"
+          },
+          {
+            "name": "Sortieren Outro",
+            "inhalt": "Zeitfresser irgendwas"
+          }
+        ],
+        "imageLink": "@/public/images/Quick.png"
+      },
+      {
+        "kapitelName": "Routenplanung",
+        "kapitelInhalte": [
+          {
+            "name": "Graphentheorie",
+            "inhalt": "Graphentheorie Zeug"
+          },
+          {
+            "name": "Traversierung",
+            "inhalt": "Traversierung irgendwas"
+          },
+          {
+            "name": "Dijkstra",
+            "inhalt": "Dijkstra irgendwas"
+          },
+          {
+            "name": "Implementierung",
+            "inhalt": "Implementierung irgendwas"
+          },
+          {
+            "name": "Route Planning",
+            "inhalt": "Route Planning irgendwas"
+          }
+        ],
+        "imageLink": "../public/images/Quick.png"
+      },
+      {
+        "kapitelName": "Suchmaschinen",
+        "kapitelInhalte": [
+          {
+            "name": "Suchmaschinen",
+            "inhalt": "Suchmaschinen Zeug"
+          },
+          {
+            "name": "Suche",
+            "inhalt": "Suche irgendwas"
+          }
+        ]
+      },
+      {
+        "kapitelName": "Theroetische Informatik",
+        "kapitelInhalte": [
+          {
+            "name": "Theroetische Informatik",
+            "inhalt": "Theroetische Informatik Zeug"
+          },
+          {
+            "name": "Turingmaschine",
+            "inhalt": "Turingmaschinen irgendwas"
+          }
+        ]
+      }
+    ],
+    "laufzeit": "3. Semester"
   }
 ]

@@ -73,8 +73,8 @@
             <v-list-item-title
               :class="
                 hover
-                  ? '  white--text font-weight-bold'
-                  : 'font-weight-bold secondary--text'
+                  ? '  white--text font-weight-bold mt-2'
+                  : 'font-weight-bold secondary--text mt-2'
               "
             >
               Back to Homepage</v-list-item-title
