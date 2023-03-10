@@ -2,6 +2,8 @@
   {
     "name": "MIB15 Theoretische Informatik und Algorithmik (WS 2022/23)",
     "schwerpunkt": "Grundlage",
+    "studyProgram": "Bachelor",
+    "department": "FB 11 - IEM - Informationstechnik-Elektrotechnik-Mechatronik (Fb)",
     "crp": 6,
     "ankündigungen": [
       {
@@ -94,6 +96,8 @@
   {
     "name": "MIB12 Audiovisuelle Medien 2: Filmtechnik + Filmproduktion (WiSe 2022/23)",
     "schwerpunkt": "Grundlage",
+    "studyProgram": "Bachelor",
+    "department": "FB 11 - IEM - Informationstechnik-Elektrotechnik-Mechatronik (Fb)",
     "crp": 6,
     "ankündigungen": [
       { 
@@ -198,11 +202,7 @@
       },
       {
         "name": "Probeklausuren",
-        "links": [
-          "Probeklausur Wintersemester 2022/2023",
-          "Abbildung 1: Technische Spezifikation iPhone 12 Pro",
-          "Abbildung 2: Technische Spezifikation Shure SM7B"
-        ]
+        "text": "<p>Probeklausur Wintersemester 2022/2023</p><p>Abbildung 1: Technische Spezifikation iPhone 12 Pro</p><p>Abbildung 2: Technische Spezifikation Shure SM7B</p>"
       }
     ]
   },
@@ -211,6 +211,8 @@
     "name": "MIB14 Softwareentwicklungsprojekt",
     "schwerpunkt": "Grundlage",
     "crp": 6,
+    "studyProgram": "Bachelor",
+    "department": "FB 11 - IEM - Informationstechnik-Elektrotechnik-Mechatronik (Fb)",
     "ankündigungen": [
       { 
         "text":"... im Modul MIB12 \"Audiovisuelle Medien 2: Filmtechnik + Filmproduktion\" im Wintersemester 2022/23. Wir freuen uns auf ein spannendes Modul mit Ihnen allen. Im Mittelpunkt steht dabei die individuelle Ausdifferenzierung von Kompetenzen in den Bereichen Filmtechnik und Filmproduktion. <p> Das Modul MIB2 \"Audiovisuelle Medien 2: Filmtechnik + Filmproduktion\" setzt sich aus den beiden Modulbestandteilen \"Filmtechnik\" und \"Filmproduktion\" zusammen. Der Modulbestandteil \"Filmtechnik\" findet im Wintersemester 2022/23 im Inverted Classroom Modell statt. Wir haben eine Online-Vorlesungsreihe für Sie vorbereitet, die von wöchentlichen Sprechstunden (online) begleitet wird. Der Modulbestandteil \"Filmproduktion\" wird im Wintersemester 2022/2023 die Nachproduktion eines Musikvideos zum Gegenstand haben. Für die Vorbereitung und Durchführung der Produktion bieten wir Ihnen vorbereitende Workshops an.</p> <p>Die Termine für Sprechstunden und Workshops haben wir für Sie im Kalender des Kurses eingetragen.</p><p>Wir freuen uns auf ein spannendes Semester mit Ihnen, Ihr Team AV, <b>Sebastian Vogt, Benjamin Rupp und Sebastian Rupp</b></p> ",
@@ -308,14 +310,294 @@
     ],
     "laufzeit": "3. Semester"
   },
- 
   {
     "name": "MIB13: Datenbanken (WS 2022/23)",
     "schwerpunkt": "Web und Mobile Anwendungen",
+    "studyProgram": "Bachelor",
+    "department": "FB 11 - IEM - Informationstechnik-Elektrotechnik-Mechatronik (Fb)",
     "crp": 6,
     "ankündigungen": [
       { 
         "text":"... im Modul MIB12 \"Audiovisuelle Medien 2: Filmtechnik + Filmproduktion\" im Wintersemester 2022/23. Wir freuen uns auf ein spannendes Modul mit Ihnen allen. Im Mittelpunkt steht dabei die individuelle Ausdifferenzierung von Kompetenzen in den Bereichen Filmtechnik und Filmproduktion. <br> Das Modul MIB2 \"Audiovisuelle Medien 2: Filmtechnik + Filmproduktion\" setzt sich aus den beiden Modulbestandteilen \"Filmtechnik\" und \"Filmproduktion\" zusammen. Der Modulbestandteil \"Filmtechnik\" findet im Wintersemester 2022/23 im Inverted Classroom Modell statt. Wir haben eine Online-Vorlesungsreihe für Sie vorbereitet, die von wöchentlichen Sprechstunden (online) begleitet wird. Der Modulbestandteil \"Filmproduktion\" wird im Wintersemester 2022/2023 die Nachproduktion eines Musikvideos zum Gegenstand haben. Für die Vorbereitung und Durchführung der Produktion bieten wir Ihnen vorbereitende Workshops an."
+      }
+    ],
+    "lernplattformen": {
+      "miro": "Arbeite mit deinen Kommilitonen auf dem Online-Whiteboard zusammen!"
+    },
+    "imageUrl": "/images/csm_news-kfru-web_74cb7faf31.jpg",
+    "modulKapitel": [
+      {
+        "kapitelName": "Sortieren",
+        "kapitelInhalte": [
+          {
+            "name": "Sortieren Intro",
+            "inhalt": "Sortier Intro irgendwas"
+          },
+          {
+            "name": "Quicksort",
+            "inhalt": "Quicksort irgendwas"
+          },
+          {
+            "name": "Zeitfresser",
+            "inhalt": "Zeitfresser irgendwas"
+          },
+          {
+            "name": "Sortieren Outro",
+            "inhalt": "Zeitfresser irgendwas"
+          }
+        ],
+        "imageLink": "@/public/images/Quick.png"
+      },
+      {
+        "kapitelName": "Routenplanung",
+        "kapitelInhalte": [
+          {
+            "name": "Graphentheorie",
+            "inhalt": "Graphentheorie Zeug"
+          },
+          {
+            "name": "Traversierung",
+            "inhalt": "Traversierung irgendwas"
+          },
+          {
+            "name": "Dijkstra",
+            "inhalt": "Dijkstra irgendwas"
+          },
+          {
+            "name": "Implementierung",
+            "inhalt": "Implementierung irgendwas"
+          },
+          {
+            "name": "Route Planning",
+            "inhalt": "Route Planning irgendwas"
+          }
+        ],
+        "imageLink": "../public/images/Quick.png"
+      },
+      {
+        "kapitelName": "Suchmaschinen",
+        "kapitelInhalte": [
+          {
+            "name": "Suchmaschinen",
+            "inhalt": "Suchmaschinen Zeug"
+          },
+          {
+            "name": "Suche",
+            "inhalt": "Suche irgendwas"
+          }
+        ]
+      },
+      {
+        "kapitelName": "Theroetische Informatik",
+        "kapitelInhalte": [
+          {
+            "name": "Theroetische Informatik",
+            "inhalt": "Theroetische Informatik Zeug"
+          },
+          {
+            "name": "Turingmaschine",
+            "inhalt": "Turingmaschinen irgendwas"
+          }
+        ]
+      }
+    ],
+    "laufzeit": "3. Semester"
+  },
+  {
+    "name": "Datenbanken 2",
+    "schwerpunkt": "Web und Mobile Anwendungen",
+    "studyProgram": "Master",
+    "department": "FB 11 - IEM - Informationstechnik-Elektrotechnik-Mechatronik (Fb)",
+    "crp": 6,
+    "ankündigungen": [
+      { 
+        "text":"... im Modul MIB12 \"Audiovisuelle Medien 2: Filmtechnik + Filmproduktion\" im Wintersemester 2022/23. Wir freuen uns auf ein spannendes Modul mit Ihnen allen. Im Mittelpunkt steht dabei die individuelle Ausdifferenzierung von Kompetenzen in den Bereichen Filmtechnik und Filmproduktion. <br> Das Modul MIB2 \"Audiovisuelle Medien 2: Filmtechnik + Filmproduktion\" setzt sich aus den beiden Modulbestandteilen \"Filmtechnik\" und \"Filmproduktion\" zusammen. Der Modulbestandteil \"Filmtechnik\" findet im Wintersemester 2022/23 im Inverted Classroom Modell statt. Wir haben eine Online-Vorlesungsreihe für Sie vorbereitet, die von wöchentlichen Sprechstunden (online) begleitet wird. Der Modulbestandteil \"Filmproduktion\" wird im Wintersemester 2022/2023 die Nachproduktion eines Musikvideos zum Gegenstand haben. Für die Vorbereitung und Durchführung der Produktion bieten wir Ihnen vorbereitende Workshops an."
+      }
+    ],
+    "lernplattformen": {
+      "miro": "Arbeite mit deinen Kommilitonen auf dem Online-Whiteboard zusammen!"
+    },
+    "imageUrl": "/images/csm_news-kfru-web_74cb7faf31.jpg",
+    "modulKapitel": [
+      {
+        "kapitelName": "Sortieren",
+        "kapitelInhalte": [
+          {
+            "name": "Sortieren Intro",
+            "inhalt": "Sortier Intro irgendwas"
+          },
+          {
+            "name": "Quicksort",
+            "inhalt": "Quicksort irgendwas"
+          },
+          {
+            "name": "Zeitfresser",
+            "inhalt": "Zeitfresser irgendwas"
+          },
+          {
+            "name": "Sortieren Outro",
+            "inhalt": "Zeitfresser irgendwas"
+          }
+        ],
+        "imageLink": "@/public/images/Quick.png"
+      },
+      {
+        "kapitelName": "Routenplanung",
+        "kapitelInhalte": [
+          {
+            "name": "Graphentheorie",
+            "inhalt": "Graphentheorie Zeug"
+          },
+          {
+            "name": "Traversierung",
+            "inhalt": "Traversierung irgendwas"
+          },
+          {
+            "name": "Dijkstra",
+            "inhalt": "Dijkstra irgendwas"
+          },
+          {
+            "name": "Implementierung",
+            "inhalt": "Implementierung irgendwas"
+          },
+          {
+            "name": "Route Planning",
+            "inhalt": "Route Planning irgendwas"
+          }
+        ],
+        "imageLink": "../public/images/Quick.png"
+      },
+      {
+        "kapitelName": "Suchmaschinen",
+        "kapitelInhalte": [
+          {
+            "name": "Suchmaschinen",
+            "inhalt": "Suchmaschinen Zeug"
+          },
+          {
+            "name": "Suche",
+            "inhalt": "Suche irgendwas"
+          }
+        ]
+      },
+      {
+        "kapitelName": "Theroetische Informatik",
+        "kapitelInhalte": [
+          {
+            "name": "Theroetische Informatik",
+            "inhalt": "Theroetische Informatik Zeug"
+          },
+          {
+            "name": "Turingmaschine",
+            "inhalt": "Turingmaschinen irgendwas"
+          }
+        ]
+      }
+    ],
+    "laufzeit": "3. Semester"
+  },
+  {
+    "name": "Kontinuumsmechanik",
+    "schwerpunkt": "Wahlpflicht",
+    "studyProgram": "Master",
+    "department": "FB 03 - ME - Maschinenbau und Energietechnik (Gi)",
+    "crp": 5,
+    "ankündigungen": [
+      {
+        "text": "Bitte laden Sie sich die apk-Dateien herunter!"
+      }
+    ],
+    "lernplattformen": {
+      "miro": "Arbeite mit deinen Kommilitonen auf dem Online-Whiteboard zusammen!"
+    },
+    "imageUrl": "/images/csm_news-kfru-web_74cb7faf31.jpg",
+    "modulKapitel": [
+      {
+        "kapitelName": "Sortieren",
+        "kapitelInhalte": [
+          {
+            "name": "Sortieren Intro",
+            "inhalt": "Sortier Intro irgendwas"
+          },
+          {
+            "name": "Quicksort",
+            "inhalt": "Quicksort irgendwas"
+          },
+          {
+            "name": "Zeitfresser",
+            "inhalt": "Zeitfresser irgendwas"
+          },
+          {
+            "name": "Sortieren Outro",
+            "inhalt": "Zeitfresser irgendwas"
+          }
+        ],
+        "imageLink": "@/public/images/Quick.png"
+      },
+      {
+        "kapitelName": "Routenplanung",
+        "kapitelInhalte": [
+          {
+            "name": "Graphentheorie",
+            "inhalt": "Graphentheorie Zeug"
+          },
+          {
+            "name": "Traversierung",
+            "inhalt": "Traversierung irgendwas"
+          },
+          {
+            "name": "Dijkstra",
+            "inhalt": "Dijkstra irgendwas"
+          },
+          {
+            "name": "Implementierung",
+            "inhalt": "Implementierung irgendwas"
+          },
+          {
+            "name": "Route Planning",
+            "inhalt": "Route Planning irgendwas"
+          }
+        ],
+        "imageLink": "../public/images/Quick.png"
+      },
+      {
+        "kapitelName": "Suchmaschinen",
+        "kapitelInhalte": [
+          {
+            "name": "Suchmaschinen",
+            "inhalt": "Suchmaschinen Zeug"
+          },
+          {
+            "name": "Suche",
+            "inhalt": "Suche irgendwas"
+          }
+        ]
+      },
+      {
+        "kapitelName": "Theroetische Informatik",
+        "kapitelInhalte": [
+          {
+            "name": "Theroetische Informatik",
+            "inhalt": "Theroetische Informatik Zeug"
+          },
+          {
+            "name": "Turingmaschine",
+            "inhalt": "Turingmaschinen irgendwas"
+          }
+        ]
+      }
+    ],
+    "laufzeit": "3. Semester"
+  },
+  {
+    "name": "Baukosten-Controlling",
+    "schwerpunkt": "Grundlage",
+    "studyProgram": "Master",
+    "department": "FB 01 - BAU - Bauwesen (Gi)",
+    "crp": 6,
+    "ankündigungen": [
+      {
+        "text": "Bitte laden Sie sich die apk-Dateien herunter!"
       }
     ],
     "lernplattformen": {

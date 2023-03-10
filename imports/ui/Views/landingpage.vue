@@ -56,7 +56,7 @@
             </div>
           </v-sheet>
         </div>
-        <div class="mt-15 ml-12 d-flex flex-column">
+        <div class="mt-15 ml-12">
           <div
             class="d-flex font-weight-bold text-h4"
             :style="{ color: '#4a5c66' }"
@@ -74,7 +74,7 @@
             Don't let your schedule run you, run your schedule!
           </div>
         </div>
-        <div>
+        <div class="mt-15 ml-12">
           <v-card
           :width="$vuetify.breakpoint.xs? '90vw':'30em'"
             class="d-flex flex-column rounded-xl mt-16"

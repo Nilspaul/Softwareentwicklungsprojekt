@@ -127,6 +127,18 @@
         </v-row>
       </v-sheet>
     </v-row>
+
+    <div v-for="content in currentModule.bottomContent">
+      <v-sheet class="mt-10 ml-5 secondary--text">
+        <p class="text-h4">{{ content.name }}</p>
+        <div
+          class="d-flex justify-space-between flex-wrap"
+        > 
+          <p v-html="content.text"></p>
+        </div>
+      </v-sheet>
+      
+    </div>
   </div>
 </template>
 
