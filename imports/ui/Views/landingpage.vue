@@ -216,8 +216,6 @@ export default {
 
       this.toDos.forEach((toDo, index) => {
         if (index < 5) {
-          console.log(index)
-
           this.arrayEvents.push(moment(new Date(toDo.start)).format("YYYY-MM-DD"));
           toDo.start = moment(new Date(toDo.start)).format("DD.MM.YY hh:mm");
         }

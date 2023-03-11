@@ -10,24 +10,6 @@ import dayjs from "dayjs";
 const SEED_USERNAME = "Nils";
 const SEED_PASSWORD = "1234";
 const SEED_EMAIL = "nils.paul@iem.thm.de";
-const startDate = new Date();
-
-const myToDos = {
-  toDos: [
-    {
-      _id: Random.id(),
-      name: "Mein ToDo",
-      note: "Mache etwas sinnvolles",
-      start: startDate,
-      end: dayjs(startDate).add(1, 'day').$d,
-      priority: 'High',
-      timed: false,
-      description: 'test'
-    },
-  ],
-  moduleName: "MyModuleName",
-  public: true,
-};
 
 Meteor.startup(() => {
   Accounts.emailTemplates.siteName = "THMStudyPlanner";
@@ -51,11 +33,7 @@ Meteor.startup(() => {
       email: SEED_EMAIL,
     });
   }
-/*
-  if (!ToDos.findOne({ moduleName: myToDos.moduleName })) {
-    ToDos.insert({ ...myToDos });
-  }
-*/
+
   modules.forEach((module) => {
     if (!Modules.findOne({ name: module.name })) {
       Modules.insert({ ...module });

@@ -40,14 +40,13 @@ if (Meteor.isServer) {
         throw new Meteor.Error("RESET_FAILED")
       }
     }
-
     
     updateLastLogin() {
-      Meteor.users.update({_id: Meteor.userId()}, {$set: {"lastLogin": date()}})
+      Meteor.users.update({_id: Meteor.userId()}, {$set: {"lastLogin": new Date()}})
     }
 
     setFirstLogin() {
-      Meteor.users.update({_id: Meteor.userId(), 'firstLogin': {$exists: false}}, {$set: {"firstLogin": dayjs(new Date()).format("YYYY-MM-DD")}})
+      Meteor.users.update({_id: Meteor.userId(), "firstLogin": {$exists: false}}, {$set: {"firstLogin": new Date()}})
     }
   }
 

@@ -72,9 +72,12 @@ if (Meteor.isServer) {
               }
             Object.assign(toDo, { creator: Meteor.userId() });
             Object.assign(toDo, { _id: Random.id() });
-            console.log(toDo)
 
             return ToDos.insert({...toDo})
+        }
+
+        findToDoByName(name) {
+            return ToDos.find({name: name}).fetch();
         }
     }
     toDoManagement = new ToDoManagement();

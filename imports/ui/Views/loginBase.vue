@@ -159,7 +159,6 @@ export default {
       });
     },
     sendEmail() {
-      console.log(this.email);
       Meteor.call("users.resetPassword", this.email, (error, result) => {
         if (error) {
           console.log(error);
