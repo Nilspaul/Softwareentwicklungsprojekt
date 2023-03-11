@@ -9,99 +9,101 @@
         Module Management
       </div>
     </div>
-    <div class="d-flex flex-wrap justify-center">
-      <v-sheet width="30em">
-        <div class="font-weight-bold secondary--text">Department</div>
-        <v-autocomplete
-          outlined
-          v-model="department"
-          :items="departments"
-          placeholder="Select..."
-          required
-        ></v-autocomplete>
-      </v-sheet>
-      <v-sheet class="ml-4" width="30em">
-        <div class="font-weight-bold secondary--text">Study programm</div>
-        <v-autocomplete
-          outlined
-          v-model="studyProgram"
-          :items="studyPrograms"
-          placeholder="Select..."
-          required
-        ></v-autocomplete>
-      </v-sheet>
-
-      <v-sheet width="61em">
-        <div class="font-weight-bold secondary--text">Search module</div>
-        <v-text-field outlined v-model="searchInput"></v-text-field>
-      </v-sheet>
-
-      <div class="d-flex flex-wrap justify-center">
-        <v-card
-          v-for="(module, index) in modules"
-          height="15em"
-          width="30em"
-          class="mr-4 mb-4"
-        >
-          <v-img
-            @click="changeOverlayVal(index)"
-            :src="module.imageUrl"
-            height="100%"
-            width="100%"
-            :lazy-src="module.imageUrl"
-          >
-            <v-icon
-              color="primary"
-              class="ma-3"
-              style="transform: scale(2)"
-              v-if="checkIfSubscribed(module)"
-              >mdi-check-circle-outline</v-icon
-            >
-            <div v-if="!overlay[index]" class="white--text text-h5 modulebar">
-              <div class="ml-4">{{ module.name }}</div>
-            </div>
-          </v-img>
-          <v-overlay absolute :value="overlay[index]" class="d-flex align-end">
-            <div class="mb-16">
-              <div class="d-flex font-weight-bold">
-                <div>Aktuelle Themen der Energietechnik (SoSe20)</div>
-                <v-icon class="ml-2">mdi-information-outline</v-icon>
-              </div>
-              <div class="font-weight-bold">
-                <div>Teacher: Schröder, Cathrin</div>
-                <div>Teacher: Stetz, Thomas</div>
-              </div>
-            </div>
-
-            <div class="d-flex">
-              <div v-if="!checkIfSubscribed(module)">
-                <v-text-field
-                  label="Enrollmentkey"
-                  class="enrollField"
-                  outlined
-                  dense
-                ></v-text-field>
-              </div>
-              <v-btn
-                color="secondary"
-                class="text-h6 unsubscribeBtn mb-4"
-                v-if="checkIfSubscribed(module)"
-                @click="manageSubscription(module)"
-              >
-                DISENROLL
-              </v-btn>
-              <v-btn
-                v-else
-                color="secondary"
-                class="text-h6"
-                @click="manageSubscription(module)"
-              >
-                ENROLL</v-btn
-              >
-            </div>
-          </v-overlay>
-        </v-card>
+    <div class="d-flex flex-column flex-wrap">
+      <div class="d-flex justify-center">
+        <v-sheet width="30em">
+          <div class="font-weight-bold secondary--text">Department</div>
+          <v-autocomplete
+            outlined
+            v-model="department"
+            :items="departments"
+            placeholder="Select..."
+            required
+          ></v-autocomplete>
+        </v-sheet>
+        <v-sheet class="ml-4" width="30em">
+          <div class="font-weight-bold secondary--text">Study programm</div>
+          <v-autocomplete
+            outlined
+            v-model="studyProgram"
+            :items="studyPrograms"
+            placeholder="Select..."
+            required
+          ></v-autocomplete>
+        </v-sheet>
       </div>
+      <div class="d-flex justify-center">
+        <v-sheet width="61em">
+          <div class="font-weight-bold secondary--text">Search module</div>
+          <v-text-field outlined v-model="searchInput"></v-text-field>
+        </v-sheet>
+      </div>
+    </div>
+    <div class="d-flex flex-wrap justify-center">
+      <v-card
+        v-for="(module, index) in modules"
+        height="15em"
+        width="30em"
+        class="mr-4 mb-4"
+      >
+        <v-img
+          @click="changeOverlayVal(index)"
+          :src="module.imageUrl"
+          height="100%"
+          width="100%"
+          :lazy-src="module.imageUrl"
+        >
+          <v-icon
+            color="primary"
+            class="ma-3"
+            style="transform: scale(2)"
+            v-if="checkIfSubscribed(module)"
+            >mdi-check-circle-outline</v-icon
+          >
+          <div v-if="!overlay[index]" class="white--text text-h5 modulebar">
+            <div class="ml-4">{{ module.name }}</div>
+          </div>
+        </v-img>
+        <v-overlay absolute :value="overlay[index]" class="d-flex align-end">
+          <div class="mb-16">
+            <div class="d-flex font-weight-bold">
+              <div>Aktuelle Themen der Energietechnik (SoSe20)</div>
+              <v-icon class="ml-2">mdi-information-outline</v-icon>
+            </div>
+            <div class="font-weight-bold">
+              <div>Teacher: Schröder, Cathrin</div>
+              <div>Teacher: Stetz, Thomas</div>
+            </div>
+          </div>
+
+          <div class="d-flex">
+            <div v-if="!checkIfSubscribed(module)">
+              <v-text-field
+                label="Enrollmentkey"
+                class="enrollField"
+                outlined
+                dense
+              ></v-text-field>
+            </div>
+            <v-btn
+              color="secondary"
+              class="text-h6 unsubscribeBtn mb-4"
+              v-if="checkIfSubscribed(module)"
+              @click="manageSubscription(module)"
+            >
+              DISENROLL
+            </v-btn>
+            <v-btn
+              v-else
+              color="secondary"
+              class="text-h6"
+              @click="manageSubscription(module)"
+            >
+              ENROLL</v-btn
+            >
+          </div>
+        </v-overlay>
+      </v-card>
     </div>
   </div>
 </template>

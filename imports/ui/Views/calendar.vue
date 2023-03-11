@@ -211,8 +211,11 @@ export default {
 <style scoped>
 .v-calendar {
   background-color: #4a5c66 !important;
-  height: 50em !important;
+  height: 50vh !important;
   margin-bottom: 6em !important;
+  margin-left: 3em !important;
+  margin-right: 3em !important;
+
 }
 .calenderView {
   margin-top: 1em !important;

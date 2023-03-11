@@ -2,6 +2,7 @@ import { Accounts } from "meteor/accounts-base";
 import { Meteor } from "meteor/meteor";
 import { Email } from "meteor/email";
 import { check } from "meteor/check";
+import dayjs from "dayjs";
 
 let usersManagement;
 
@@ -19,7 +20,7 @@ if (Meteor.isServer) {
           city: user.city||'',
           state: user.state||'',
           zip: user.zip||'',
-          country: user.country||''
+          country: user.country||'',
         }
       });
     }
@@ -39,7 +40,17 @@ if (Meteor.isServer) {
         throw new Meteor.Error("RESET_FAILED")
       }
     }
+
+    
+    updateLastLogin() {
+      Meteor.users.update({_id: Meteor.userId()}, {$set: {"lastLogin": date()}})
+    }
+
+    setFirstLogin() {
+      Meteor.users.update({_id: Meteor.userId(), 'firstLogin': {$exists: false}}, {$set: {"firstLogin": dayjs(new Date()).format("YYYY-MM-DD")}})
+    }
   }
+
 
   usersManagement = new UsersManagement();
 }
