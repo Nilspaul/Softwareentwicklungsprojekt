@@ -7,8 +7,8 @@ Meteor.methods({
     'toDo.delete' (toDo) {
         toDoManagement.delete(toDo);
     },
-    'toDo.updateSubToDo' (toDo) {
-        toDoManagement.updateSubToDo(toDo)
+    'toDo.update' (toDo) {
+        toDoManagement.update(toDo)
     },
     'toDo.createMyToDo' (toDo) {
         toDoManagement.createMyToDo(toDo)

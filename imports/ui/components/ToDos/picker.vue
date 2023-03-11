@@ -149,10 +149,10 @@ export default {
     },
   },
   watch: {
-    formattedEndDate: emitDates,
-    formattedStartDate: emitDates,
-    startTime: emitDates,
-    endTime: emitDates,
+    formattedEndDate: this.emitDates,
+    formattedStartDate: this.emitDates,
+    startTime: this.emitDates,
+    endTime: this.emitDates,
   },
 };
 </script>
