@@ -86,12 +86,20 @@
                   
                 </v-toolbar-title>
                 <v-spacer></v-spacer>
-                <v-btn icon>
-                  <v-icon>mdi-heart</v-icon>
-                </v-btn>
-                <v-btn icon>
-                  <v-icon>mdi-dots-vertical</v-icon>
-                </v-btn>
+                <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            dark
+            icon
+            v-bind="attrs"
+            v-on="on"
+          >
+          <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+        <v-btn dark color="red" @click="deleteToDo(selectedEvent); selectedOpen = false">Delete ToDo</v-btn>
+      </v-menu>
+                
               </v-toolbar>
               <v-card-text class="d-flex flex-column">
                 <p class="font-weight-bold">Zeitraum</p>
@@ -100,7 +108,7 @@
                 <span>   {{ selectedEvent.description }}</span>
               </v-card-text>
               <v-card-actions>
-                <v-btn text color="secondary" @click="selectedOpen = false">
+                <v-btn text class="red--text" @click="selectedOpen = false">
                   Cancel
                 </v-btn>
               </v-card-actions>
@@ -139,17 +147,6 @@ export default {
     selectedElement: null,
     selectedOpen: false,
     events: [],
-    colors: ["blue", "red", "orange"],
-    names: [
-      "Meeting",
-      "Holiday",
-      "PTO",
-      "Travel",
-      "Event",
-      "Birthday",
-      "Conference",
-      "Party",
-    ],
   }),
   mounted() {
     this.$refs.calendar.checkChange();
@@ -186,6 +183,10 @@ export default {
       }
       nativeEvent.stopPropagation();
     },
+    deleteToDo(event) {
+      let toDo = this.toDos[this.toDos.findIndex((toDo) => toDo.name === event.name)]
+      Meteor.call("toDo.delete", toDo);
+    }
   },
   created() {
   Tracker.autorun(() => {

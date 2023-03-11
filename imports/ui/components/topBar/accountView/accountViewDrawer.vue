@@ -65,11 +65,6 @@ export default {
         icon: "mdi-account",
         link: "/profile"
       },
-      {
-        title: "Planner",
-        icon: "mdi-calendar",
-        link: "/calendar"
-      },
     ],
   }),
   methods: {

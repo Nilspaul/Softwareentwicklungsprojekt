@@ -12,5 +12,8 @@ Meteor.methods({
     },
     'toDo.createMyToDo' (toDo) {
         toDoManagement.createMyToDo(toDo)
+    },
+    'toDo.findToDoByName' (name) {
+        return toDoManagement.findToDoByName(name)
     }
 });

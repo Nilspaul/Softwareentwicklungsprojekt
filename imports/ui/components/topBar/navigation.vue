@@ -18,70 +18,24 @@
       </div>
     </div>
     <v-divider></v-divider>
-    <p class="listHeader secondary--text">My ToDos</p>
-    <toDoBase></toDoBase>
-    <!--
-    <v-row align="center">
-      <v-col cols="12" sm="6">
-        <v-subheader :class="[{ textSizeMobile: $vuetify.breakpoint.mobile }]"
-          >Filter options:</v-subheader
-        >
-      </v-col>
-      <v-col cols="12" sm="6">
-        <v-select
-          :class="[
-            { 'display-5': $vuetify.breakpoint.sm },
-            { 'display-5': !$vuetify.breakpoint.mobile },
-          ]"
-          v-model="e6"
-          :items="filterOptions"
-          label="Select"
-          @input="filterModules()"
-          persistent-hint
-        >
-        </v-select>
-      </v-col>
-    </v-row>
-    <v-divider></v-divider>
-    -->
+
     <div class="d-flex secondary--text pb-3">
       <div class="listHeader">My Modules</div>
+      <!--
       <v-btn
         color="primary"
         class="boldLink mt-3 ml-10"
         plain
         text
-        @click="toModuleManagement()"
+       
       >
         Manage my Modules
       </v-btn>
+      -->
     </div>
 
     <v-divider></v-divider>
-    <v-hover v-slot="{ hover }">
-        <v-list-item
-          class="moduleList"
-          :style="{
-            'background-color': hover ? '#80ba24' : 'white',
-          }"
-          link
-          @click="setLandingPage()
-            drawer = false;
-          "
-        >
-          <v-list-item-content>
-            <v-list-item-title
-              :class="
-                hover
-                  ? '  white--text font-weight-bold mt-2'
-                  : 'font-weight-bold secondary--text mt-2'
-              "
-            >
-              Back to Homepage</v-list-item-title
-            >
-          </v-list-item-content>
-        </v-list-item>
-      </v-hover>
+
     <v-list dense>
       <v-hover v-for="module in modules" v-slot="{ hover }">
         <v-list-item
@@ -110,6 +64,92 @@
         </v-list-item>
       </v-hover>
     </v-list>
+
+    <div
+      v-if="modules.length === 0"
+      dense
+      link
+      class="text-h7 secondary--text ml-5"
+    >
+      You dont have subscribed any modules yet! Check out the modulemanagement
+      via the Quicklinks down below!
+    </div>
+
+    <div class="quicklinks listHeader secondary--text">
+      <div>Quicklinks</div>
+      <v-hover v-slot="{ hover }">
+        <v-list-item
+          class="moduleList"
+          :style="{
+            'background-color': hover ? '#80ba24' : 'white',
+          }"
+          link
+          @click="
+            setLandingPage();
+            drawer = false;
+          "
+        >
+          <v-list-item-content>
+            <v-list-item-title
+              :class="
+                hover
+                  ? '  white--text font-weight-bold mt-2'
+                  : 'font-weight-bold secondary--text mt-2'
+              "
+            >
+              Back to Homepage</v-list-item-title
+            >
+          </v-list-item-content>
+        </v-list-item>
+      </v-hover>
+      <v-list dense>
+        <v-hover v-slot="{ hover }">
+          <v-list-item
+            class="moduleList"
+            :style="{
+              'background-color': hover ? ' #4a5c66' : 'white',
+            }"
+            @click="setPlanner()"
+          >
+            <v-list-item-content>
+              <v-list-item-title
+                :class="
+                  hover
+                    ? ' #4a5c66 white--text font-weight-bold'
+                    : 'font-weight-bold secondary--text'
+                "
+              >
+                Planner</v-list-item-title
+              >
+            </v-list-item-content>
+          </v-list-item>
+        </v-hover>
+        <v-hover v-slot="{ hover }">
+          <v-list-item
+            class="moduleList"
+            :style="{
+              'background-color': hover ? ' #4a5c66' : 'white',
+            }"
+            @click="
+              toModuleManagement();
+              drawer = false;
+            "
+          >
+            <v-list-item-content>
+              <v-list-item-title
+                :class="
+                  hover
+                    ? ' #4a5c66 white--text font-weight-bold'
+                    : 'font-weight-bold secondary--text'
+                "
+              >
+                ModuleManagement</v-list-item-title
+              >
+            </v-list-item-content>
+          </v-list-item>
+        </v-hover>
+      </v-list>
+    </div>
   </v-navigation-drawer>
 </template>
 
@@ -138,7 +178,7 @@ export default {
       this.drawer = data;
     },
     openModule(module) {
-      this.$store.dispatch('setMyObject', module);
+      this.$store.dispatch("setMyObject", module);
       this.$router.push({
         name: "mainpage",
         params: { module: { ...module }, moduleName: module.name },
@@ -153,7 +193,12 @@ export default {
       this.$router.push({
         path: "/landingpage",
       });
-    }
+    },
+    setPlanner() {
+      this.$router.push({
+        path: "/calendar",
+      });
+    },
   },
   created() {
     Tracker.autorun(() => {
@@ -183,5 +228,14 @@ export default {
   padding-top: 1em !important;
   padding-left: 1em !important;
   font-size: 1.2em !important;
+}
+.quicklinks {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
 }
 </style>

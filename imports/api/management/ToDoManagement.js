@@ -42,20 +42,11 @@ if (Meteor.isServer) {
                 return ToDos.update({ _id: myToDo._id }, { $set: { toDos: myToDo.toDos } })
             })
         }
-
+*/
         delete(toDo) {
-            let moduleToDos = ToDos.find().fetch();
-            moduleToDos.forEach((moduleToDo) => {
-                let toDoIndex = moduleToDo.toDos.findIndex(
-                    (toDoToDelete) => toDo.name === toDoToDelete.name
-                );
-                if (toDoIndex !== -1) {
-                    moduleToDo.toDos.splice(toDoIndex, 1);
-                    return ToDos.update({ _id: moduleToDo._id }, { $set: { toDos: moduleToDo.toDos } })
-                }
-            });
+           ToDos.remove({_id: toDo._id})
         }
-        */
+        
         createMyToDo(toDo) {
             switch (toDo.priority) {
                 case "High":

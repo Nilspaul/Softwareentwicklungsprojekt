@@ -4,7 +4,7 @@
       <div
         align-center
         :style="{ color: '#4a5c66' }"
-        class="text-h3 font-weight-bold mt-10"
+        class="text-h3 font-weight-bold mt-10 mb-8"
       >
         Module Management
       </div>
