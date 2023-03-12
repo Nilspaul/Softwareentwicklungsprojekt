@@ -21,17 +21,6 @@
 
     <div class="d-flex secondary--text pb-3">
       <div class="listHeader">My Modules</div>
-      <!--
-      <v-btn
-        color="primary"
-        class="boldLink mt-3 ml-10"
-        plain
-        text
-       
-      >
-        Manage my Modules
-      </v-btn>
-      -->
     </div>
 
     <v-divider></v-divider>
@@ -89,16 +78,19 @@
             drawer = false;
           "
         >
-          <v-list-item-content>
+          <v-icon :color="hover ? 'white' : 'secondary'" class="mr-5"
+            >mdi-link-variant</v-icon
+          >
+          <v-list-item-content class="d-flex">
             <v-list-item-title
               :class="
                 hover
-                  ? '  white--text font-weight-bold mt-2'
-                  : 'font-weight-bold secondary--text mt-2'
+                  ? 'white--text font-weight-bold'
+                  : 'font-weight-bold secondary--text'
               "
             >
-              Back to Homepage</v-list-item-title
-            >
+              <div>Back to Homepage</div>
+            </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-hover>
@@ -110,6 +102,9 @@
               'background-color': hover ? ' #4a5c66' : 'white',
             }"
             @click="setPlanner()"
+          >
+          <v-icon :color="hover ? 'white' : 'secondary'" class="mr-5"
+            >mdi-calendar-clock-outline</v-icon
           >
             <v-list-item-content>
               <v-list-item-title
@@ -134,6 +129,9 @@
               toModuleManagement();
               drawer = false;
             "
+          >
+          <v-icon :color="hover ? 'white' : 'secondary'" class="mr-5"
+            >mdi-notebook-plus</v-icon
           >
             <v-list-item-content>
               <v-list-item-title

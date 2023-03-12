@@ -29,7 +29,7 @@
                     :style="{
                       color: hover ? 'white' : '#80ba24',
                     }"
-                    >mdi-notebook</v-icon
+                    >mdi-calendar-clock-outline</v-icon
                   >
                   <div>Go To My Planner</div>
                 </v-btn>
@@ -48,7 +48,7 @@
                     :style="{
                       color: hover ? 'white' : '#80ba24',
                     }"
-                    >mdi-unfold-more-horizontal</v-icon
+                    >mdi-notebook-plus</v-icon
                   >
                   <div>Module Management</div>
                 </v-btn>
@@ -101,7 +101,7 @@
       </v-sheet>
       <v-sheet :width="$vuetify.breakpoint.xs ? '90vw' : '30em'">
         <div>
-          <v-sheet class="mt-10 mb-10">
+          <v-sheet class="mt-14 mb-10">
             <div class="d-flex flex-column">
               <div
                 class="font-weight-bold text-h4 d-flex mb-2"
@@ -238,7 +238,6 @@ export default {
 
       this.toDos.forEach((toDo, index) => {
         if (index < 5) {
-          console.log(toDo);
           this.arrayEvents.push(
             moment(new Date(toDo.start)).format("YYYY-MM-DD")
           );
