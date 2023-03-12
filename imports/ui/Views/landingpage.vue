@@ -5,12 +5,12 @@
         <div>
           <v-sheet class="ma-2 pa-2 mt-10 ml-10 mb-10">
             <div class="d-flex">
-              <v-icon class="mr-2 mb-10" size="35" color="secondary" 
+              <v-icon class="mr-2 mb-10" size="35" color="secondary"
                 >mdi-checkbox-marked-circle-outline</v-icon
               >
               <div
                 class="font-weight-bold text-h4"
-                :style="{ color: '#4a5c66', 'max-width': '35vw'}"
+                :style="{ color: '#4a5c66', 'max-width': '35vw' }"
               >
                 Organize your classes, tasks and exams
               </div>
@@ -76,7 +76,7 @@
         </div>
         <div class="mt-15 ml-12">
           <v-card
-          :width="$vuetify.breakpoint.xs? '90vw':'30em'"
+            :width="$vuetify.breakpoint.xs ? '90vw' : '30em'"
             class="d-flex flex-column rounded-xl mt-16"
             color="secondary"
             outlined
@@ -92,26 +92,31 @@
             </v-card-title>
             <hr class="ml-4 mr-4 mb-2" color="#80ba24" />
             <div class="white--text ml-8 importantLinks">
-              <p v-for="link in links" @click="setRoute(link.link)"> {{ link.name }}</p>
+              <p v-for="link in links" @click="setRoute(link.link)">
+                {{ link.name }}
+              </p>
             </div>
           </v-card>
         </div>
       </v-sheet>
-      <v-sheet :width="$vuetify.breakpoint.xs? '90vw':'30em'">
+      <v-sheet :width="$vuetify.breakpoint.xs ? '90vw' : '30em'">
         <div>
           <v-sheet class="mt-10 mb-10">
             <div class="d-flex flex-column">
               <div
-                class="font-weight-bold text-h4"
+                class="font-weight-bold text-h4 d-flex mb-2"
                 :style="{ color: '#4a5c66' }"
               >
-                Calendar
+                <v-icon color="secondary" size="40" class="mr-4"
+                  >mdi-calendar-multiselect</v-icon
+                >
+                <div>Calendar</div>
               </div>
               <v-date-picker
                 class="rounded-xl"
                 dark
                 color="secondary"
-                :width="$vuetify.breakpoint.xs? '90vw':'30em'"
+                :width="$vuetify.breakpoint.xs ? '90vw' : '30em'"
                 v-model="date1"
                 :events="arrayEvents"
                 event-color="green lighten-1"
@@ -131,20 +136,24 @@
               :style="{ color: '#4a5c66' }"
               class="text-h5 white--text"
             >
-            <div class="d-flex"> 
-                          <v-icon color="white" class="mr-10"
-                >mdi-format-list-checks</v-icon
-              >
-              <div>
-                <div>Your 5 upcoming To-Do's</div>
-                <a color="white" class="white--text text-subtitle-2" href="/calendar">(Look into your planner for more details)</a>
+              <div class="d-flex">
+                <v-icon color="white" class="mr-10"
+                  >mdi-format-list-checks</v-icon
+                >
+                <div>
+                  <div>Your 5 upcoming To-Do's</div>
+                  <a
+                    color="white"
+                    class="white--text text-subtitle-2"
+                    href="/calendar"
+                    >(Look into your planner for more details)</a
+                  >
+                </div>
               </div>
-            </div>
-
             </v-card-title>
             <hr class="ml-4 mr-4 mb-2" color="white" />
             <div class="white--text ml-8 upcomingToDos">
-              <p v-for="(toDo, index) in toDos" v-if="index<5">
+              <p v-for="(toDo, index) in toDos" v-if="index < 5">
                 {{ toDo.name + " " + toDo.start + " Uhr" }}
               </p>
             </div>
@@ -167,11 +176,16 @@ export default {
     toDos: [],
     toDoDates: [],
     links: [
-      {name: "Prüfungs- und Studienausschüsse", link: "https://www.thm.de/site/hochschule/zentrale-bereiche/pruefungsamt/pruefungsausschuesse.html"},
-      {name: "Moodle", link: "https://moodle.thm.de/login/index.php"},
-      {name: "E-Campus", link: "https://ecampus.thm.de/service/pages/cs/sys/portal/hisinoneStartPage.faces"},
-      {name: "Organizer", link: "https://www.thm.de/organizer/"}
-
+      {
+        name: "Prüfungs- und Studienausschüsse",
+        link: "https://www.thm.de/site/hochschule/zentrale-bereiche/pruefungsamt/pruefungsausschuesse.html",
+      },
+      { name: "Moodle", link: "https://moodle.thm.de/login/index.php" },
+      {
+        name: "E-Campus",
+        link: "https://ecampus.thm.de/service/pages/cs/sys/portal/hisinoneStartPage.faces",
+      },
+      { name: "Organizer", link: "https://www.thm.de/organizer/" },
     ],
     date1: new Date().toISOString().substr(0, 10),
     date2: new Date().toISOString().substr(0, 10),
@@ -194,8 +208,8 @@ export default {
       return false;
     },
     setRoute(link) {
-      window.open(link, '_blank')
-    }
+      window.open(link, "_blank");
+    },
   },
   computed: {
     currentModule() {
@@ -224,8 +238,10 @@ export default {
 
       this.toDos.forEach((toDo, index) => {
         if (index < 5) {
-          console.log(toDo)
-          this.arrayEvents.push(moment(new Date(toDo.start)).format("YYYY-MM-DD"));
+          console.log(toDo);
+          this.arrayEvents.push(
+            moment(new Date(toDo.start)).format("YYYY-MM-DD")
+          );
           toDo.start = dayjs(toDo.start).format("DD.MM.YYYY HH:mm");
         }
       });
@@ -235,7 +251,6 @@ export default {
 </script>
 
 <style>
-
 .importantLinks p:hover {
   text-decoration: underline !important;
 }
@@ -246,8 +261,8 @@ export default {
   margin-top: 3.3em !important;
   margin-left: 5em !important;
 }
-.v-date-picker-title__date>div {
-    position: relative;
-    font-size: 20px;
+.v-date-picker-title__date > div {
+  position: relative;
+  font-size: 20px;
 }
 </style>
