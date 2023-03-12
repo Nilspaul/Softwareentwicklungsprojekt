@@ -36,7 +36,7 @@
             "inhalt": "Zeitfresser irgendwas"
           }
         ],
-        "imageLink": "@/public/images/Quick.png"
+        "imageLink": "/images/Quick.png"
       },
       {
         "kapitelName": "Routenplanung",
@@ -62,7 +62,7 @@
             "inhalt": "Route Planning irgendwas"
           }
         ],
-        "imageLink": "../public/images/Quick.png"
+        "imageLink": "/images/Quick.png"
       },
       {
         "kapitelName": "Suchmaschinen",

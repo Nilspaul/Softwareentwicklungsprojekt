@@ -92,10 +92,7 @@
             </v-card-title>
             <hr class="ml-4 mr-4 mb-2" color="#80ba24" />
             <div class="white--text ml-8 importantLinks">
-              <p>Prüfungs- und Studienausschüsse</p>
-              <p>Moodle</p>
-              <p>E-Campus</p>
-              <p>Klausurplan</p>
+              <p v-for="link in links" @click="setRoute(link.link)"> {{ link.name }}</p>
             </div>
           </v-card>
         </div>
@@ -139,8 +136,8 @@
                 >mdi-format-list-checks</v-icon
               >
               <div>
-                <p>Your 5 upcoming To-Do's</p>
-                <p class="text-subtitle-2">(Look into your planner for more details)</p>
+                <div>Your 5 upcoming To-Do's</div>
+                <a color="white" class="white--text text-subtitle-2" href="/calendar">(Look into your planner for more details)</a>
               </div>
             </div>
 
@@ -169,6 +166,13 @@ export default {
     arrayEvents: [],
     toDos: [],
     toDoDates: [],
+    links: [
+      {name: "Prüfungs- und Studienausschüsse", link: "https://www.thm.de/site/hochschule/zentrale-bereiche/pruefungsamt/pruefungsausschuesse.html"},
+      {name: "Moodle", link: "https://moodle.thm.de/login/index.php"},
+      {name: "E-Campus", link: "https://ecampus.thm.de/service/pages/cs/sys/portal/hisinoneStartPage.faces"},
+      {name: "Organizer", link: "https://www.thm.de/organizer/"}
+
+    ],
     date1: new Date().toISOString().substr(0, 10),
     date2: new Date().toISOString().substr(0, 10),
   }),
@@ -189,6 +193,9 @@ export default {
       if ([1, 19, 22].includes(parseInt(day, 10))) return ["red", "#00f"];
       return false;
     },
+    setRoute(link) {
+      window.open(link, '_blank')
+    }
   },
   computed: {
     currentModule() {
@@ -228,18 +235,12 @@ export default {
 </script>
 
 <style>
-.content {
-  margin-left: 5em;
-  margin-right: 10em;
-}
 
 .importantLinks p:hover {
-  color: #80ba24 !important;
   text-decoration: underline !important;
 }
 .upcomingToDos p:hover {
   color: white !important;
-  text-decoration: underline !important;
 }
 .leftSide {
   margin-top: 3.3em !important;

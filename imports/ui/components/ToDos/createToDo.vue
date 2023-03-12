@@ -128,11 +128,8 @@ export default {
       console.log(value); // value is a string in 24hr format, e.g. "14:30"
     },
     getDates(startDate, startTime, endDate, endTime) {
-      console.log(startDate, startTime, endDate, endTime);
-
       this.startDate = moment(startDate, "DD.MM.YYYY").format("YYYY-MM-DD");
       this.startDate = this.startDate + "T" + startTime + ":00";
-
       this.endDate = moment(endDate, "DD.MM.YYYY").format("YYYY-MM-DD");
       this.endDate = this.endDate + "T" + endTime + ":00";
     },
