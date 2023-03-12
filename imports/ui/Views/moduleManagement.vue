@@ -81,6 +81,8 @@
               <v-text-field
                 label="Enrollmentkey"
                 class="enrollField"
+                v-model="enrollmentkey"
+                :error-messages="errorMessages"
                 outlined
                 dense
               ></v-text-field>
@@ -118,6 +120,8 @@ export default {
     subscribedModules: [],
     absolute: true,
     searchInput: null,
+    enrollmentkey: null,
+    errorMessages: "",
     overlay: [],
     departments: [
       "FB 01 - BAU - Bauwesen (Gi)",
@@ -146,10 +150,16 @@ export default {
   }),
   methods: {
     manageSubscription(module) {
-      if (!this.checkIfSubscribed(module)) {
-        Meteor.call("module.subscribe", module);
+      if (Number(this.enrollmentkey) === module.enrollmentkey) {
+        if (!this.checkIfSubscribed(module)) {
+          Meteor.call("module.subscribe", module);
+        } else {
+          Meteor.call("module.unsubscribe", module);
+        }
       } else {
-        Meteor.call("module.unsubscribe", module);
+        console.log(this.enrollmentkey, module.enrollmentkey)
+        console.log( typeof this.enrollmentkey, typeof module.enrollmentkey)
+        this.setErr()
       }
     },
     checkIfSubscribed(module) {
@@ -183,6 +193,9 @@ export default {
           name: { $regex: this.searchInput, $options: "i" },
         }).fetch();
       }
+    },
+    setErr() {
+      this.errorMessages = "Überprüfe deine Eingaben";
     },
   },
   created() {

@@ -5,12 +5,12 @@
         <div>
           <v-sheet class="ma-2 pa-2 mt-10 ml-10 mb-10">
             <div class="d-flex">
-              <v-icon class="mr-1" color="secondary"
+              <v-icon class="mr-2 mb-10" size="35" color="secondary" 
                 >mdi-checkbox-marked-circle-outline</v-icon
               >
               <div
-                class="font-weight-bold text-h5"
-                :style="{ color: '#4a5c66' }"
+                class="font-weight-bold text-h4"
+                :style="{ color: '#4a5c66', 'max-width': '35vw'}"
               >
                 Organize your classes, tasks and exams
               </div>
@@ -105,7 +105,7 @@
           <v-sheet class="mt-10 mb-10">
             <div class="d-flex flex-column">
               <div
-                class="font-weight-bold text-h5"
+                class="font-weight-bold text-h4"
                 :style="{ color: '#4a5c66' }"
               >
                 Calendar
@@ -161,6 +161,7 @@
 <script>
 import ToDos from "../../api/collections/ToDos";
 import moment from "moment";
+import dayjs from "dayjs";
 export default {
   name: "landingpage",
   components: {},
@@ -216,8 +217,9 @@ export default {
 
       this.toDos.forEach((toDo, index) => {
         if (index < 5) {
+          console.log(toDo)
           this.arrayEvents.push(moment(new Date(toDo.start)).format("YYYY-MM-DD"));
-          toDo.start = moment(new Date(toDo.start)).format("DD.MM.YY hh:mm");
+          toDo.start = dayjs(toDo.start).format("DD.MM.YYYY HH:mm");
         }
       });
     });
@@ -225,7 +227,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .content {
   margin-left: 5em;
   margin-right: 10em;
@@ -242,5 +244,9 @@ export default {
 .leftSide {
   margin-top: 3.3em !important;
   margin-left: 5em !important;
+}
+.v-date-picker-title__date>div {
+    position: relative;
+    font-size: 20px;
 }
 </style>

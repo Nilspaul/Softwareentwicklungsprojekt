@@ -33,6 +33,7 @@ if (Meteor.isServer) {
         }
 */
         update(toDo) {
+            console.log(toDo)
             return ToDos.update({ _id: toDo._id }, { $set: { ...toDo }});
         }
         

@@ -81,7 +81,15 @@
                 <v-btn v-if="editMode === false" icon @click="editMode = true">
                   <v-icon>mdi-pencil</v-icon>
                 </v-btn>
-                <v-btn v-else @click="editMode = false; updateToDo(selectedEvent)" icon class="mr-4">
+                <v-btn
+                  v-else
+                  @click="
+                    editMode = false;
+                    updateToDo(selectedEvent);
+                  "
+                  icon
+                  class="mr-4"
+                >
                   <v-icon>mdi-content-save-edit-outline</v-icon>
                 </v-btn>
                 <v-toolbar-title>
@@ -222,7 +230,16 @@
                 <v-btn text class="red--text" @click="selectedOpen = false">
                   Cancel
                 </v-btn>
-                <v-btn v-if="editMode === true" text color="primary" @click="selectedOpen = false; updateToDo(selectedEvent); editMode = false">
+                <v-btn
+                  v-if="editMode === true"
+                  text
+                  color="primary"
+                  @click="
+                    selectedOpen = false;
+                    updateToDo(selectedEvent);
+                    editMode = false;
+                  "
+                >
                   Save changes
                 </v-btn>
               </v-card-actions>
@@ -239,8 +256,10 @@
 import ToDos from "../../api/collections/ToDos";
 import createToDo from "../components/ToDos/createToDo.vue";
 import dayjs from "dayjs";
+import moment from "moment";
 import topBar from "../components/topBar/topBar.vue";
 import navigation from "../components/topBar/navigation.vue";
+
 export default {
   name: "calendar",
   components: {
@@ -309,8 +328,7 @@ export default {
       nativeEvent.stopPropagation();
     },
     deleteToDo(event) {
-      let toDo =
-        this.toDos[this.toDos.findIndex((toDo) => toDo.name === event.name)];
+      let toDo = this.toDos[this.toDos.findIndex((toDo) => toDo.name === event.name)];
       Meteor.call("toDo.delete", toDo);
     },
     updateFormattedDate(datePicked, isStartDate) {
@@ -328,10 +346,24 @@ export default {
       }
     },
     updateToDo(event) {
-      let toDo = this.toDos[this.toDos.findIndex((toDo) => toDo.name === event.name)];
-      let updatedToDo = {...toDo, ...event};
-      Meteor.call("toDo.update", updatedToDo)
-    }
+      let toDo =
+        this.toDos[this.toDos.findIndex((toDo) => toDo.name === event.name)];
+      event = this.formatDates(event);
+      let updatedToDo = { ...toDo, ...event };
+
+      Meteor.call("toDo.update", updatedToDo);
+    },
+    formatDates(toDo) {
+      toDo.start = moment(this.formattedStartDate, "DD.MM.YYYY").format(
+        "YYYY-MM-DD"
+      );
+      toDo.start = toDo.start + "T" + this.startTime + ":00";
+      toDo.end = moment(this.formattedEndDate, "DD.MM.YYYY").format(
+        "YYYY-MM-DD"
+      );
+      toDo.end = toDo.end + "T" + this.endTime + ":00";
+      return toDo;
+    },
   },
   created() {
     Tracker.autorun(() => {
@@ -373,6 +405,7 @@ export default {
   margin-left: 3em !important;
   margin-right: 3em !important;
 }
+
 .calenderView {
   margin-top: 1em !important;
 }
