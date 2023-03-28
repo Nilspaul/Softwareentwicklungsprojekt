@@ -36,7 +36,7 @@
             "inhalt": "Zeitfresser irgendwas"
           }
         ],
-        "imageLink": "/images/TIA/BubblesortLines.PNG"
+        "imageLink": "/images/TIA/02_sortieren 2_bubblesort.jpg"
       },
       {
         "kapitelName": "Routenplanung",
@@ -62,7 +62,7 @@
             "inhalt": "Route Planning irgendwas"
           }
         ],
-        "imageLink": "/images/TIA/Quick.png"
+        "imageLink": "/images/TIA/03_routenplanung 1_dijkstra.jpg"
       },
       {
         "kapitelName": "Suchmaschinen",
@@ -76,7 +76,7 @@
             "inhalt": "Suche irgendwas"
           }
         ],
-        "imageLink": "/images/TIA/Quick.png"
+        "imageLink": "/images/TIA/06_suchmaschinen 2_lineareSuche.jpg"
       },
       {
         "kapitelName": "Theroetische Informatik",
@@ -90,7 +90,7 @@
             "inhalt": "Turingmaschinen irgendwas"
           }
         ],
-        "imageLink": "/images/TIA/Quick.png"
+        "imageLink": "/images/TIA/AlanTuring.jpg"
       }
     ],
     "laufzeit": "3. Semester"

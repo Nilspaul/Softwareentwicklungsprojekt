@@ -1,12 +1,5 @@
 <template>
   <div v-if="currentModule">
-    <!--
-    <topBar
-      :user="user"
-      @drawNav="handleEvent()"
-      @setContent="setContent"
-    ></topBar>
-    <Navigation ref="sibling2" @openModule="openModule"></Navigation> -->
     <v-subheader class="tabSubheader text-h5">{{
       currentModule ? currentModule.name : ""
     }}</v-subheader>
@@ -17,7 +10,7 @@
           class="d-flex justify-space-between flex-wrap"
           v-for="ann in currentModule.ankündigungen"
         >
-          <div v-html="ann.text" :class="[{'anntext' : ann.image}]"></div>
+          <div v-html="ann.text" :class="[{ anntext: ann.image }]"></div>
           <div class="d-flex align-center flex-wrap" v-if="ann.image">
             <v-img
               :aspect-ratio="16 / 9"
@@ -31,7 +24,11 @@
       <div class="d-flex justify-end">
         <v-sheet class="mr-6 pa-2 secondary--text">
           <p class="text-h5 font-weight-bold">Lernplattformen</p>
-          <p v-for="ann in currentModule.lernplattformen" v-html="ann" class="lp"></p>
+          <p
+            v-for="ann in currentModule.lernplattformen"
+            v-html="ann"
+            class="lp"
+          ></p>
         </v-sheet>
       </div>
       <div class="d-flex justify-start">
@@ -49,7 +46,7 @@
       >
         <v-row>
           <v-col cols="12" md="6" :order="index % 2 === 0 ? 1 : 2">
-            <div class="mt-4">
+            <div :class="index % 2 === 0 ? 'ml-12 mt-4' : 'mr-12 mt-4'">
               <v-img
                 :src="item.imageLink"
                 alt=""
@@ -75,15 +72,14 @@
               <div class="mt-5 d-flex">
                 <div>
                   <p class="text-h5 content">{{ item.kapitelName }}</p>
-                  <v-row 
-                  >
+                  <v-row>
                     <v-expansion-panels
                       flat
                       popout
                       class="moduleContent ml-16 pl-16 mb-6 mt-2"
                     >
                       <v-expansion-panel
-                        v-for="module in item.kapitelInhalte"
+                        v-for="(module, indexModule) in item.kapitelInhalte"
                         hide-actions
                       >
                         <v-expansion-panel-header
@@ -100,7 +96,9 @@
                               $expand
                             </v-icon>
                           </template>
-                          <strong dark>{{ module.name }}</strong>
+                          <strong dark>{{
+                            indexModule + " - " + module.name
+                          }}</strong>
                         </v-expansion-panel-header>
                         <v-divider
                           :color="index % 2 === 0 ? 'grey' : 'white'"
@@ -127,17 +125,13 @@
         </v-row>
       </v-sheet>
     </v-row>
-
     <div v-for="content in currentModule.bottomContent">
       <v-sheet class="mt-10 ml-5 secondary--text">
         <p class="text-h4">{{ content.name }}</p>
-        <div
-          class="d-flex justify-space-between flex-wrap"
-        > 
+        <div class="d-flex justify-space-between flex-wrap">
           <p v-html="content.text"></p>
         </div>
       </v-sheet>
-      
     </div>
   </div>
 </template>
@@ -146,11 +140,7 @@
 import topBar from "../components/topBar/topBar.vue";
 import tabs from "../components/mainpage/tabs";
 import toDoBase from "../components/ToDos/toDoBase.vue";
-import Modules from "../../api/collections/Modules";
-import SubscribedModules from "../../api/collections/SubscribedModules";
 import Navigation from "../components/topBar/navigation.vue";
-import { Meteor } from "meteor/meteor";
-import { Tracker } from "meteor/tracker";
 import { mapState } from "vuex";
 
 export default {
@@ -168,8 +158,6 @@ export default {
     dbModules: [],
     subscribedModules: [],
     isLoading: true,
-    e6: null,
-    filterOptions: ["Show all", "Show only subscribed"],
     items: [
       {
         src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
@@ -222,7 +210,18 @@ export default {
   margin-right: 4em;
 }
 
-.lp{
+.lp {
   max-width: 40vw !important;
+}
+.moduleSheet {
+  width: 95vw !important;
+  background-color: #dfe5e6 !important;
+  padding-bottom: 1em !important;
+}
+
+.moduleSheetDark {
+  width: 95vw !important;
+  background-color: #4a5c66 !important;
+  padding-bottom: 1em !important;
 }
 </style>

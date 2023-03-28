@@ -207,7 +207,7 @@ export default {
       this.$swal({
         icon: "success",
         title: "You subscribed the module!",
-        text: "Check your navigation to check out more content!",
+        text: "Open your navigation to check out more content!",
         showCloseButton: true,
         confirmButtonColor: "#4a5c66",
       });
