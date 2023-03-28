@@ -65,6 +65,7 @@
           </div>
         </v-img>
         <v-overlay absolute :value="overlay[index]" class="d-flex align-end">
+          <v-btn  class="ml-n11 mt-n11" absolute top-0 left-0 style="z-index: 1;" icon @click ="changeOverlayVal(index)"><v-icon>mdi-arrow-left</v-icon></v-btn>
           <div class="mb-16">
             <div class="d-flex font-weight-bold">
               <div>Aktuelle Themen der Energietechnik (SoSe20)</div>
@@ -152,15 +153,20 @@ export default {
     manageSubscription(module) {
       if (Number(this.enrollmentkey) === module.enrollmentkey) {
         if (!this.checkIfSubscribed(module)) {
-          Meteor.call("module.subscribe", module);
+          Meteor.call("module.subscribe", module, (err, result)=>{
+            if(err) {
+              console.log(error)
+            } else {
+              this.sweetAlert();
+            }
+          });
         } else {
           Meteor.call("module.unsubscribe", module);
         }
       } else {
-        console.log(this.enrollmentkey, module.enrollmentkey)
-        console.log( typeof this.enrollmentkey, typeof module.enrollmentkey)
         this.setErr()
       }
+      this.enrollmentkey = "";
     },
     checkIfSubscribed(module) {
       const isSubscribed = this.subscribedModules.some((obj) => {
@@ -196,6 +202,15 @@ export default {
     },
     setErr() {
       this.errorMessages = "Überprüfe deine Eingaben";
+    },
+    sweetAlert() {
+      this.$swal({
+        icon: "success",
+        title: "You subscribed the module!",
+        text: "Check your navigation to check out more content!",
+        showCloseButton: true,
+        confirmButtonColor: "#4a5c66",
+      });
     },
   },
   created() {
@@ -245,5 +260,9 @@ export default {
 .enrollField {
   margin-bottom: -1em;
   margin-right: 1em;
+}
+
+.v-overlay{
+  z-index: 0 !important;
 }
 </style>

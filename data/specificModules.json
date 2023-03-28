@@ -1,6 +1,6 @@
 [
   {
-    "name": "MIB15 Theoretische Informatik und Algorithmik (WS 2022/23)",
+    "name": "MIB15 - Theoretische Informatik und Algorithmik (WS 2022/23)",
     "schwerpunkt": "Grundlage",
     "studyProgram": "Bachelor",
     "department": "FB 11 - IEM - Informationstechnik-Elektrotechnik-Mechatronik (Fb)",
@@ -36,7 +36,7 @@
             "inhalt": "Zeitfresser irgendwas"
           }
         ],
-        "imageLink": "/images/Quick.png"
+        "imageLink": "/images/TIA/BubblesortLines.PNG"
       },
       {
         "kapitelName": "Routenplanung",
@@ -62,7 +62,7 @@
             "inhalt": "Route Planning irgendwas"
           }
         ],
-        "imageLink": "/images/Quick.png"
+        "imageLink": "/images/TIA/Quick.png"
       },
       {
         "kapitelName": "Suchmaschinen",
@@ -75,7 +75,8 @@
             "name": "Suche",
             "inhalt": "Suche irgendwas"
           }
-        ]
+        ],
+        "imageLink": "/images/TIA/Quick.png"
       },
       {
         "kapitelName": "Theroetische Informatik",
@@ -88,7 +89,8 @@
             "name": "Turingmaschine",
             "inhalt": "Turingmaschinen irgendwas"
           }
-        ]
+        ],
+        "imageLink": "/images/TIA/Quick.png"
       }
     ],
     "laufzeit": "3. Semester"
@@ -104,7 +106,7 @@
     "ankündigungen": [
       { 
         "text":"... im Modul MIB12 \"Audiovisuelle Medien 2: Filmtechnik + Filmproduktion\" im Wintersemester 2022/23. Wir freuen uns auf ein spannendes Modul mit Ihnen allen. Im Mittelpunkt steht dabei die individuelle Ausdifferenzierung von Kompetenzen in den Bereichen Filmtechnik und Filmproduktion. <p> Das Modul MIB2 \"Audiovisuelle Medien 2: Filmtechnik + Filmproduktion\" setzt sich aus den beiden Modulbestandteilen \"Filmtechnik\" und \"Filmproduktion\" zusammen. Der Modulbestandteil \"Filmtechnik\" findet im Wintersemester 2022/23 im Inverted Classroom Modell statt. Wir haben eine Online-Vorlesungsreihe für Sie vorbereitet, die von wöchentlichen Sprechstunden (online) begleitet wird. Der Modulbestandteil \"Filmproduktion\" wird im Wintersemester 2022/2023 die Nachproduktion eines Musikvideos zum Gegenstand haben. Für die Vorbereitung und Durchführung der Produktion bieten wir Ihnen vorbereitende Workshops an.</p> <p>Die Termine für Sprechstunden und Workshops haben wir für Sie im Kalender des Kurses eingetragen.</p><p>Wir freuen uns auf ein spannendes Semester mit Ihnen, Ihr Team AV, <b>Sebastian Vogt, Benjamin Rupp und Sebastian Rupp</b></p> ",
-        "image": "/images/AV2Welcome.png"
+        "image": "/images/AV/AV2Welcome.png"
       }
 
     ],
@@ -121,7 +123,7 @@
             "inhalt": "Foliensatz herunterladen"
           }
         ],
-        "imageLink": "/images/AV2Welcome.png"
+        "imageLink": "/images/AV/AV2Welcome.png"
       },
       {
         "kapitelName": "Teil 1: Audiovisuelle Artefakte als mediale Ausdrucksformen",
@@ -139,7 +141,7 @@
             "inhalt": "Quiz #1 durchführen ..."
           }
         ],
-        "imageLink": "/images/AudiovisuelleArtefaktAlsMedialeAusdrucksform.PNG"
+        "imageLink": "/images/AV/AudiovisuelleArtefaktAlsMedialeAusdrucksform.PNG"
       },
       {
         "kapitelName": "Teil 2: Audiovisuelle Filmproduktion als gestalterischer, technischer und ökonomischer Medienproduktionsprozess",
@@ -157,7 +159,7 @@
             "inhalt": "Quiz #2 durchführen ..."
           }
         ],
-        "imageLink": "/images/Teil2AudiovisuelleFilmproduktion.PNG"
+        "imageLink": "/images/AV/Teil2AudiovisuelleFilmproduktion.PNG"
       },
       {
         "kapitelName": "Teil 3: Projektorganisation von audiovisuellen Filmproduktion",
@@ -175,7 +177,7 @@
             "inhalt": "Quiz #3 durchführen ..."
           }
         ],
-        "imageLink": "/images/AVRollenUndAkteure.PNG"
+        "imageLink": "/images/AV/AVRollenUndAkteure.PNG"
       },
       {
         "kapitelName": "Teil 4: Musiktheorie: der perfekte Song",
@@ -193,7 +195,7 @@
             "inhalt": "Quiz #4 durchführen ..."
           }
         ],
-        "imageLink": "/images/AVMusik.PNG"
+        "imageLink": "/images/AV/AVMusik.PNG"
       }
     ],
     "laufzeit": "3. Semester",

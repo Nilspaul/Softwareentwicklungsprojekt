@@ -137,7 +137,6 @@ export default {
   }),
 
   methods: {
-  
     submit() {
       Meteor.loginWithPassword(this.email, this.password, (error, result) => {
         if (error) {
