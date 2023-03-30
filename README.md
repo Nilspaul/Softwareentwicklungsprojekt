@@ -1,14 +1,7 @@
-relevant for ppl who cloned: 
-(Wenn du kein nodeJS installiert hast, erst runterladen. Dann "choco install meteor "--> chocolatey ist ein packagemanager und bei nodeJS Installation dabei.)
-1. meteor --version
-2. meteor npm install --> install all deps in package/-lock .json
 
---------------------------------------------------------
-meteor create myApp --vue // create project
-plugin folder in imports/ui with all plugins (tracker,vuetify,router...)
-import in client/main.js
-
-Wenn man alle deps installiert hat: meteor --settings settings.json
-
+1. Nodejs installieren (sicherstellen, dass Chocolatey mitinstalliert wird) 
+2. Meteor installieren mittels "choco install meteor"
+3. "meteor npm install" --> install all dependencies
+4. "meteor --settings settings.json"
 
 
