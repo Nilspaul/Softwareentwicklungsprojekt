@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import loginBase from '../Views/loginBase.vue';
-import mainpageBase from '../Views/mainContentNew.vue';
+import moduleContent from '../Views/moduleContent.vue';
 import resetPassword from '../Views/resetPassword.vue';
 import calendar from '../Views/calendar.vue'
 import landingPage from '../Views/landingpage.vue'
@@ -18,7 +18,7 @@ const routes = [
     //Landingpagen
     {path: '/moduleManagement', component: moduleManagement, name: 'moduleManagement'},
     //MainContent
-    { path: '/mainpage/:moduleName', component: mainpageBase, name: 'mainpage' },
+    { path: '/moduleContent/:moduleName', component: moduleContent, name: 'moduleContent' },
     //ResetPassword
     { path: '/reset-password/:token', name: 'resetPassword', component: resetPassword},
     //calendar

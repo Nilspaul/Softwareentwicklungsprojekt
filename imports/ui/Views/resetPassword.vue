@@ -1,5 +1,6 @@
 <template>
   <v-card class="ma-10">
+    <!-- A div containing a Vuetify sheet with a card title. -->
     <div class="d-flex justify-center bg-surface-variant">
       <v-sheet class="ma-2 pa-2">
         <v-card-title
@@ -11,7 +12,8 @@
         </v-card-title>
       </v-sheet>
     </div>
-    <v-sheet class="d-flex bg-surface-variant flex-wrap ">
+    <!-- A Vuetify sheet containing two Vuetify sheets with text fields for password and confirm password. -->
+    <v-sheet class="d-flex bg-surface-variant flex-wrap">
       <v-sheet class="me-auto flex-grow-1 pa-2">
         <p bold>Password</p>
         <v-text-field
@@ -33,7 +35,9 @@
         ></v-text-field>
       </v-sheet>
     </v-sheet>
+    <!-- A Vuetify divider. -->
     <v-divider class="mt-12"></v-divider>
+    <!-- A div containing a Vuetify sheet with a hoverable button to submit the form. -->
     <div class="d-flex justify-center bg-surface-variant">
       <v-sheet class="ma-2 pa-2">
         <v-hover v-slot="{ hover }">
@@ -54,37 +58,48 @@
 </template>
 
 <script>
+// Importing the Accounts module from Meteor for password reset functionality
 import { Accounts } from "meteor/accounts-base";
+
 export default {
+  // Name of the Vue component
   name: "resetPassword",
+
+  // Initializing the data properties
   data: () => ({
     password: null,
     confirmPassword: "",
     error: "",
   }),
 
+  // Using a watcher to reset error message when the component is loaded
   watch: {
     name() {
       this.errorMessages = "";
     },
   },
 
+  // Defining the methods to be used in the component
   methods: {
+    // Submit method to handle the password reset functionality
     submit() {
+      // Checking if password and confirm password fields are not empty
       if (this.password === "" || this.confirmPassword === "") {
         this.error = "Please enter a new password and confirm it.";
       } else if (this.password !== this.confirmPassword) {
+        // Checking if password and confirm password fields match
         this.error = "The passwords do not match. Please try again.";
       } else {
-        console.log(this.$route.params.token)
-        console.log(this.password)
+        // Calling the Meteor Accounts resetPassword method to reset the password
         Accounts.resetPassword(
           this.$route.params.token,
           this.password,
           (error) => {
             if (error) {
+              // Displaying the error message in case of any errors
               this.error = error.reason;
             } else {
+              // Redirecting to the login page in case of successful password reset
               this.$router.push("/login");
             }
           }

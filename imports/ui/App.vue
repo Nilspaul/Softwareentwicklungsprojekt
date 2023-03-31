@@ -1,20 +1,27 @@
 <template>
   <v-app>
+    <!-- Conditionally render elements based on route path -->
     <div v-if="$route.path !== '/login'">
+      <!-- Import and use component with event listener -->
       <topBar @drawNav="handleEvent()"></topBar>
+      <!-- Import and use component with ref attribute for future reference -->
       <navigation ref="sibling2"></navigation>
     </div>
+    <!-- Render dynamic content based on route -->
     <div class="inhalt-container">
       <router-view />
     </div>
+    <!-- Render footer element with multiple sections and links -->
     <v-footer
       color="secondary"
       class="d-flex justify-space-around full-width"
       style="justify-content: space-between"
     >
+      <!-- Render social media links -->
       <div class="ma-2 pa-2 white--text text-h6">
         <div>SOCIALS</div>
         <div class="subline">
+          <!-- Loop through array of icons and bind click event to function -->
           <v-icon
             v-for="icon in icons"
             @click="setRoute(icon.link)"
@@ -23,9 +30,11 @@
           >
         </div>
       </div>
+      <!-- Render campus links -->
       <div class="ma-2 pa-2 white--text">
         <div class="text-h6">CAMPUS</div>
         <div class="subline">
+          <!-- Loop through array of campus links and bind click event to function -->
           <div
             class="content"
             v-for="item in campus"
@@ -36,9 +45,11 @@
           <p class="mt-3 content">Studentenwerk Gießen</p>
         </div>
       </div>
+      <!-- Render service links -->
       <div class="ma-2 pa-2 white--text">
         <div class="text-h6">SERVICE</div>
         <div class="subline">
+          <!-- Loop through array of service links and bind click event to function -->
           <div
             v-for="element in service"
             class="content"
@@ -46,6 +57,7 @@
           >
             {{ element.name }}
           </div>
+          <!-- Bind click event to a specific URL -->
           <p
             class="mt-3 content"
             @click="
@@ -58,6 +70,7 @@
           </p>
         </div>
       </div>
+      <!-- Render contact information -->
       <div class="ma-2 pa-2 white--text">
         <div class="text-h6">CONTACT</div>
         <div class="subline">
@@ -79,11 +92,12 @@
           </div>
         </div>
       </div>
+      <!-- Render impressum information -->
       <div class="footer-bottom white--text">
         <div class="d-flex impr">
           <div v-for="(item, index) in impressum" class="mr-2 d-flex">
             <div @click="setRoute(item.link)">{{ item.name }}</div>
-            <div v-if="index < impressum.length-1" class="ml-2">|</div>
+            <div v-if="index < impressum.length - 1" class="ml-2">|</div>
           </div>
         </div>
       </div>
@@ -99,6 +113,8 @@ export default {
     topBar,
     navigation,
   },
+  //initialize Data
+  //footer icons, links, names
   data: () => ({
     user: null,
     icons: [
@@ -170,25 +186,36 @@ export default {
   }),
   methods: {
     handleEvent() {
+      // Call the handleEventFromParent method of the sibling2 component
+      // and pass a value of true to it
       this.$refs.sibling2.handleEventFromParent(true);
     },
+
     setContent(content) {
       let moduleName;
+      // Check if the length of the content is not equal to 1
       if (content.length !== 1) {
+        // If it's not, set the moduleName to the second value of the content array
+        // and set the currentTab to the first value of the content array
         moduleName = content[1];
         this.currentTab = content[0];
       } else {
+        // If it is, set the moduleName to the first value of the content array
         moduleName = content[0];
       }
+      // Call the Meteor method findModule with the moduleName as parameter
       Meteor.call("module.findModule", moduleName, (error, result) => {
         if (error) {
           console.log(error);
         } else {
+          // Set the currentModule to the result of the findModule method
           this.currentModule = result;
         }
       });
     },
+
     setRoute(link) {
+      // Open a new window with the given link in a new tab
       window.open(link, "_blank");
     },
   },

@@ -115,17 +115,8 @@ export default {
   },
   methods: {
     submit() {
-      /*
-      this.toDo.name = this.form.name;
-      this.toDo.note = this.form.note;
-      Meteor.call("toDo.createOrUpdate", this.toDo, this.module);
-      this.dialog = false;
-      */
       this.toDo = this.form;
       Meteor.call("toDo.createMyToDo", this.toDo);
-    },
-    onChange(value) {
-      console.log(value); // value is a string in 24hr format, e.g. "14:30"
     },
     getDates(startDate, startTime, endDate, endTime) {
       this.startDate = moment(startDate, "DD.MM.YYYY").format("YYYY-MM-DD");

@@ -73,11 +73,10 @@ export default {
       this.$emit("drawNav");
     },
     pickContent(item) {
-      console.log(item);
       let module = this.modules[this.modules.findIndex(x=>x.name == item)] 
       this.$store.dispatch('setMyObject', module);
       this.$router.push({
-        name: "mainpage",
+        name: "moduleContent",
         params: { module: { ...module }, moduleName: module.name },
       });
     },

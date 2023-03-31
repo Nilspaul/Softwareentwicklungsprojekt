@@ -6,34 +6,7 @@ let toDoManagement;
 
 if (Meteor.isServer) {
     class ToDoManagement {
-        /*
-        createOrUpdate(toDo, moduleName) {
-            Object.assign(toDo, { completed: false });
-            Object.assign(toDo, { _id: Random.id() });
-            let moduleToDo = ToDos.findOne({ moduleName });
-            let newToDos = [{...toDo }];
-            if (moduleToDo) {
-                this.updateModuleToDo(toDo, moduleToDo);
-            } else {
-                this.createModuleToDo(moduleName, newToDos);
-            }
-        }
-
-        createModuleToDo(moduleName, newToDos) {
-            return ToDos.insert({
-                toDos: newToDos,
-                moduleName: moduleName,
-                creator: Meteor.userId(),
-            });
-        }
-
-        updateModuleToDo(toDo, moduleToDo) {
-            moduleToDo.toDos.push(toDo);
-            return ToDos.update({ _id: moduleToDo._id }, { $set: { toDos: moduleToDo.toDos } });
-        }
-*/
         update(toDo) {
-            console.log(toDo)
             return ToDos.update({ _id: toDo._id }, { $set: { ...toDo }});
         }
         

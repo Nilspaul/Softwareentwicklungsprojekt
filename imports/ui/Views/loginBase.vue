@@ -1,82 +1,50 @@
 <template>
   <div>
+    <!-- Renders the header with a transition effect -->
     <v-container>
       <transition appear @enter="enterHeader">
         <h2 id="background">THMStudyPlanner</h2>
       </transition>
-      <v-card
-        :class="['mt-16', { loginContainer: $vuetify.breakpoint.mobile }]"
-      >
+      <!-- Renders a login card -->
+      <v-card :class="['mt-16', { loginContainer: $vuetify.breakpoint.mobile }]">
         <v-card-title class="text-h4 pb-6" :style="{ color: '#4a5c66' }">
           Login
         </v-card-title>
+        <!-- Renders the login form -->
         <v-card-text ref="loginForm">
           <p bold>Email</p>
-          <v-text-field
-            ref="email"
-            v-model="email"
-            autofocus
-            @keyup.enter="submit()"
-            :error-messages="errorMessages"
-            placeholder="Type in your mail address"
-            required
-          ></v-text-field>
+          <v-text-field ref="email" v-model="email" autofocus @keyup.enter="submit()" :error-messages="errorMessages"
+            placeholder="Type in your mail address" required></v-text-field>
           <p>Password</p>
-          <v-text-field
-            autofocus
-            ref="password"
-            type="password"
-            @keyup.enter="submit()"
-            v-model="password"
-            :error-messages="errorMessages"
-            placeholder="Type in your password"
-            required
-          ></v-text-field>
+          <v-text-field autofocus ref="password" type="password" @keyup.enter="submit()" v-model="password"
+            :error-messages="errorMessages" placeholder="Type in your password" required></v-text-field>
           <v-form> </v-form>
         </v-card-text>
+        <!-- Renders a dialog for password recovery -->
         <v-dialog v-model="dialog" width="auto">
           <template v-slot:activator="{ props }">
-            <v-btn
-              color="primary"
-              class="boldLink"
-              v-bind="props"
-              plain
-              @click="dialog = true"
-            >
+            <v-btn color="primary" class="boldLink" v-bind="props" plain @click="dialog = true">
               Forgot password?
             </v-btn>
           </template>
           <v-card width="800">
             <div class="d-flex justify-center">
-              <v-card-title color="secondary--text"
-                >Enter your Email to request a new password</v-card-title
-              >
+              <v-card-title color="secondary--text">Enter your Email to request a new password</v-card-title>
             </div>
             <v-card-text>
               <p class="pb-4" bold>Email</p>
-              <v-text-field
-                outlined
-                ref="email"
-                v-model="email"
-                :error-messages="errorMessages"
-                placeholder="max-muster@mail.de"
-                required
-              ></v-text-field>
+              <v-text-field outlined ref="email" v-model="email" :error-messages="errorMessages"
+                placeholder="max-muster@mail.de" required></v-text-field>
             </v-card-text>
             <div class="d-flex justify-center bg-surface-variant">
               <v-sheet class="ma-2 pa-2">
                 <v-hover v-slot="{ hover }">
-                  <v-btn
-                    class="white--text biggerButton"
-                    elevation="2"
-                    :style="{
-                      'background-color': hover ? ' #80ba24' : '#4a5c66',
-                    }"
-                    @click="
-                      sendEmail();
-                      sweetAlert();
-                    "
-                  >
+                  <v-btn class="white--text biggerButton" elevation="2" :style="{
+                    'background-color': hover ? ' #80ba24' : '#4a5c66',
+                  }" @click="
+  sendEmail();
+sweetAlert();
+                      ">
                     Send
                   </v-btn>
                 </v-hover>
@@ -88,18 +56,13 @@
         <v-card-actions>
           <v-spacer></v-spacer>
         </v-card-actions>
-
+        <!-- Renders the login button -->
         <div class="d-flex justify-center bg-surface-variant">
           <v-sheet class="ma-2 pa-2">
             <v-hover v-slot="{ hover }">
-              <v-btn
-                class="white--text biggerButton"
-                elevation="2"
-                :style="{
-                  'background-color': hover ? ' #80ba24' : '#4a5c66',
-                }"
-                @click="submit()"
-              >
+              <v-btn class="white--text biggerButton" elevation="2" :style="{
+                'background-color': hover ? ' #80ba24' : '#4a5c66',
+              }" @click="submit()">
                 Log in
               </v-btn>
             </v-hover>
@@ -113,19 +76,21 @@
 </template>
 
 <script>
+// Import necessary modules
 import { Meteor } from "meteor/meteor";
 import { router } from "../plugins/router";
 import gsap from "gsap";
 import registerBase from "../components/login/registerBase.vue";
 
 export default {
+  // Define component name and components to be used
   name: "loginBase",
   components: {
     registerBase,
   },
+  // Initialize component data
   data: () => ({
     errorMessages: "",
-    userLoggedIn: null,
     email: null,
     password: null,
     user: {
@@ -136,18 +101,21 @@ export default {
     dialog: false,
   }),
 
+  // Define component methods
   methods: {
+    // Submit user credentials to log in
     submit() {
       Meteor.loginWithPassword(this.email, this.password, (error, result) => {
         if (error) {
           this.setErr(error);
         } else if (Meteor.user()) {
           router.push({
-            name: 'landingpage',
+            name: "landingpage",
           });
         }
       });
     },
+    // Show success message after sending password reset email
     sweetAlert() {
       this.$swal({
         icon: "success",
@@ -157,6 +125,7 @@ export default {
         confirmButtonColor: "#4a5c66",
       });
     },
+    // Send password reset email to user
     sendEmail() {
       Meteor.call("users.resetPassword", this.email, (error, result) => {
         if (error) {
@@ -166,9 +135,11 @@ export default {
         }
       });
     },
+    // Set error message if login credentials are invalid
     setErr() {
       this.errorMessages = "Überprüfe deine Eingaben";
     },
+    // Animate header on component enter
     enterHeader(element) {
       gsap.fromTo(
         element,
@@ -184,6 +155,7 @@ export default {
 .v-text-field {
   border-left: 200px;
 }
+
 p {
   font-family: "Roboto", sans-serif;
   font-weight: bold;
@@ -194,15 +166,17 @@ p {
 .loginContainer {
   height: 50vh !important;
 }
+
 .v-btn:hover {
   color: #80ba24;
   font-weight: bold;
 }
+
 .biggerButton {
   width: 10em;
   margin-top: -4em;
   font-weight: bold;
-  font-size:1em
+  font-size: 1em;
 }
 
 #background {

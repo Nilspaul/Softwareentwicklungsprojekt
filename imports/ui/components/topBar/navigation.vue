@@ -178,7 +178,7 @@ export default {
     openModule(module) {
       this.$store.dispatch("setMyObject", module);
       this.$router.push({
-        name: "mainpage",
+        name: "moduleContent",
         params: { module: { ...module }, moduleName: module.name },
       });
     },

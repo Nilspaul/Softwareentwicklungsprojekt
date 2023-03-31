@@ -1,15 +1,12 @@
 import { Accounts } from "meteor/accounts-base";
 import { Meteor } from "meteor/meteor";
-import { Email } from "meteor/email";
-import { check } from "meteor/check";
-import dayjs from "dayjs";
 
 let usersManagement;
 
 if (Meteor.isServer) {
   class UsersManagement {
+    
     create(user) {
-      console.log()
       Accounts.createUser({
         username: user.name,
         password: user.password,
@@ -24,6 +21,7 @@ if (Meteor.isServer) {
         }
       });
     }
+
     login(user) {
       Accounts.loginWithPassword(user.email, user.password);
     }
@@ -49,7 +47,6 @@ if (Meteor.isServer) {
       Meteor.users.update({_id: Meteor.userId(), "firstLogin": {$exists: false}}, {$set: {"firstLogin": new Date()}})
     }
   }
-
 
   usersManagement = new UsersManagement();
 }

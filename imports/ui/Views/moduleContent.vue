@@ -1,16 +1,19 @@
 <template>
   <div v-if="currentModule">
+    <!-- Displays current module name if it exists -->
     <v-subheader class="tabSubheader text-h5">{{
       currentModule ? currentModule.name : ""
     }}</v-subheader>
     <div>
       <v-sheet class="mt-10 ml-5 secondary--text">
+        <!-- Displays announcements for the current module -->
         <p class="text-h4">Ankündigungen</p>
         <div
           class="d-flex justify-space-between flex-wrap"
           v-for="ann in currentModule.ankündigungen"
         >
           <div v-html="ann.text" :class="[{ anntext: ann.image }]"></div>
+          <!-- Displays image associated with announcement, if it exists -->
           <div class="d-flex align-center flex-wrap" v-if="ann.image">
             <v-img
               :aspect-ratio="16 / 9"
@@ -23,6 +26,7 @@
       </v-sheet>
       <div class="d-flex justify-end">
         <v-sheet class="mr-6 pa-2 secondary--text">
+          <!-- Displays list of learning platforms for the current module -->
           <p class="text-h5 font-weight-bold">Lernplattformen</p>
           <p
             v-for="ann in currentModule.lernplattformen"
@@ -32,10 +36,12 @@
         </v-sheet>
       </div>
       <div class="d-flex justify-start">
+        <!-- Displays section header for module content -->
         <p class="text-h4 ml-5 secondary--text">Studieninhalte</p>
       </div>
     </div>
 
+    <!-- Loops through module chapters and displays their content -->
     <v-row
       v-for="(item, index) in currentModule.modulKapitel"
       class="d-flex flex-column ml-5 mb-5 contentSection"
@@ -45,6 +51,7 @@
         :class="index % 2 === 0 ? 'moduleSheet' : 'moduleSheetDark'"
       >
         <v-row>
+          <!-- Displays chapter image on left or right depending on index -->
           <v-col cols="12" md="6" :order="index % 2 === 0 ? 1 : 2">
             <div :class="index % 2 === 0 ? 'ml-12 mt-4' : 'mr-12 mt-4'">
               <v-img
@@ -71,6 +78,7 @@
             >
               <div class="mt-5 d-flex">
                 <div>
+                  <!-- Displays chapter name and its content -->
                   <p class="text-h5 content">{{ item.kapitelName }}</p>
                   <v-row>
                     <v-expansion-panels
@@ -78,10 +86,12 @@
                       popout
                       class="moduleContent ml-16 pl-16 mb-6 mt-2"
                     >
+                      <!-- Loop through each module in 'item.kapitelInhalte' array -->
                       <v-expansion-panel
                         v-for="(module, indexModule) in item.kapitelInhalte"
                         hide-actions
                       >
+                        <!-- Expansion panel header -->
                         <v-expansion-panel-header
                           :class="
                             index % 2 === 0 ? 'secondary--text' : 'white--text'
@@ -89,6 +99,7 @@
                           icon-color="secondary"
                           :color="index % 2 === 0 ? '#dfe5e6 ' : '#4a5c66'"
                         >
+                          <!-- Icon to expand/collapse the panel -->
                           <template v-slot:actions>
                             <v-icon
                               :color="index % 2 === 0 ? 'secondary' : 'white'"
@@ -96,16 +107,20 @@
                               $expand
                             </v-icon>
                           </template>
+                          <!-- Module name displayed in the header -->
                           <strong dark>{{
                             indexModule + " - " + module.name
                           }}</strong>
                         </v-expansion-panel-header>
+                        <!-- Divider line between the header and content -->
                         <v-divider
                           :color="index % 2 === 0 ? 'grey' : 'white'"
                         ></v-divider>
+                        <!-- Expansion panel content -->
                         <v-expansion-panel-content
                           :color="index % 2 === 0 ? '#dfe5e6 ' : '#4a5c66'"
                         >
+                          <!-- Module content displayed in the panel -->
                           <v-card-text
                             :class="
                               index % 2 === 0
@@ -124,11 +139,13 @@
           </v-col>
         </v-row>
       </v-sheet>
-    </v-row>
+    </v-row> 
+    <!-- Loop over an array of objects to render the bottom content of a current module -->
     <div v-for="content in currentModule.bottomContent">
       <v-sheet class="mt-10 ml-5 secondary--text">
         <p class="text-h4">{{ content.name }}</p>
-        <div class="d-flex justify-space-between flex-wrap">
+        <div class="d-flex justify-space-between flex-wrap">          
+          <!-- Render the content text with HTML interpretation for json htmltag usage-->
           <p v-html="content.text"></p>
         </div>
       </v-sheet>
@@ -138,59 +155,27 @@
 
 <script>
 import topBar from "../components/topBar/topBar.vue";
-import tabs from "../components/mainpage/tabs";
 import toDoBase from "../components/ToDos/toDoBase.vue";
 import Navigation from "../components/topBar/navigation.vue";
 import { mapState } from "vuex";
-
 export default {
-  name: "mainContent",
+  name: "moduleContent",
   components: {
     topBar,
-    tabs,
     toDoBase,
     Navigation,
   },
-  data: () => ({
-    alert: false,
-    currentTab: null,
-    modules: [],
-    dbModules: [],
-    subscribedModules: [],
-    isLoading: true,
-    items: [
-      {
-        src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
-      },
-      {
-        src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
-      },
-      {
-        src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
-      },
-      {
-        src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
-      },
-    ],
-  }),
   methods: {
+    // Take a string as input and return a decoded version of it by using decodeURIComponent
     unescape(string) {
       return decodeURIComponent(string);
     },
   },
-  mounted() {
-    console.log(this.currentModule);
-  },
+  // Using mapState from Vuex to create a computed property currentModule that returns the currentModule state from the store.
   computed: {
     ...mapState({
       currentModule: (state) => state.currentModule,
     }),
-  },
-
-  watch: {
-    currentModule(val1, val2) {
-      console.log(val1, val2);
-    },
   },
 };
 </script>
