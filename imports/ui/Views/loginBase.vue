@@ -101,7 +101,6 @@ export default {
     dialog: false,
   }),
 
-  // Define component methods
   methods: {
     // Submit user credentials to log in
     submit() {

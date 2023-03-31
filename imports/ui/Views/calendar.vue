@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Header section -->
     <div class="d-flex justify-center bg-surface-variant">
       <v-sheet class="pa-2">
         <v-card-title
@@ -10,9 +11,12 @@
         </v-card-title>
       </v-sheet>
     </div>
+
+    <!-- Calendar section -->
     <v-row class="calenderView">
       <v-col>
         <v-sheet>
+          <!-- Calendar toolbar -->
           <v-toolbar flat color="white">
             <v-btn
               outlined
@@ -32,6 +36,7 @@
               {{ $refs.calendar.title }}
             </v-toolbar-title>
             <v-spacer></v-spacer>
+            <!-- Dropdown for selecting type of calendar view (day, week, month) -->
             <v-menu bottom right>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn outlined color="grey darken-2" v-bind="attrs" v-on="on">
@@ -54,6 +59,7 @@
           </v-toolbar>
         </v-sheet>
         <v-sheet>
+          <!-- Vue calendar component -->
           <v-calendar
             ref="calendar"
             v-model="focus"
@@ -70,6 +76,8 @@
             :locale="'de'"
           >
           </v-calendar>
+
+          <!-- Pop-up for editing or deleting selected event -->
           <v-menu
             v-model="selectedOpen"
             :close-on-content-click="false"
@@ -78,9 +86,11 @@
           >
             <v-card color="grey lighten-4" flat>
               <v-toolbar :color="selectedEvent.color" dark>
+                <!-- Button to toggle edit mode -->
                 <v-btn v-if="editMode === false" icon @click="editMode = true">
                   <v-icon>mdi-pencil</v-icon>
                 </v-btn>
+                <!-- Button to save changes made in edit mode -->
                 <v-btn
                   v-else
                   @click="

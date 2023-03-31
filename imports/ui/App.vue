@@ -186,8 +186,7 @@ export default {
   }),
   methods: {
     handleEvent() {
-      // Call the handleEventFromParent method of the sibling2 component
-      // and pass a value of true to it
+      // Call the handleEventFromParent method of the sibling2 component and pass a value of true to it
       this.$refs.sibling2.handleEventFromParent(true);
     },
 
@@ -195,8 +194,7 @@ export default {
       let moduleName;
       // Check if the length of the content is not equal to 1
       if (content.length !== 1) {
-        // If it's not, set the moduleName to the second value of the content array
-        // and set the currentTab to the first value of the content array
+        // If it's not, set the moduleName to the second value of the content array and set the currentTab to the first value of the content array
         moduleName = content[1];
         this.currentTab = content[0];
       } else {

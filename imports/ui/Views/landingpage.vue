@@ -3,6 +3,7 @@
     <div class="d-flex justify-space-around mb-6 flex-wrap-reverse">
       <v-sheet class="ma-2">
         <div>
+        <!-- Section for Planner and Modulemanagement quicklinks-->
           <v-sheet class="ma-2 pa-2 mt-10 ml-10 mb-10">
             <div class="d-flex">
               <v-icon class="mr-2 mb-10" size="35" color="secondary"
@@ -56,6 +57,7 @@
             </div>
           </v-sheet>
         </div>
+        <!-- News section -->
         <div class="mt-15 ml-12">
           <div
             class="d-flex font-weight-bold text-h4"
@@ -74,6 +76,7 @@
             Don't let your schedule run you, run your schedule!
           </div>
         </div>
+        <!-- Important links for users to thm sites-->
         <div class="mt-15 ml-12">
           <v-card
             :width="$vuetify.breakpoint.xs ? '90vw' : '30em'"
@@ -99,6 +102,7 @@
           </v-card>
         </div>
       </v-sheet>
+      <!-- Calendar with toDos marks-->
       <v-sheet :width="$vuetify.breakpoint.xs ? '90vw' : '30em'">
         <div>
           <v-sheet class="mt-14 mb-10">
@@ -117,13 +121,14 @@
                 dark
                 color="secondary"
                 :width="$vuetify.breakpoint.xs ? '90vw' : '30em'"
-                v-model="date1"
+                v-model="today"
                 :events="arrayEvents"
                 event-color="green lighten-1"
               ></v-date-picker>
             </div>
           </v-sheet>
         </div>
+        <!-- Upcoming toDos section -->
         <div>
           <v-card
             width="30em"
@@ -165,17 +170,17 @@
 </template>
 
 <script>
-import ToDos from "../../api/collections/ToDos";
-import moment from "moment";
-import dayjs from "dayjs";
+import ToDos from "../../api/collections/ToDos"; // Importing ToDos collection from the API
+import moment from "moment"; // Importing moment library
+import dayjs from "dayjs"; // Importing dayjs library
 export default {
   name: "landingpage",
   components: {},
   data: () => ({
-    arrayEvents: [],
-    toDos: [],
+    arrayEvents: [], 
+    toDos: [], 
     toDoDates: [],
-    links: [
+    links: [ 
       {
         name: "Prüfungs- und Studienausschüsse",
         link: "https://www.thm.de/site/hochschule/zentrale-bereiche/pruefungsamt/pruefungsausschuesse.html",
@@ -187,8 +192,8 @@ export default {
       },
       { name: "Organizer", link: "https://www.thm.de/organizer/" },
     ],
-    date1: new Date().toISOString().substr(0, 10),
-    date2: new Date().toISOString().substr(0, 10),
+    // Initializing today's date in ISO format
+    today: new Date().toISOString().substr(0, 10), 
   }),
   methods: {
     moduleManagement() {
@@ -201,47 +206,49 @@ export default {
         path: "/calendar",
       });
     },
-    functionEvents(date) {
-      const [, , day] = date.split("-");
-      if ([12, 17, 28].includes(parseInt(day, 10))) return true;
-      if ([1, 19, 22].includes(parseInt(day, 10))) return ["red", "#00f"];
-      return false;
-    },
-    setRoute(link) {
+    // A function to open a link in a new tab
+    setRoute(link) { 
       window.open(link, "_blank");
     },
   },
   computed: {
-    currentModule() {
+    // A computed property to get the current module from the route params
+    currentModule() { 
       return this.$route.params.module;
     },
   },
 
-  created() {
-    Tracker.autorun(() => {
+  created() { 
+    // A reactive function that re-runs when its dependencies change
+    Tracker.autorun(() => { 
+      // Subscribe to the "toDos" collection in the database
       const toDoSubscription = Meteor.subscribe("toDos");
-      if (toDoSubscription.ready()) {
-        this.toDos = ToDos.find().fetch();
+      // If the subscription is ready 
+      if (toDoSubscription.ready()) { 
+        // Get the to-dos from the database
+        this.toDos = ToDos.find().fetch(); 
       }
-      this.toDos.sort((a, b) => {
-        const dateA = a.start; // ignore upper and lowercase
-        const dateB = b.start; // ignore upper and lowercase
+      // Sort the to-dos by start date
+      this.toDos.sort((a, b) => { 
+        const dateA = a.start; 
+        const dateB = b.start;
         if (dateA < dateB) {
           return -1;
         }
         if (dateA > dateB) {
           return 1;
         }
-        // names must be equal
         return 0;
       });
-
-      this.toDos.forEach((toDo, index) => {
-        if (index < 5) {
+      // Iterate over the to-dos
+      this.toDos.forEach((toDo, index) => { 
+        // Only add the first 5 to-dos to the events array
+        if (index < 5) { 
           this.arrayEvents.push(
             moment(new Date(toDo.start)).format("YYYY-MM-DD")
           );
-          toDo.start = dayjs(toDo.start).format("DD.MM.YYYY HH:mm");
+          // Format the start date for display
+          toDo.start = dayjs(toDo.start).format("DD.MM.YYYY HH:mm"); 
         }
       });
     });
