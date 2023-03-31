@@ -1,6 +1,7 @@
 <template>
   <v-dialog v-model="dialog">
     <template v-slot:activator="{ on, attrs }">
+      <!-- Button that activates the register dialog -->
       <v-btn color="primary" class="mt-7 boldLink" plain v-bind="attrs" v-on="on">
         Don't have an account yet? Register now!
       </v-btn>
@@ -15,6 +16,7 @@
       </div>
       <v-card-text>
         <p bold>Full Name</p>
+        <!-- Fullname textfield-->
         <v-text-field
           outlined
           ref="name"
@@ -28,6 +30,7 @@
           <v-sheet class="d-flex bg-surface-variant flex-wrap">
             <v-sheet class="me-auto flex-grow-1 pr-4">
               <p bold>adress Line</p>
+              <!-- adressline textfield-->
               <v-text-field
                 outlined
                 ref="adressLine"
@@ -46,6 +49,7 @@
             </v-sheet>
             <v-sheet class="me-auto flex-grow-2">
               <p bold>House number</p>
+              <!-- housenumber textfield-->
               <v-text-field
                 outlined
                 ref="houseNumber"
@@ -59,6 +63,7 @@
           </v-sheet>
         </div>
         <p bold>City</p>
+        <!-- city textfield-->
         <v-text-field
           outlined
           ref="city"
@@ -70,6 +75,7 @@
         <div>
           <v-sheet class="d-flex bg-surface-variant flex-wrap">
             <v-sheet class="me-auto flex-grow-1 pr-4">
+            <!-- province textfield-->
               <p bold>Province</p>
               <v-text-field
                 outlined
@@ -82,6 +88,7 @@
             </v-sheet>
             <v-sheet class="me-auto flex-grow-2">
               <p bold>Zip Code</p>
+              <!-- zipCode textfield-->
               <v-text-field
                 outlined
                 class="flex-grow-1"
@@ -95,6 +102,7 @@
           </v-sheet>
         </div>
         <p bold>Country</p>
+        <!-- country autocomplete field-->
         <v-autocomplete
           outlined
           ref="country"
@@ -105,6 +113,7 @@
           required
         ></v-autocomplete>
         <p bold>Email</p>
+        <!-- email textfield-->
         <v-text-field
           outlined
           ref="email"
@@ -118,6 +127,7 @@
           <v-sheet class="d-flex bg-surface-variant flex-wrap">
             <v-sheet class="me-auto flex-grow-1">
               <p bold>Password</p>
+              <!-- password textfield-->
               <v-text-field
                 outlined
                 ref="password"
@@ -128,6 +138,7 @@
               ></v-text-field>
             </v-sheet>
             <v-sheet class="me-auto flex-grow-1 ml-4">
+            <!-- confirm password textfield-->
               <p bold>Confirm Passord</p>
               <v-text-field
                 outlined
@@ -142,6 +153,7 @@
         </div>
       </v-card-text>
       <v-divider class="mt-12"></v-divider>
+      <!-- Cancel and submit button -->
       <v-card-actions>
         <v-btn @click="dialog = false" text> Cancel </v-btn>
         <v-spacer></v-spacer>
@@ -378,7 +390,7 @@ export default {
     formHasErrors: false,
     dialog: false,
   }),
-
+// define a computed property that returns an object containing all form fields
   computed: {
     form() {
       return {
@@ -396,6 +408,7 @@ export default {
     },
   },
 
+  // defines a watcher that triggers when the "name" field changes and clears any error messages
   watch: {
     name() {
       this.errorMessages = "";
@@ -403,10 +416,12 @@ export default {
   },
 
   methods: {
+    // This method sets an error message if the "adressLine" field is empty and the "name" field is not filled out
     adressLineCheck() {
       this.errorMessages = this.adressLine && !this.name ? `Hey! I'm required` : "";
       return true;
     },
+    // This method sets the formHasErrors property to false, sets the user object to the current form values, calls a Meteor method to create a user, and closes the dialog
     submit() {
       this.formHasErrors = false;
       this.user = this.form;

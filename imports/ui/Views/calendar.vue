@@ -123,6 +123,7 @@
                   >
                 </v-menu>
               </v-toolbar>
+              <!-- ToDo dates section-->
               <v-card-text class="d-flex flex-column">
                 <p class="font-weight-bold">Zeitraum</p>
                 <v-form :disabled="editMode === false ? true : false">
@@ -179,6 +180,7 @@
                   </v-row>
                   <v-row class="d-flex">
                     <v-col class="flex-grow-1">
+                      <!-- Vue.js template snippet for a date and time picker with text fields and buttons -->
                       <v-menu
                         v-model="endDateMenu"
                         :close-on-content-click="false"
@@ -187,6 +189,7 @@
                         offset-y
                         min-width="290px"
                       >
+                        <!-- Activator for the end date picker -->
                         <template v-slot:activator="{ on }">
                           <v-text-field
                             v-model="formattedEndDate"
@@ -195,6 +198,7 @@
                             v-on="on"
                           ></v-text-field>
                         </template>
+                        <!-- End date picker -->
                         <v-date-picker
                           v-model="endDate"
                           @input="updateFormattedDate(endDate, false)"
@@ -202,6 +206,7 @@
                         ></v-date-picker>
                       </v-menu>
                     </v-col>
+                    <!-- Second column with a time picker -->
                     <v-col class="flex-grow-1">
                       <v-menu
                         v-model="endTimeMenu"
@@ -211,6 +216,7 @@
                         offset-y
                         min-width="290px"
                       >
+                        <!-- Activator for the end time picker -->
                         <template v-slot:activator="{ on, attrs }">
                           <v-text-field
                             v-model="endTime"
@@ -220,6 +226,7 @@
                             v-on="on"
                           ></v-text-field>
                         </template>
+                        <!-- End time picker -->
                         <v-time-picker
                           v-model="endTime"
                           format="24hr"
@@ -227,19 +234,23 @@
                       </v-menu>
                     </v-col>
                   </v-row>
-
+                  <!-- ToDo-Details section -->
                   <p class="font-weight-bold pt-4">Details</p>
                   <v-text-field
                     v-model="selectedEvent.note"
                     label="Regular"
                     clearable
                   ></v-text-field>
+                  <!-- End of form section -->
                 </v-form>
               </v-card-text>
+              <!-- Card actions (buttons) -->
               <v-card-actions>
+                <!-- Cancel button -->
                 <v-btn text class="red--text" @click="selectedOpen = false">
                   Cancel
                 </v-btn>
+                <!-- Save changes button (only displayed in edit mode) -->
                 <v-btn
                   v-if="editMode === true"
                   text
@@ -302,33 +313,48 @@ export default {
     endDate: null,
     endTime: null,
   }),
+  // Call checkChange() method when component is mounted
   mounted() {
     this.$refs.calendar.checkChange();
   },
+
   methods: {
+    // set the focus on a specific day
     viewDay({ date }) {
       this.focus = date;
       this.type = "day";
     },
+
+    // get the color of an event
     getEventColor(event) {
       return event.color;
     },
+
+    // set the focus to the current day
     setToday() {
       this.focus = "";
     },
+
+    // go to the previous dateinterval on the calendar
     prev() {
       this.$refs.calendar.prev();
     },
+
+    // go to the next dateinterval on the calendar
     next() {
       this.$refs.calendar.next();
     },
+
+    // show details of an event on click
     showEvent({ nativeEvent, event }) {
+      //  open the event details
       const open = () => {
         this.selectedEvent = event;
         this.selectedElement = nativeEvent.target;
         setTimeout(() => (this.selectedOpen = true), 10);
       };
 
+      // If event details are already open, close them and then open again
       if (this.selectedOpen) {
         this.selectedOpen = false;
         setTimeout(open, 10);
@@ -337,10 +363,15 @@ export default {
       }
       nativeEvent.stopPropagation();
     },
+
+    // Define a method to delete a to-do item
     deleteToDo(event) {
-      let toDo = this.toDos[this.toDos.findIndex((toDo) => toDo.name === event.name)];
+      let toDo =
+        this.toDos[this.toDos.findIndex((toDo) => toDo.name === event.name)];
       Meteor.call("toDo.delete", toDo);
     },
+
+    // update the formatted dates
     updateFormattedDate(datePicked, isStartDate) {
       const date = new Date(datePicked);
       this.startDateMenu = false; // close the menu after selecting a date
@@ -355,6 +386,8 @@ export default {
         this.formattedEndDate = formattedDate;
       }
     },
+
+    //update the toDo
     updateToDo(event) {
       let toDo =
         this.toDos[this.toDos.findIndex((toDo) => toDo.name === event.name)];
@@ -363,6 +396,8 @@ export default {
 
       Meteor.call("toDo.update", updatedToDo);
     },
+
+    // format the dates of a to-do item
     formatDates(toDo) {
       toDo.start = moment(this.formattedStartDate, "DD.MM.YYYY").format(
         "YYYY-MM-DD"
@@ -375,10 +410,13 @@ export default {
       return toDo;
     },
   },
+
+  // fetch to-do items when the component is created
   created() {
     Tracker.autorun(() => {
       const toDoSubscription = Meteor.subscribe("toDos");
       if (toDoSubscription.ready()) {
+        // fetch the toDos from the collection and set the events array to match
         this.toDos = ToDos.find().fetch();
         this.events = this.toDos.map((toDo) => {
           return {
@@ -395,6 +433,7 @@ export default {
   },
   watch: {
     selectedEvent() {
+      // update the date and time inputs with the selected event's start and end times
       this.formattedStartDate = dayjs(this.selectedEvent.start).format(
         "DD.MM.YYYY"
       );
