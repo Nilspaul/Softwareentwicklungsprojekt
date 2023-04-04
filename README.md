@@ -4,4 +4,4 @@
 3. "meteor npm install" --> install all dependencies
 4. "meteor --settings settings.json"
 
-
+(Richtige Inhalte gibt es für die Module Theoretische Informatik und Algorithmik und Audiovisuelle Medien 2)
